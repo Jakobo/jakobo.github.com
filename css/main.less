@@ -1,0 +1,471 @@
+@colorPunch: #99cc00;
+@colorBackground: #fff;
+@colorDefault: #666666;
+@colorHeadline: #333333;
+@colorEdging: #999999;
+@sizeXLarge: 36px;
+@sizeLarge: 18px;
+@sizeMedium: 16px;
+@sizeSmall: 14px;
+@sizeMicro: 10px;
+@box: 100;
+@boxEdging: 2;
+@gutter: 20;
+@gridSize: 0px + (8 * @box + 7 * @gutter);
+@gridGutter: 0px + (@gutter * 0.5);
+@sprite: url(../img/sprite_v4_1.png);
+
+
+
+
+
+.helper-link-on {
+  color: #fff;
+  background: @colorPunch;
+  text-decoration: none;
+}
+.helper-link-off {
+  color: @colorDefault;
+  font-weight: bold;
+  text-decoration: underline;
+}
+.helper-link-discover {
+  color: @colorEdging;
+  text-decoration: none;
+}
+
+
+
+
+
+
+
+.headline {
+  font-size: @sizeXLarge;
+  font-weight: bold;
+  color: @colorHeadline;
+}
+.supportingHeadline {
+  font-size: @sizeLarge;
+  color: @colorHeadline;
+}
+
+.link {
+  .helper-link-off;
+  &:link { .helper-link-off; }
+  &:visited { .helper-link-off; }
+  &:hover { .helper-link-on; }
+  &:active { .helper-link-on; }
+}
+.link-thin {
+  font-weight: normal;
+  &:link { font-weight: normal; }
+  &:visited { font-weight: normal; }
+  &:hover { font-weight: normal; }
+  &:active { font-weight: normal; }
+}
+.link-always-off {
+  .helper-link-off;
+  &:link { .helper-link-off; }
+  &:visited { .helper-link-off; }
+  &:hover { .helper-link-off; }
+  &:active { .helper-link-off; }
+}
+.link-always-on {
+  .link;
+  &:link { .helper-link-on; }
+  &:visited { .helper-link-on; }
+}
+.link-inactive {
+  .helper-link-off;
+}
+.link-reveal {
+  .helper-link-discover;
+  &:link { .helper-link-discover; }
+  &:visited { .helper-link-discover; }
+  &:hover { .helper-link-on; }
+  &:active { .helper-link-on; }
+}
+.section (@columns: 2, @rows: 2, @clears: none) {
+  position: relative;
+  display: block;
+  float: left;
+  clear: @clears;
+  width: 0px + (@box * @columns + @gutter * (@columns - 1));
+  height: 0px + (@box * @rows + @gutter * (@rows - 1));
+  overflow: hidden;
+  margin-top: 0px + ((@gutter - @boxEdging) / 2);
+  padding-top: 0px + ((@gutter - @boxEdging) / 2);
+  border: 0px + @boxEdging solid @colorEdging;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+}
+.limitless {
+  height: auto;
+}
+.gutter (@size: 20) {
+  margin-left: 0px + @size;
+}
+.chevron (@color: @colorPunch) {
+  content: ">>";
+  display: block;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  z-index: 5;
+  font-size: @sizeMedium;
+  color: @color;  
+}
+
+/*
+--------------------------------------------------------------------------------
+Begin Main Styles
+--------------------------------------------------------------------------------
+*/
+
+body {
+/*  background: url(../resources/felocity_v4.png) left top no-repeat;*/
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: @sizeMedium;
+  color: @colorDefault;  
+  #wrapper {
+    width: @gridSize;
+    margin: @gridGutter;
+  }
+}
+
+header {
+  height: 100px;
+  #logo {
+    display: inline-block;
+    width: 220px;
+    height: 87px;
+    background: @sprite 0 0 no-repeat;
+    vertical-align: top;
+    margin-top: 13px;
+    a {
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      text-indent: -12345px;
+    }
+  }
+  ul.cloud {
+    height: 81px;
+    overflow: hidden;
+    li {
+      display: inline;
+      line-height: 20px;
+      margin-right: 0.3em;
+      a {
+        .link-reveal;
+      }
+    }
+  }
+  div {
+    display: inline-block;
+    margin-left: 20px;
+    width: 680px;
+    height: 90px;
+    vertical-align: middle;
+    padding-top: 10px;
+  }
+  p {
+    font-size: @sizeLarge;
+    color: #666;
+    line-height: 22px;
+    a {
+      .link-always-on;
+      .link-thin;
+      font-weight: normal;
+    }
+  }
+  .tagline {
+    font-weight: bold;
+    color: #333;
+    font-size: 22px;
+    line-height: 1;
+    padding-bottom: 10px;
+  }
+  strong {
+    font-weight: bold;
+  }
+}
+
+section {  
+  a.touchable {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    text-indent: -12345px;
+  }
+  
+  &.more {
+    a {
+      .link-inactive;
+    }
+    &:before {
+      .chevron(@colorPunch);
+    }
+  }
+  
+  &.supporting {
+    .section;
+    .gutter;
+    p {
+      padding-bottom: 1em;
+    }
+    h2.title {
+      .supportingHeadline;
+      height: 60px;
+    }
+    h3 {
+      .supportingHeadline;
+      height: 30px;
+    }
+  }
+  
+  &.dominant {
+    .section(4, 4, left);
+    .gutter(0);
+    h2.title {
+      .headline;
+      padding-top: 56px;
+      height: 184px;
+      line-height: 48px;
+    }
+  }
+  
+  &.primary {
+    .section(6, 6, left);
+    .gutter(0);
+    .limitless;
+    h2.title {
+      .headline;
+      padding-bottom: 24px;
+    }
+    h2 {
+      .supportingHeadline;
+      height: auto;
+      line-height: 48px;
+    }
+  }
+  
+  &.only {
+    .section(8, 8, left);
+    .gutter(0);
+    .limitless;
+    h2.title {
+      .headline;
+      padding-bottom: 24px;
+    }
+    h2 {
+      .supportingHeadline;
+      height: auto;
+      line-height: 48px;
+    }
+  }
+  
+  &.blog {
+    p {
+      line-height: 20px;
+      margin-bottom: 20px;
+      a {
+        .link;
+      }
+      img {
+        display: block;
+        margin: 0 auto;
+      }
+    }
+    ul, ol {
+      margin-bottom: 20px;
+    }
+    li {
+      list-style-type: square;
+      text-indent: 0.5em;
+      margin-left: 2em;
+      line-height: 20px;
+      a {
+        .link;
+      }
+    }
+  }
+  
+  &.comments {
+    border: 0;
+    #livefyre {
+      margin-top: 0;
+    }
+    .lf_head_bar {
+      display: none;
+    }
+  }
+  
+  &.comments-meta {
+    border: 0;
+    padding-top: 102px;
+    p {
+      font-size: @sizeSmall;
+      code {
+        font-size: @sizeMicro;
+      }
+    }
+  }
+  
+  &.contact {
+    &:before {
+      content: "";
+    }
+  }
+  
+  &.photo {
+    h2.title {
+      text-indent: -12345px;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      height: 14px;
+      background: @colorPunch;
+      z-index: 2;
+    }
+    &:before {
+      .chevron(@colorBackground);
+    }
+    a {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      img {
+        max-width: 440px;
+        max-height: 440px;
+        position: relative;
+        left: -50%;
+        margin-top: -25%;
+      }
+    }
+  }
+  
+  &.github {
+    span {
+      display: block;
+    }
+    span.date {
+      font-size: @sizeLarge;
+      color: @colorHeadline;
+      padding-bottom: 8px;
+    }
+    span.event {
+      font-size: @sizeSmall;
+      padding-bottom: 17px;
+    }
+    dt {
+      font-size: @sizeLarge;
+      color: @colorHeadline;
+      padding-bottom: 8px;
+    }
+    dd {
+      font-size: @sizeSmall;
+      padding-bottom: 17px;
+    }
+  }
+  
+  &.contact {
+    ul {
+      width: 165px;
+      height: 165px;
+      margin: 0 auto;
+      li {
+        display: block;
+        float: left;
+        width: 80px;
+        height: 80px;
+        overflow: hidden;
+        &:first-child a {
+          border: 0;
+        }
+        &:nth-child(2) a {
+          border-right: 0;
+          border-top: 0;
+          border-bottom: 0;
+          width: 79px;
+        }
+        &:nth-child(3) a {
+          border-left: 0;
+          border-bottom: 0;
+        }
+        &:last-child a {
+          border-right: 0;
+          border-bottom: 0;
+        }
+        a {
+          border: 1px dotted #999;
+          display: block;
+          width: 80px;
+          height: 80px;
+          text-indent: -12345px;
+          overflow: hidden;
+          position: relative;
+          &:after {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background: @sprite 0 0 no-repeat;
+            margin: 0 auto;
+          }
+          &.twitter:after {
+            background-position: 0 -100px;
+            width: 49px;
+            height: 34px;
+            top: 23px;
+            left: 16px;
+          }
+          &.email:after {
+            background-position: -100px -100px;
+            width: 38px;
+            height: 29px;
+            top: 26px;
+            left: 21px;
+          }
+          &.linkedin:after {
+            background-position: -200px -100px;
+            width: 44px;
+            height: 44px;
+            top: 18px;
+            left: 18px;
+          }
+          &.more {
+            text-indent: 0;
+            line-height: 80px;
+            text-align: center;
+            text-transform: uppercase;
+            color: @colorDefault;
+            font-size: 12px;
+            font-weight: bold;
+          }
+          &.more:after {
+            background-image: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+footer {
+  clear: both;
+  padding-top: 20px;
+  font-size: @sizeMicro;
+  a {
+    .link-always-off;
+    .link-thin;
+  }
+}

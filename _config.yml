@@ -1,0 +1,10 @@
+name: Felocity
+description: Web Development
+future: true
+permalink: /article/:title/
+markdown: kramdown
+kramdown:
+  entity_output: symbolic
+url: http://jakobo.github.com
+safe: true
+pygments: true

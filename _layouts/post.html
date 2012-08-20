@@ -1,0 +1,50 @@
+---
+layout: default
+show_about: false
+show_postlog: true
+itemscope: http://schema.org/BlogPosting
+css:
+  - /css/pygments.css
+javascript:
+  - /js/lib/jquery-sizer.js
+  - /js/lib/jquery-gist.js
+  - /js/lib/date.js
+---
+
+<script type="felocity/control" data-felocity-describes=".blog">
+  $("a", this).filter(function() {
+    return (/https:\/\/gist.github.com\/.*#.*/).test($(this).attr("href"))
+  }).each(function() {
+    $(this).gist()
+  });
+  $("img", this).each(function() {
+    $(this).resizeImage()
+  });
+</script>
+<section class="primary blog">
+  <h2 class="title" itemprop="name">{{page.title}}</h2>
+  <p itemprop="description" style="display:none">{{page.summary}}</p>
+  {{content}}
+</section>
+      
+<section class="supporting blog-meta">
+  <p>This article was written on {{page.date | date: "%B %d, %Y" }}</p>
+  
+  <h3>Share this</h3>
+  <ul>
+    <li><script type="IN/Share" data-counter="right" data-showZero="true"></script></li>
+    <li><a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="jakobo">Tweet</a></li>
+    <li><div class="g-plusone" data-size="medium"></div></li>
+  </ul>
+</section>
+
+<!-- Social Media Plugins -->
+<script src="http://platform.linkedin.com/in.js" type="text/javascript"></script>
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+<script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>

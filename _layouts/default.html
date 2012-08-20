@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      {% if page.title %}
+        {{page.title}}
+      {% else %}
+        Jakob Heuser
+      {% endif %} | Felocity.com
+    </title>
+    <link rel="stylesheet/less" href="/css/reset.less" type="text/css" />
+    <link rel="stylesheet/less" href="/css/main.less" type="text/css" />
+
+    {% for css in page.css %}
+      <link rel="stylesheet" href="{{ css }}" type="text/css" />
+    {% endfor %}
+
+    <meta property="og:title" content="Jakob Heuser | Felocity.com"/>
+    <meta name="title" content="Jakob Heuser | Felocity.com" />
+    {% if page.summary %}
+    <meta name="description" content="{{ page.summary }}">
+    {% else %}
+    <meta property="og:description" content="The personal website of Jakob Heuser. Blogs on technology, shares photography, loves words ending in &quot;y&quot;"/>
+    <meta name="description" content="The personal website of Jakob Heuser. Blogs on technology, shares photography, loves words ending in &quot;y&quot;" />
+    {% endif %}
+
+    {% if page.keywords %}
+    <meta name="keywords" content="{{ page.keywords }}">
+    {% endif %}
+    
+    <!-- tracking -->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-15075481-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+  <body>
+    TESTING-REMOVE
+    <div id="wrapper">
+      <header>
+        <h1 id="logo"><a href="/">Felocity</a></h1>
+        <div class="info">
+          {% if page.show_about %}
+          <p class="tagline">Bangs on Keyboard, Makes Shiny</p>
+          <p>
+            I am Jakob Heuser. I <a href="https://github.com/jakobo">code</a>, I <a href="/articles">write</a>, &amp; I strive to keep things simple.
+            <a href="http://jakobo.smugmug.com">Photography</a> is a hobby I'm happy not being paid for. I work at
+            <a href="http://www.linkedin.com/in/jakobheuser">LinkedIn</a>, and enjoy making an <strong>impact</strong>.
+          </p>
+          {% endif %}
+          {% if page.show_postlog %}
+          <ul class="cloud">
+            {% assign start = 0 %}
+            {% for post in site.posts %}
+              {% if post.date > page.date %}
+                {% assign start = forloop.index %}
+              {% endif %}
+            {% endfor %}
+            {% for item in site.posts limit:10 offset:start %}
+              {% unless forloop.first %}
+                <li><a href="{{item.url}}">{{item.title}}</a></li>
+              {% endunless %}
+            {% endfor %}
+            <!-- <li><a href="{{post.url}}">{{post.title}}</a></li> -->
+            <li>...&nbsp;<a href="/articles">just see them all</a></li>
+          </ul>
+          {% endif %}
+        </div>
+      </header>
+
+      {{ content }}
+      
+      <footer>Copyright 2011 Rudolph Jakob Heuser. All rights reserved. Powered by <a href="https://github.com/mojombo/jekyll">Jekyll</a></footer>
+    </div>
+    <script type="text/javascript"src="/js/lib/less-1.1.4.js"></script>
+    <script type="text/javascript"src="/js/lib/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript"src="/js/lib/jquery-ellipsis.js"></script>
+    <script type="text/javascript"src="/js/lib/jquery-reduceto.js"></script>
+    <script type="text/javascript"src="/js/lib/jquery-githubstream.js"></script>
+    <script type="text/javascript"src="/js/lib/jquery-jbinder.js"></script>
+    <script type="text/javascript"src="/js/lib/moment-1.7.0.min.js"></script>
+    <script type="text/javascript">$(function() { $("body").jBinder("felocity") });</script>
+    {% for js in page.javascript %}
+    <script type="text/javascript" src="{{ js }}"></script>
+    {% endfor %}
+  </body>
+</html>
