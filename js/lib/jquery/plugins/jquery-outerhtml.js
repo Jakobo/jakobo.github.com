@@ -1,3 +1,5 @@
+(function( $ ) {
+
 $.fn.outerHTML = function() {
   var doc = this[0] ? this[0].ownerDocument : document,
       div = doc.createElement("div"),
@@ -5,3 +7,5 @@ $.fn.outerHTML = function() {
   div.appendChild(node);
   return div.innerHTML;
 };
+
+})(jQuery);

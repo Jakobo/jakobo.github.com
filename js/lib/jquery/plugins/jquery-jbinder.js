@@ -1,3 +1,5 @@
+(function( $ ) {
+
 $.fn.jBinder = function(binder) {
   binder = binder || "jbinder";
   $("script[type='"+binder+"/control']").each(function ittrScript() {
@@ -8,3 +10,5 @@ $.fn.jBinder = function(binder) {
   });
   return $(this);
 };
+
+})(jQuery);

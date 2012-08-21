@@ -1,4 +1,6 @@
-jQuery.fn.ellipsis = function(options) {
+(function( $ ) {
+
+$.fn.ellipsis = function(options) {
   options = $.extend(true, {}, {
     height: null,
     words: -1,
@@ -62,3 +64,5 @@ jQuery.fn.ellipsis = function(options) {
   }
   return element;
 };
+
+})(jQuery);
