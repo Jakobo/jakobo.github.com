@@ -2,6 +2,7 @@
 published: false
 permalink: /article/evernote_as_a_blogging_engine
 title: Evernote as a Blogging Engine
+notes: ready. Must go live before blogging w/ Jekyll
 ---
 In the node.js days, I went for a 0-storage solution on my AWS box. This required storing my blog entries on some other service. I wanted something that had versioning, worked on multiple platforms, and had a cool elephant for a logo. Evernote it was! I mean, you can make notebooks publicly accessible; there must be some way to get those posts into a blog. There's some dark magic that follows, but if you're looking to use Evernote's APIs there's some neat tricks to be found.
 
@@ -27,4 +28,6 @@ With a pile of asynchronous calls, we can merge these GUID based results in with
 
 Advanced "Features"
 -------------------
-If you're really feeling ambitious, the search paramter from the post list can be combined with overloaded title information to create unique situations such as tagging or permalinks. For the felocity.com site, the note's title was overloaded into the format of "Title | permalink_title | publish/date/here" which could then hold additional metadata about the post. You can also get crafty with the tag and category data.
+If you're really feeling ambitious, the search paramter from the post list can be combined with overloaded title information to create unique situations such as tagging or permalinks. For the felocity.com site, the note's title was overloaded into the format of "Title | permalink_title | publish/date/here" which could then hold additional metadata about the post. You can also get crafty with the tag and category data. One annoying quirk about the RSS data is the pubDate field references the date of update, not the date of creation. In fact, the creation date is completely absent from the data. While that can be worked around, it is still a bit quirky.
+
+If you're thinking of rolling something similar yourself, have a look at the [PostModel](https://github.com/Jakobo/felocity-exp/blob/master/src/models/posts.coffee) which powers the posts on the node.js version of felocity.com.
