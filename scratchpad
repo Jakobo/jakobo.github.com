@@ -1,0 +1,15 @@
+Google + Images from Picasa URL
+https://picasaweb.google.com/data/feed/base/user/115806050983038854461?alt=json&kind=album&hl=en_US&access=public&imgmax=1600&callback=foo
+
+Image:
+o.feed.entry[0].media$group.media$content[0].url
+"https://lh4.googleusercontent.com/-BpkRFMTrndA/UDsawCIxi0E/AAAAAAAACQU/uopzsnojnCE/s1600/82612.jpg"
+
+Title:
+o.feed.entry[0].title.$t
+
+Link: there isn't one
+https://plus.google.com/115806050983038854461/photos
+
+Where I'd like to go:
+https://plus.google.com/photos/115806050983038854461/albums/posts/5781243961712052242
