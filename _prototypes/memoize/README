@@ -1,0 +1,1 @@
+This is a simple memoize with async support. I was looking for something that could be an "oh shit, we need a drop-in fix fast" solution, so that time could be alotted to find a proper long term solution.
