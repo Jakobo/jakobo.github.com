@@ -27,6 +27,8 @@ Inject.addRule(/moment/, {
 // two tier require forcing explicit (unknown) dependencies
 require.ensure(["jquery", "moment"], function() {
   require.ensure([
+    "jquery/plugins/jquery-sizer",
+    "jquery/plugins/jquery-gist",
     "jquery/plugins/jquery-ellipsis",
     "jquery/plugins/jquery-reduceto",
     "jquery/plugins/jquery-githubstream",

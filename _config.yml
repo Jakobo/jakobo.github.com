@@ -5,6 +5,6 @@ permalink: /article/:title/
 markdown: kramdown
 kramdown:
   entity_output: symbolic
-url: http://jakobo.github.com
+url: http://www.felocity.com
 safe: true
 pygments: true

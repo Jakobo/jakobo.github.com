@@ -16,7 +16,7 @@ If you're going to use a third party client, [Verbs](http://verbs.im) is very po
 
 Monal IM
 ---
-At the free end of the spectrum is an XMPP compliant solution called [Monal](http://monal.im/). It connects directly to the server instead of a 3rd party service, has VPN support, and it looks like it will always be ad free as well. Unfortunately, the lack of a 3rd party service also means when you close the app, it'll disconnect you. For people who need a VPN for their corporate Jabber, this might be a good solution. For replacing GTalk on Android, however, this is not. [Monal in the App Store](http://itunes.apple.com/us/app/monal/id317711500?mt=8) Free.
+At the free end of the spectrum is an XMPP compliant solution called [Monal](http://monal.im/). It connects directly to the server instead of a 3rd party service, has VPN support, and it looks like it will always be ad free as well. Since there is no 3rd party service, you won't be able to get push notifications if the app is closed in the background by iOS. However, as long as the app is backgrounded, it will keep working. For people who need a VPN for their corporate Jabber, this might be a good solution. [Monal in the App Store](http://itunes.apple.com/us/app/monal/id317711500?mt=8) Free.
 
 IMO
 ---
