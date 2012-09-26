@@ -80,5 +80,5 @@ $.fn.githubActivity = function(opts) {
 
   return this;
 };
-  
+
 })(jQuery);

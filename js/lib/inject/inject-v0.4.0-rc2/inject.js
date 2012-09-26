@@ -62,7 +62,7 @@ var AMD_DEFERRED = "###DEFERRED###";
 
 /**
  * the namespace for inject() that is publicly reachable
- * @constant 
+ * @constant
  */
 var NAMESPACE = "Inject";
 
@@ -80,7 +80,7 @@ var FILE_SUFFIX_REGEX = /.*?\.(js|txt)(\?.*)?$/;
 var BASIC_FILE_SUFFIX = ".js";
 
 /** prefixes for URLs that begin with http/https
- * @constant 
+ * @constant
  */
 var HOST_PREFIX_REGEX = /^https?:\/\//;
 
@@ -96,13 +96,13 @@ var HOST_SUFFIX_REGEX = /^(.*?)(\/.*|$)/;
  * (1) Anything up to a space (status code)
  * (2) Anything up to a space (moduleid)
  * (3) Any text up until the end of the string (file)
- * @constant 
+ * @constant
  **/
 var RESPONSE_SLICER_REGEX = /^(.+?)[\s]+([\w\W]+?)[\s]+([\w\W]+)$/m;
 
 /**
  * a regex to locate the function() opener
- * @constant 
+ * @constant
  */
 var FUNCTION_REGEX = /^[\s\(]*function[^\(]*\(([^)]*)\)/;
 
@@ -114,68 +114,68 @@ var FUNCTION_NEWLINES_REGEX = /\/\/.*?[\r\n]|\/\*(?:.|[\r\n])*?\*\//g;
 
 /**
  * captures the body of a JS function
- * @constant 
+ * @constant
  */
 var FUNCTION_BODY_REGEX = /[\w\W]*?\{([\w\W]*)\}/m;
 
 /**
  * locate whitespace within a function body
- * @constant 
+ * @constant
  */
 var WHITESPACE_REGEX = /\s+/g;
 
 /**
  * extract require() statements from within a larger string
- * @constant 
+ * @constant
  */
 var REQUIRE_REGEX = /(?:^|[^\w\$_.\(])require\s*\(\s*("[^"\\]*(?:\\.[^"\\]*)*"|'[^'\\]*(?:\\.[^'\\]*)*')\s*\)/g;
 
-/** 
+/**
  * extract define() statements from within a larger string
- * @constant 
+ * @constant
  */
 var DEFINE_EXTRACTION_REGEX = /(?:^|[\s]+)define[\s]*\([\s]*((?:"|')\S+(?:"|'))?,?[\s]*(?:\[([\w\W]+)\])?/g;
 
-/** 
+/**
  * index of all commonJS builtins in a function arg collection
- * @constant 
+ * @constant
  */
 var BUILTINS = {require: true, exports: true, module: true};
 
 /**
  * a regex for replacing builtins and quotes
- * @constant 
+ * @constant
  */
 var BUILTINS_REPLACE_REGEX = /[\s]|"|'|(require)|(exports)|(module)/g;
 
-/** 
+/**
  * capture anything that involves require*, aggressive to cut
  * down the number of lines we analyze
- * @constant 
+ * @constant
  */
 var GREEDY_REQUIRE_REXEX = /require.*/;
 
 /**
  * match comments in our file (so we can strip during a static analysis)
- * @constant 
+ * @constant
  */
 var JS_COMMENTS_REGEX = /(\/\*([\s\S]*?)\*\/|([^:]|^)\/\/(.*)$)/mg;
 
 /**
  * identifies a path as relative
- * @constant 
+ * @constant
  */
 var RELATIVE_PATH_REGEX = /^(\.{1,2}\/).+/;
 
 /**
  * identifies a path as absolute fully-qualified URL
- * @constant 
+ * @constant
  */
 var ABSOLUTE_PATH_REGEX = /^([A-Za-z]+:)?\/\//;
 
 /**
  * run a test to determine if localstorage is available
- * @constant 
+ * @constant
  */
 var HAS_LOCAL_STORAGE = (function() {
   try {
@@ -297,7 +297,7 @@ var getXhr = (function(){
           item = list[i] + ".XMLHTTP";
           var obj = new ActiveXObject(item);
           return item;
-        } 
+        }
         catch (e) {}
       }
     }());
@@ -779,7 +779,7 @@ governing permissions and limitations under the License.
 */
 
 /**
- * The analyzer module handles extract the clean dependencies list 
+ * The analyzer module handles extract the clean dependencies list
  * from a given file and supports remove buildin modules from a
  * given module list
  * @file
@@ -793,9 +793,9 @@ var Analyzer;
        * @constructs Analyzer
        */
       init: function() {},
-      
+
       /**
-       * Clean up moduleIds by removing all buildin modules 
+       * Clean up moduleIds by removing all buildin modules
        * (requie, exports, module) from a given module list
        * @method Analyzer.stripBuiltins
        * @param {Array} modules - a dirty list of modules
@@ -813,7 +813,7 @@ var Analyzer;
         }
         return strippedModuleList;
       },
-      
+
       /**
        * Extract the clean dependency requires from a given file as
        * String, remove all buildin requires, merge requires from
@@ -821,7 +821,7 @@ var Analyzer;
        * @method Analyzer.extractRequires
        * @param {String} file - a string of a file
        * @public
-       * @returns {Array} a clean list of dependency requires from a 
+       * @returns {Array} a clean list of dependency requires from a
        * module file
        */
       extractRequires: function(file) {
@@ -841,7 +841,7 @@ var Analyzer;
           }
           uniques[term] = true;
         };
-        
+
         // remove comment lines from the file to avoid adding
         // any requires from comments
         file = file.replace(JS_COMMENTS_REGEX, "");
@@ -930,7 +930,7 @@ var Communicator;
 
     function clearCaches() {
       socketConnectionQueue = [];
-      downloadCompleteQueue = {};      
+      downloadCompleteQueue = {};
     }
 
     function writeToCache(url, contents) {
@@ -1122,7 +1122,7 @@ var Executor;
    * @type {int}
    */
   var testScript = 'function Inject_Test_Known_Error() {\n  function nil() {}\n  nil("Known Syntax Error Line 3";\n}';
-  
+
   /**
    * the old onerror object for restoring
    * @private
@@ -1315,7 +1315,7 @@ var Executor;
         toExec = [toExec, sourceString].join("\n");
         if (!context.Inject.INTERNAL.execute[options.functionId]) {
           // there is nothing to run, so there must have been an uncaught
-          // syntax error (firefox). 
+          // syntax error (firefox).
           try {
             try { eval("+\n//@ sourceURL=inject-executor-line.js"); } catch (ee) { relativeE = ee; }
             eval(toExec);
@@ -1336,7 +1336,7 @@ var Executor;
           try { eval("+\n//@ sourceURL=inject-executor-line.js"); } catch (ee) { relativeE = ee; }
           eval(toExec);
         }
-        
+
         if (context.Inject.INTERNAL.execute[options.functionId]) {
           result = context.Inject.INTERNAL.execute[options.functionId];
           // set the error object using our standard method
@@ -1645,7 +1645,7 @@ var Executor;
           epilogue: footer,
           originalCode: code,
           url: path
-        });    
+        });
 
         // if a global error object was created
         if (result && result.error) {
@@ -2373,17 +2373,11 @@ var RulesEngine;
 
         // exit early on resolved http URL
         if (ABSOLUTE_PATH_REGEX.test(path)) {
+          // store pointcuts based on the resolved URL
+          this.pointcuts[path] = result.pointcuts;
           return path;
         }
 
-        // shortcut. If it starts with /, affix to module root
-        if (path.indexOf("/") === 0) {
-          resolvedUrl = userConfig.moduleRoot + path.substr(1);
-          if (userConfig.useSuffix && !FILE_SUFFIX_REGEX.test(resolvedUrl)) {
-            resolvedUrl = resolvedUrl + BASIC_FILE_SUFFIX;
-          }
-          return resolvedUrl;
-        }
 
         // take off the :// to replace later
         relativeTo = relativeTo.replace(/:\/\//, "__INJECT_PROTOCOL_COLON_SLASH_SLASH__");
@@ -3057,9 +3051,9 @@ var TreeNode = Class.extend(function() {
           direction = null,
           output = [],
           i = 0;
-      
+
       while (currentNode) {
-        
+
         if (currentNode.getChildren().length > 0 && direction !== "up") {
           direction = "down";
           currentNode = currentNode.getChildren()[0];

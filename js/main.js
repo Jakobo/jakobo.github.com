@@ -20,7 +20,13 @@ Inject.addRule(/jquery/, {
 
 // moment
 Inject.addRule(/moment/, {
-  path: "/lib/moment/moment-1.7.0/moment-1.7.0.min.js"
+  path: "/lib/moment/moment-1.7.0/moment-1.7.0.min.js",
+  pointcuts: {
+    after: function() {
+      // expose for now
+      window.moment = this.moment;
+    }
+  }
 });
 
 // go go go zerg rush
