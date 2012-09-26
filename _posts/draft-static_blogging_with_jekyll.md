@@ -1,9 +1,11 @@
 ---
 published: false
+layout: post
 permalink: /article/static_blogging_with_jekyll
 title: Static Blogging With Jekyll
 notes: must go live AFTER evernote article
 ---
+
 Longtime readers of the site know that felocity.com serves as a constant playground for new ideas and technologies. It was where I cracked open PHP6, first played with Git, tried a 100% client driven UI, and an assortment of other ideas. Most recently, it was the migration to node.js to learn not only node/npm, but also Capistrano, AWS, and how to put it all together as a cohesive solution. Kiro, coworker at LinkedIn introduced me to Jekyll on an inDay, and I decided to try something completely different.
 
 A Short List of Problems

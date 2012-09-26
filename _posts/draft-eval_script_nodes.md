@@ -1,8 +1,10 @@
 ---
 published: false
+layout: post
 permalink: /article/executing_a_script_node_using_appendchild
 title: Executing a Script Node Using appendChild()
 ---
+
 When it comes to executing code, eval() is not very good at picking up syntax errors. It's line number is consistently the point of eval() and not the line in the eval-ed code that contained the problem. Script tags, however, are free of these problems, and report line numbers as parse errors. What results is an alternate technique for "eval", which can catch parse errors in JavaScript code. Since [eval is evil](http://javascriptweblog.wordpress.com/2010/04/19/how-evil-is-eval/), this "eval" should be used with caution. However, sometimes you just need to get that line number.
 
 .innerHTML and .text

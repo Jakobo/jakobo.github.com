@@ -1,9 +1,9 @@
 ---
-published: false
+layout: post
 permalink: /article/evernote_as_a_blogging_engine
 title: Evernote as a Blogging Engine
-notes: ready. Must go live before blogging w/ Jekyll
 ---
+
 In the node.js days, I went for a 0-storage solution on my AWS box. This required storing my blog entries on some other service. I wanted something that had versioning, worked on multiple platforms, and had a cool elephant for a logo. Evernote it was! I mean, you can make notebooks publicly accessible; there must be some way to get those posts into a blog. There's some dark magic that follows, but if you're looking to use Evernote's APIs there's some neat tricks to be found.
 
 Getting a List of Posts

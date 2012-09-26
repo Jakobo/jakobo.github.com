@@ -1,5 +1,6 @@
 ---
 published: false
+layout: post
 permalink: /article/insertbefore_appendchild_and_reloading_iframes
 title: insertBefore(), appendChild() and reloading iframes
 ---
@@ -34,4 +35,4 @@ Using the above Firefox-proof code, it's possible to use adoptNode() when it's a
 
 [adoptNode cross browser result](https://gist.github.com/1026304#file_adoptnode.js)
 
-The most significant difference is knowing you cannot maintain stateful items in the frame itself. Solutions for using adoptNode with a fallback will need some way to save and restore the state, possibly in localStorage. 
+The most significant difference is knowing you cannot maintain stateful items in the frame itself. Solutions for using adoptNode with a fallback will need some way to save and restore the state, possibly in localStorage.
