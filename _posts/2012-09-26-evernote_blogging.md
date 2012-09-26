@@ -4,7 +4,7 @@ permalink: /article/evernote_as_a_blogging_engine
 title: Evernote as a Blogging Engine
 ---
 
-In the node.js days, I went for a 0-storage solution on my AWS box. This required storing my blog entries on some other service. I wanted something that had versioning, worked on multiple platforms, and had a cool elephant for a logo. Evernote it was! I mean, you can make notebooks publicly accessible; there must be some way to get those posts into a blog. There's some dark magic that follows, but if you're looking to use Evernote's APIs there's some neat tricks to be found.
+With [Felocity running on node.js](/article/felocity_on_nodejs), I went for a site design that didn't require persistence on my Amazon Web Services box. This required storing my blog entries in some other way, preferably with an API. I also wanted something that had versioning, worked on multiple platforms, and had a cool elephant for a logo. Evernote it was! I mean, you can make notebooks publicly accessible; there must be some way to get those posts into a blog. There's some dark magic that follows, but if you're looking to use Evernote's APIs there's some neat tricks to be found.
 
 Getting a List of Posts
 -----------------------
@@ -16,7 +16,7 @@ If your posts are short, there won't be much else to do. The RSS feed contains a
 
 The Full Post "API"
 -------------------
-The most important thing that comes out of this list is the GUID (Globally Unique IDentifier). GUIDs are the heart and soul of most of your evernote queries. They can be found in the RSS link above, and with that you're able to retrieve the full text. Everything from this point forward gets horribly undocumented, as there's not much beyond [Evernote's Thumbnail API](http://dev.evernote.com/documentation/cloud/chapters/Thumbnails.php). As a starting point, we get the following URL structure.
+The most important thing that comes out of this list is the GUID (Globally Unique IDentifier). GUIDs are the heart and soul of most of your Evernote queries. They can be found in the RSS link above, and with that you're able to retrieve the full text. Everything from this point forward gets horribly undocumented, as there's not much beyond [Evernote's Thumbnail API](http://dev.evernote.com/documentation/cloud/chapters/Thumbnails.php). As a starting point, we get the following URL structure.
 
 [A simple URL to a thumbnail in Evernote](https://gist.github.com/3447044#file_thumbnail.txt)
 
@@ -28,6 +28,6 @@ With a pile of asynchronous calls, we can merge these GUID based results in with
 
 Advanced "Features"
 -------------------
-If you're really feeling ambitious, the search paramter from the post list can be combined with overloaded title information to create unique situations such as tagging or permalinks. For the felocity.com site, the note's title was overloaded into the format of "Title | permalink_title | publish/date/here" which could then hold additional metadata about the post. You can also get crafty with the tag and category data. One annoying quirk about the RSS data is the pubDate field references the date of update, not the date of creation. In fact, the creation date is completely absent from the data. While that can be worked around, it is still a bit quirky.
+If you're really feeling ambitious, the search parameter from the post list can be combined with overloaded title information to create unique situations such as tagging or permalinks. For the felocity.com site, the note's title was overloaded into the format of "Title | permalink_title | publish/date/here" which could then hold additional metadata about the post. You can also get crafty with the tag and category data. One annoying quirk about the RSS data is the pubDate field references the date of update, not the date of creation. In fact, the creation date is completely absent from the data. While that can be worked around, it is still a bit quirky.
 
 If you're thinking of rolling something similar yourself, have a look at the [PostModel](https://github.com/Jakobo/felocity-exp/blob/master/src/models/posts.coffee) which powers the posts on the node.js version of felocity.com.
