@@ -5,17 +5,17 @@ Inject.reset();
 // in this instance of inject, the window objects are needed
 // ... maybe inject needs a dependencies addon
 
+// jquery
+Inject.addRule(/jquery/, {
+  path: "/lib/jquery/jquery-1.8.0/jquery-1.8.0.min.js"
+});
+
 // jquery plugins
 Inject.addRule(/.*?jquery\/plugins\/.*?/, {
   path: function(module) {
     return "/lib/"+module+".js";
   },
   last: true
-});
-
-// jquery
-Inject.addRule(/jquery/, {
-  path: "/lib/jquery/jquery-1.8.0/jquery-1.8.0.min.js"
 });
 
 // moment

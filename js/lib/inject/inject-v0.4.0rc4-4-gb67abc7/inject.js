@@ -1,4 +1,5 @@
 ;(function(context, undefined) {
+
 /*
 Inject
 Copyright 2011 LinkedIn
@@ -15,12 +16,6 @@ IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
 express or implied.   See the License for the specific language
 governing permissions and limitations under the License.
 */
-
-/**
- * the version of inject this is
- * @constant
- */
-var INJECT_VERSION = "0.4.0-pre";
 
 /**
  * a test to determine if this is the IE engine (needed
@@ -62,7 +57,7 @@ var AMD_DEFERRED = "###DEFERRED###";
 
 /**
  * the namespace for inject() that is publicly reachable
- * @constant
+ * @constant 
  */
 var NAMESPACE = "Inject";
 
@@ -80,7 +75,7 @@ var FILE_SUFFIX_REGEX = /.*?\.(js|txt)(\?.*)?$/;
 var BASIC_FILE_SUFFIX = ".js";
 
 /** prefixes for URLs that begin with http/https
- * @constant
+ * @constant 
  */
 var HOST_PREFIX_REGEX = /^https?:\/\//;
 
@@ -96,13 +91,13 @@ var HOST_SUFFIX_REGEX = /^(.*?)(\/.*|$)/;
  * (1) Anything up to a space (status code)
  * (2) Anything up to a space (moduleid)
  * (3) Any text up until the end of the string (file)
- * @constant
+ * @constant 
  **/
 var RESPONSE_SLICER_REGEX = /^(.+?)[\s]+([\w\W]+?)[\s]+([\w\W]+)$/m;
 
 /**
  * a regex to locate the function() opener
- * @constant
+ * @constant 
  */
 var FUNCTION_REGEX = /^[\s\(]*function[^\(]*\(([^)]*)\)/;
 
@@ -114,68 +109,92 @@ var FUNCTION_NEWLINES_REGEX = /\/\/.*?[\r\n]|\/\*(?:.|[\r\n])*?\*\//g;
 
 /**
  * captures the body of a JS function
- * @constant
+ * @constant 
  */
 var FUNCTION_BODY_REGEX = /[\w\W]*?\{([\w\W]*)\}/m;
 
 /**
  * locate whitespace within a function body
- * @constant
+ * @constant 
  */
 var WHITESPACE_REGEX = /\s+/g;
 
 /**
  * extract require() statements from within a larger string
- * @constant
+ * @constant 
  */
 var REQUIRE_REGEX = /(?:^|[^\w\$_.\(])require\s*\(\s*("[^"\\]*(?:\\.[^"\\]*)*"|'[^'\\]*(?:\\.[^'\\]*)*')\s*\)/g;
 
-/**
+/** 
  * extract define() statements from within a larger string
- * @constant
+ * @constant 
  */
 var DEFINE_EXTRACTION_REGEX = /(?:^|[\s]+)define[\s]*\([\s]*((?:"|')\S+(?:"|'))?,?[\s]*(?:\[([\w\W]+)\])?/g;
 
-/**
+/** 
  * index of all commonJS builtins in a function arg collection
- * @constant
+ * @constant 
  */
 var BUILTINS = {require: true, exports: true, module: true};
 
 /**
  * a regex for replacing builtins and quotes
- * @constant
+ * @constant 
  */
 var BUILTINS_REPLACE_REGEX = /[\s]|"|'|(require)|(exports)|(module)/g;
 
-/**
+/** 
  * capture anything that involves require*, aggressive to cut
  * down the number of lines we analyze
- * @constant
+ * @constant 
  */
 var GREEDY_REQUIRE_REXEX = /require.*/;
 
 /**
  * match comments in our file (so we can strip during a static analysis)
- * @constant
+ * @constant 
  */
 var JS_COMMENTS_REGEX = /(\/\*([\s\S]*?)\*\/|([^:]|^)\/\/(.*)$)/mg;
 
 /**
  * identifies a path as relative
- * @constant
+ * @constant 
  */
 var RELATIVE_PATH_REGEX = /^(\.{1,2}\/).+/;
 
 /**
  * identifies a path as absolute fully-qualified URL
- * @constant
+ * @constant 
  */
 var ABSOLUTE_PATH_REGEX = /^([A-Za-z]+:)?\/\//;
 
 /**
+ * The :// part of the protocol (to remove when splitting on / for URLs)
+ * @constant 
+ */
+var PROTOCOL_REGEX = /:\/\//;
+
+/**
+ * A string equivalent of the protocol regex
+ * @constant 
+ */
+var PROTOCOL_STRING = "://";
+
+/**
+ * A replacement for :// that doesn't contain slashes
+ * @constant 
+ */
+var PROTOCOL_EXPANDED_REGEX = /__INJECT_PROTOCOL_COLON_SLASH_SLASH__/;
+
+/**
+ * A string version of the expanded protocol regex
+ * @constant 
+ */
+var PROTOCOL_EXPANDED_STRING = "__INJECT_PROTOCOL_COLON_SLASH_SLASH__";
+
+/**
  * run a test to determine if localstorage is available
- * @constant
+ * @constant 
  */
 var HAS_LOCAL_STORAGE = (function() {
   try {
@@ -297,7 +316,7 @@ var getXhr = (function(){
           item = list[i] + ".XMLHTTP";
           var obj = new ActiveXObject(item);
           return item;
-        }
+        } 
         catch (e) {}
       }
     }());
@@ -350,7 +369,7 @@ var debugLog = function() {};
 // TODO: more robust logging solution
 (function() {
   var logs = [];
-  var canLog = (console && console.log && typeof(console.log) === "function");
+  var canLog = (typeof(console) !=="undefined" && console.log  && typeof(console.log) === "function");
   var doLog = function(origin, message) {
     if (userConfig.debug && userConfig.debug.logging) {
       console.log("## "+ origin +" ##" + "\n" + message);
@@ -779,7 +798,7 @@ governing permissions and limitations under the License.
 */
 
 /**
- * The analyzer module handles extract the clean dependencies list
+ * The analyzer module handles extract the clean dependencies list 
  * from a given file and supports remove buildin modules from a
  * given module list
  * @file
@@ -793,9 +812,9 @@ var Analyzer;
        * @constructs Analyzer
        */
       init: function() {},
-
+      
       /**
-       * Clean up moduleIds by removing all buildin modules
+       * Clean up moduleIds by removing all buildin modules 
        * (requie, exports, module) from a given module list
        * @method Analyzer.stripBuiltins
        * @param {Array} modules - a dirty list of modules
@@ -813,7 +832,7 @@ var Analyzer;
         }
         return strippedModuleList;
       },
-
+      
       /**
        * Extract the clean dependency requires from a given file as
        * String, remove all buildin requires, merge requires from
@@ -821,7 +840,7 @@ var Analyzer;
        * @method Analyzer.extractRequires
        * @param {String} file - a string of a file
        * @public
-       * @returns {Array} a clean list of dependency requires from a
+       * @returns {Array} a clean list of dependency requires from a 
        * module file
        */
       extractRequires: function(file) {
@@ -841,7 +860,7 @@ var Analyzer;
           }
           uniques[term] = true;
         };
-
+        
         // remove comment lines from the file to avoid adding
         // any requires from comments
         file = file.replace(JS_COMMENTS_REGEX, "");
@@ -852,7 +871,7 @@ var Analyzer;
         }
         if (dirtyRuntimeRequires.length > 0) {
           try {
-            eval([dirtyRuntimeRequires.join(";"), "//@ sourceURL=inject-analyzer.js"].join("\n"));
+            eval([dirtyRuntimeRequires.join(";"), "//@ sourceURL=Inject-Analyzer.js"].join("\n"));
           }
           catch(err) {
             throw new Error("Invalid require() syntax found in file: " + dirtyRuntimeRequires.join(";"));
@@ -918,6 +937,12 @@ express or implied.   See the License for the specific language
 governing permissions and limitations under the License.
 */
 
+
+/**
+* Communicator handles the logic for 
+* downloading and executing required files and dependencies
+* @file
+**/
 var Communicator;
 (function() {
   var AsStatic = Class.extend(function() {
@@ -928,27 +953,66 @@ var Communicator;
 
     var socket;
 
+    /**
+    * Clear the records to socket connections and 
+    * downloaded files
+    * @function
+    * @private
+    **/
     function clearCaches() {
       socketConnectionQueue = [];
-      downloadCompleteQueue = {};
+      downloadCompleteQueue = {};      
     }
 
+    /**
+    * Write file contents to local storage
+    * @function
+    * @param {string} url - url to use as a key to store file content
+    * @param {string} contents file contents to be stored in cache
+    * @private
+    * @returns a function adhearing to the lscache set() method
+    **/
     function writeToCache(url, contents) {
       // lscache and passthrough
       return lscache.set(url, contents, userConfig.fileExpires);
     }
 
+    /**
+    * read cached file contents from local storage
+    * @function
+    * @param {string} url - url key that the content is stored under
+    * @private
+    * @returns the content that is stored under the url key
+    * 
+    **/
     function readFromCache(url) {
       // lscache and passthrough
       return lscache.get(url);
     }
 
+    /**
+    * Utility function to cleanup Host name by removing leading 
+    * http or https string
+    * @function
+    * @param {string} host - The host name to trim.
+    * @private
+    * @returns hostname without leading http or https string
+    **/
     function trimHost(host) {
       host = host.replace(HOST_PREFIX_REGEX, "").replace(HOST_SUFFIX_REGEX, "$1");
       return host;
     }
 
-    // when a file completes, resolve all callbacks in its queue
+    /**
+    * function that resolves all callbacks that are associated 
+    * to the loaded file
+    * @function
+    * @param {string} moduleId - The id of the module that has been loaded
+    * @param {string} url - The location of the module that has loaded
+    * @param {int} statusCode - The result of the attempt to load the file at url
+    * @param {string} contents - The contents that were loaded from url
+    * @private
+    **/
     function resolveCompletedFile(moduleId, url, statusCode, contents) {
       statusCode = 1*statusCode;
       debugLog("Communicator ("+url+")", "status "+statusCode+". Length: "+((contents) ? contents.length : "NaN"));
@@ -973,7 +1037,12 @@ var Communicator;
       downloadCompleteQueue[url] = [];
     }
 
-    // set up our easyXDM socket
+    /**
+    * Creates an easyXDM socket
+    * @function
+    * @private
+    * @returns and instance of a easyXDM Socket
+    **/
     function createSocket() {
       var relayFile = userConfig.xd.relayFile;
       var relaySwf = userConfig.xd.relaySwf || "";
@@ -1004,10 +1073,24 @@ var Communicator;
       });
     }
 
-    // these are our two senders, either via easyXDM or via standard xmlHttpRequest
+    /**
+    * Creates a standard xmlHttpRequest
+    * @function
+    * @param {string} moduleId - id of the module for the request
+    * @param {string} url - url where the content is located
+    * @private
+    **/
     function sendViaIframe(moduleId, url) {
       socket.postMessage(moduleId + "__INJECT_SPLIT__" + url);
     }
+
+    /**
+    * Get contents via xhr for cross-domain requests
+    * @function
+    * @param {string} moduleId - id of the module for the request
+    * @param {string} url - url where the content is located
+    * @private
+    **/
     function sendViaXHR(moduleId, url) {
       var xhr = getXhr();
       xhr.open("GET", url);
@@ -1020,12 +1103,32 @@ var Communicator;
     }
 
     return {
+      /**
+      *   The Communicator object is meant to be instantiated once, and have its
+      *   reference assigned to a location outside of the closure.
+      *   @constructs Communicator
+      **/
       init: function() {
         this.clearCaches();
       },
+
+      /**
+      * clear list of socket connections and list of downloaded files
+      * @method Communicator.clearCaches
+      * @public
+      */
       clearCaches: function() {
         clearCaches();
       },
+
+      /**
+      * retrieve file via download or cache keyed by the given url
+      * @method Communicator.get
+      * @param {string} moduleId - The id of the module to be fetched
+      * @param {string} url - The location of the script to be fetched
+      * @param {object} callback - The function callback to execute after the file is retrieved and loaded
+      * @public
+      */
       get: function(moduleId, url, callback) {
         if (!downloadCompleteQueue[url]) {
           downloadCompleteQueue[url] = [];
@@ -1122,7 +1225,7 @@ var Executor;
    * @type {int}
    */
   var testScript = 'function Inject_Test_Known_Error() {\n  function nil() {}\n  nil("Known Syntax Error Line 3";\n}';
-
+  
   /**
    * the old onerror object for restoring
    * @private
@@ -1232,7 +1335,6 @@ var Executor;
    * @param {Object} options - a collection of options
    */
   function executeJavaScriptModule(code, options) {
-    var oldError = context.onerror;
     var errorObject = null;
     var sourceString = IS_IE ? "" : "//@ sourceURL=" + options.url;
     var result;
@@ -1283,8 +1385,6 @@ var Executor;
       errorObject.line = actualErrorLine;
       errorObject.stack = null;
 
-      context.onerror = oldError;
-
       return true;
     };
 
@@ -1315,9 +1415,9 @@ var Executor;
         toExec = [toExec, sourceString].join("\n");
         if (!context.Inject.INTERNAL.execute[options.functionId]) {
           // there is nothing to run, so there must have been an uncaught
-          // syntax error (firefox).
+          // syntax error (firefox). 
           try {
-            try { eval("+\n//@ sourceURL=inject-executor-line.js"); } catch (ee) { relativeE = ee; }
+            try { eval("+\n//@ sourceURL=Inject-Executor-line.js"); } catch (ee) { relativeE = ee; }
             eval(toExec);
           }
           catch(e) {
@@ -1333,10 +1433,10 @@ var Executor;
         else {
           // again, we are creating a "relativeE" to capture the eval line
           // this allows us to get accurate line numbers in firefox
-          try { eval("+\n//@ sourceURL=inject-executor-line.js"); } catch (ee) { relativeE = ee; }
+          try { eval("+\n//@ sourceURL=Inject-Executor-line.js"); } catch (ee) { relativeE = ee; }
           eval(toExec);
         }
-
+        
         if (context.Inject.INTERNAL.execute[options.functionId]) {
           result = context.Inject.INTERNAL.execute[options.functionId];
           // set the error object using our standard method
@@ -1371,6 +1471,9 @@ var Executor;
       }
       result.error = errorObject;
     }
+
+    // clean up our error handler
+    context.onerror = initOldError;
 
     // clean up the function or object we globally created if it exists
     if(context.Inject.INTERNAL.execute[options.functionId]) {
@@ -1645,7 +1748,7 @@ var Executor;
           epilogue: footer,
           originalCode: code,
           url: path
-        });
+        });    
 
         // if a global error object was created
         if (result && result.error) {
@@ -1766,6 +1869,17 @@ var InjectCore;
       setCrossDomain: function(crossDomainConfig) {
         userConfig.xd.relayFile = crossDomainConfig.relayFile || null;
         userConfig.xd.relaySwf = crossDomainConfig.relaySwf || null;
+      },
+
+      /**
+       * Set the useSuffix value. useSuffix is used to determine globally if
+       * a ".js" extension should be added to files by default
+       * @method InjectCore.setUseSuffix
+       * @param {Boolean} useSuffix - should a suffix be used
+       * @public
+       */
+      setUseSuffix: function(useSuffix) {
+        userConfig.useSuffix = useSuffix;
       },
 
       /**
@@ -2265,7 +2379,7 @@ var RulesEngine;
    */
   function sortRulesTable() {
     rules.sort(function(a, b) {
-      return a.weight - b.weight;
+      return b.weight - a.weight;
     });
     rulesIsDirty = false;
   }
@@ -2348,12 +2462,12 @@ var RulesEngine;
         }
 
         if (relativeTo && !userConfig.baseDir) {
-          relativeTo = relativeTo.split("/");
-          if (relativeTo[relativeTo.length - 1]) {
+          relativeTo = relativeTo.replace(PROTOCOL_REGEX, PROTOCOL_EXPANDED_STRING).split("/");
+          if (relativeTo[relativeTo.length - 1] && relativeTo.length !== 1) {
             // not ending in /
             relativeTo.pop();
           }
-          relativeTo = relativeTo.join("/");
+          relativeTo = relativeTo.join("/").replace(PROTOCOL_EXPANDED_REGEX, PROTOCOL_STRING);
         }
         else if (relativeTo) {
           relativeTo = userConfig.baseDir(relativeTo);
@@ -2374,18 +2488,23 @@ var RulesEngine;
         // exit early on resolved http URL
         if (ABSOLUTE_PATH_REGEX.test(path)) {
           // store pointcuts based on the resolved URL
-          this.pointcuts[path] = result.pointcuts;
+          this.pointcuts[resolvedUrl] = result.pointcuts;
           return path;
         }
 
-
         // take off the :// to replace later
-        relativeTo = relativeTo.replace(/:\/\//, "__INJECT_PROTOCOL_COLON_SLASH_SLASH__");
-        path = path.replace(/:\/\//, "__INJECT_PROTOCOL_COLON_SLASH_SLASH__");
+        relativeTo = relativeTo.replace(PROTOCOL_REGEX, PROTOCOL_EXPANDED_STRING);
+        path = path.replace(PROTOCOL_REGEX, PROTOCOL_EXPANDED_STRING);
 
-        var resolvedUrl = this.computeRelativePath(path, relativeTo);
+        // #169: query strings in base
+        if (/\?/.test(relativeTo)) {
+          resolvedUrl = relativeTo + path;
+        }
+        else {
+          resolvedUrl = this.computeRelativePath(path, relativeTo);
+        }
 
-        resolvedUrl = resolvedUrl.replace(/__INJECT_PROTOCOL_COLON_SLASH_SLASH__/, "://");
+        resolvedUrl = resolvedUrl.replace(PROTOCOL_EXPANDED_REGEX, PROTOCOL_STRING);
 
         if (userConfig.useSuffix && !FILE_SUFFIX_REGEX.test(resolvedUrl)) {
           resolvedUrl = resolvedUrl + BASIC_FILE_SUFFIX;
@@ -2527,6 +2646,7 @@ var RulesEngine;
           };
         }
 
+        rulesIsDirty = true;
         rules.push({
           matches: ruleSet.matches || regexMatch,
           weight: ruleSet.weight || weight,
@@ -3051,9 +3171,9 @@ var TreeNode = Class.extend(function() {
           direction = null,
           output = [],
           i = 0;
-
+      
       while (currentNode) {
-
+        
         if (currentNode.getChildren().length > 0 && direction !== "up") {
           direction = "down";
           currentNode = currentNode.getChildren()[0];
@@ -3208,6 +3328,16 @@ context.Inject = {
   setCrossDomain: function() {
     InjectCore.setCrossDomain.apply(this, arguments);
   },
+
+  /**
+      Sets the useSuffix user config. The useSuffix config tells the RulesEngine
+      not to auto-append a .js extension. This is highly helpful in concatenated
+      environments or environments with JS being generated programatically.
+  */
+  setUseSuffix: function(val) {
+    InjectCore.setUseSuffix(val);
+  },
+
   /**
       Clears the local storage caches.
       @see InjectCore.clearCache
@@ -3253,7 +3383,7 @@ context.Inject = {
       @type {String}
       @public
    */
-  version: INJECT_VERSION
+  version: "undefined"
 };
 
 /**
@@ -3274,4 +3404,5 @@ context.require = context.Inject.INTERNAL.createRequire();
     @public
  */
 context.define = context.Inject.INTERNAL.createDefine();
+context.Inject.version = "0.4.0rc4-3-g833cc55";
 })(this);
