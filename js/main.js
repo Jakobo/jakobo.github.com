@@ -38,6 +38,7 @@ require.ensure(["jquery", "moment"], function() {
     "jquery/plugins/jquery-ellipsis",
     "jquery/plugins/jquery-reduceto",
     "jquery/plugins/jquery-githubstream",
+    "jquery/plugins/jquery-gplusphotostream",
     "jquery/plugins/jquery-jbinder"
   ], function(require) {
     $(function() { $("body").jBinder("felocity") });
