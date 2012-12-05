@@ -9,18 +9,13 @@ _I ask. I think globally, then write locally. I leverage the work of others. My 
 
 If you're the kind of do-it-yourselfer, write down everything that matters to you in code. Record every little nit that drives you crazy. Now that you have a nice long list, what of those things would make you quit? Take those, massage them, and make them short, concise, and actionable.
 
-Asking Questions
-----------------
+## Asking Questions
 
-Think Globally, but Write Locally
----------------------------------
+## Think Globally, but Write Locally
 
-Leveraging the Work of Others
------------------------------
+## Leveraging the Work of Others
 
-Constantly Improve
-------------------
+## Constantly Improve
 
-Above All, Ship
----------------
+## Above All, Ship
 

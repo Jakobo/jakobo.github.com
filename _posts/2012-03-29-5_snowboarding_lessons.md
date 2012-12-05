@@ -8,22 +8,17 @@ I was fortunate a couple of weekends ago to learn how to snowboard while at Whis
 
 [![Not A Representation of My Skill. Photo by M Pincus, pincusvt on flickr](https://lh6.googleusercontent.com/-_W45f0t7t5E/T16MtTbj5yI/AAAAAAAABR8/VoXSXwfhrbY/s200/snowboarding.jpeg)](http://www.flickr.com/photos/21641019@N05/2266019916/in/gallery-44473352@N05-72157622699393999/ "Not A Representation of My Skill. Photo by M Pincus, pincusvt on flickr")
 
-1: The Board Will Go Downhill
----
+## 1: The Board Will Go Downhill
 Physics is probably your greatest friend and largest foe when learning to snowboard. Snow and ice are slippery, and you're going to be standing on a board which has been waxed with the intent of sliding further. Add in some gravity, and there's actually two lessons here. First, set your board bindings-side down or you're going to launch a missile down the hill at someone. Second, you're not controlling the board, you are just guiding it as it travels downhill. In both cases, the board will always be taking the path of least resistance. As you begin to snowboard (using your edges) you will notice the with no other factors, the board will just follow the hill. If you would like to change the snowboard's direction, you will have to work that much harder when going opposite the hill, and that much easier going with the hill.
 
-2: The Snowboard is Actually Your Arms
----
+## 2: The Snowboard is Actually Your Arms
 I really didn't understand this until my second day on the mountain. If the board will always go downhill (see item 1 above) and your feet are attached to the board, what is actually steering the board? It turns out, the "snowboard" is actually in your upper body. When learning, it is best described as your arms. Take a moment and stand with feet shoulder width apart. Now, put your arms out like an airplane. That span of your arms, that is the real snowboard. Twisting your arms will rotate your body, and the board will follow. When it comes time to begin turning, rotating the arms and body slowly will bring the board around automatically. Don't force the board with your legs- that's a good way to whip the board around and take a dive.
 
-3: Look Where You Want To Go
----
+## 3: Look Where You Want To Go
 The snowboard is driven by your body weight. Since turning your arms turns the board, turning your head will result in your arms rotating proportionally. By the third day, I had progressed from just slipping back and forth down the hill to beginning turning. When turning, looking leads the boards in the direction you want to go. If you don't look downhill (or uphill when on your toe edge) the board will have a rough time stopping. Also, if you look down at the snow, you can make a pretty good guess what direction you will be heading.
 
-4: You're Leaning Back, Stop That
----
+## 4: You're Leaning Back, Stop That
 As a novice snowboarder, I have noticed a tendency to stand up and be perpendicular to the horizon. Unfortunately, the mountain is not flat. The result is leaning back on the board, which results in an increase in speed and difficulty turning. The trick is to stand perpendicular to the mountain; it will feel like you are leaning forward, and it will feel awkward. This is actually okay, as your weight will be centered over the board. As an added plus, the board will travel slower, and you'll have a smaller distance to fall if you catch an edge. About the only time to lean back is in powder, but there is a good chance you won't be encountering it on the green slopes. 
 
-5: Don't Forget to Experience
----
+## 5: Don't Forget to Experience
 It sounds a bit silly, but snowboarding is an experience and should be treasured. There is a moment at the top of the hill as you strap in; take it all in. Enjoy the ride, but don't also forget to take everything in from the lift to the moment you start your descent. Looking back in the three days I spent learning, I'm glad I paused.

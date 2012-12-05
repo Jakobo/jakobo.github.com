@@ -10,7 +10,7 @@ It's been a while since I've talked about some of the software coming out of Lin
 ## When We Became 0.4.0
 Since the original launch, we made a few significant (backwards incompatible) changes that forced us to increment the second "dot" in our build system. Inject builds are best described as
 
-{% highlight %}
+{% highlight text %}
 milestone.not-backwards-ok.backwards-ok
 {% endhighlight %}
 
