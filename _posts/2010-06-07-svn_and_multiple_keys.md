@@ -10,19 +10,27 @@ This really shouldn't be as hard as it ends up being, but in subversion, you hav
 
 The first step is to set up a scheme for doing a readonly checkout.
 
-[config](https://gist.github.com/341711#file_config)
+{% highlight bash %}
+# Sets up a scheme called "readonly" which uses ssh
+# with a private key and user that only has read access
+readonly = $SVN_SSH ssh -i /path/to/ssh/shared_read_only_private_key -l readonly
+{% endhighlight %}
 
 This defines an ssh scheme called `readonly` which uses a shared key for access. Since we're dealing with this over SSH, everyone needs some kind of login, and this happened to be how it was set up coming in. (This would be mountains easier if "read only" was accomplished over https.)
 
 Once we have the svn scheme set up, we can checkout the code using the `svn co` command.
 
-[co.bash](https://gist.github.com/341711#file_co.bash)
+{% highlight bash %}
+svn co svn+readonly://example.com/path/to/repository <local_directory>
+{% endhighlight %}
 
 At this point, we have the code checked out, but any attempts to commit will fail (since the user doesn't have write permissions on the target machine. Everything to this point is working as designed. The last step then is to change the repository so that you can use a non-readonly account to perform the commit.
 
 ## svn switch --relocate to Change the Commit User
 The solution as mentioned at the top is using the `svn switch` command to change the repository's URL. It's the same URL, but by changing the scheme, we enable normal ssh commits (where the local user could presumably use their own private key). The svn switch command uses the --relocate command to rewrite the URLs.
 
-[switch.bash](https://gist.github.com/341711#file_switch.bash)
+{% highlight bash %}
+svn switch --relocate svn+readonly://example.com/path/to/repository svn+ssh://example.com/path/to/repository
+{% endhighlight %}
 
 Our svn commit now goes through over svn ssh using the local user's credentials. If you ever want to revoke the commit access, you can call `svn switch` again and change back to the readonly scheme.

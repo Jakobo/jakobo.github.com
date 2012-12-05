@@ -31,15 +31,57 @@ The third one is actually very interesting because a Trade became what was calle
 
 According to Fowler, the Entry class is nothing more than an entry that will be logged to an Account.  Think of recording a check in the checkbook's ledger.  This process is formally called Posting an entry, but for practical purposes, entries are applied to an Account, and then the changed Account is saved back to the database.  To soften the load on PHP, the entries became lightweight containers of metadata which provided little more than a pretty interface for method calls.  A simplified version of an Entry looked like: (note, "Container" is nothing more than an abstracted hash table in order to provide useful namespacing functionality.  In this case, the datatypecontainer enforces typecasing on items going in and coming out of it.)
 
-[A Reversable TransactionEntity Object](https://gist.github.com/3383215#file_transaction_entity.php)
+{% highlight php %}
+<?PHP
+/**
+* Required Include Files
+*/
+require_once(DIR_CLASSES . 'container/datatypecontainer.php');
+class TransactionEntry
+{
+    function TransactionEntry()
+    {
+        $this->Container = new DataTypeContainer();
+    }
+    function importData($data) {}
+    function exportData($preserveId = true) {}
+    function setEntryId($v) {}
+    function getEntryId() {}
+    function setTransactionId($v) {}
+    function getTransactionId() {}
+    function setEntityId($v) {}
+    function getEntityId() {}
+    function setAccountType($v) {}
+    function getAccountType() {}
+    function setObjectId($v) {}
+    function getObjectId() {}
+    function setAttribute($v) {}
+    function getAttribute() {}
+    function setAsAdd() {}
+    function setAsSubtract() {}
+    function setPolarity($v) {}
+    function getPolarity() {}
+    function setTimestamp($v) {}
+    function getTimestamp() {}
+    function setStatus($v) {}
+    function getStatus() {}
+    function cloneInverse()
+    {
+        $obj = new TransactionEntry();
+        $data = $this->exportData(false);
+        $data["polarity"] = $data["polarity"] * -1;
+        $obj->importData($data);
+        return $obj;
+    }
+}
+?>
+{% endhighlight %}
 
 I left the cloneInverse statement because it was of particular note.  From above, it was said that everything done to an Account needs to be able to be undone.  The secret to this is being able to "reverse" all of the entries that have been applied to a transaction, and then reapply them.  The net result of this will always be the Account's original state.  In extensions of this Entry object, decoration aliases are used such as `setUserId()` in order to simplify the application programmers' work.  With entries, and things to apply those entries to, the next step is to set up the rules.
 
 ## Posting Rules
 
 When the transaction manager hands an entry to an Account, it is the Account's responsibility to take that entry and apply it.  For different Accounts, applying an entry means different things.  Inventory Accounts (owned by a user) are by far the hardest with their need to add/remove binary strings.  An Account can always look at the class of an Entry object if that Account supports multiple types of entries.  At present, since the inventories on Gaia (housing, main, game inventory, etc) are separated, there is no need to develop sophisticated entry handling.  Fowler gets into extreme detail about Posting Rules and covers more than is needed by this system.  However, the basics of how to apply a rule and what happens when applying an entry to an Account need to still be established.  It was agreed upon that should a posting rule fail, it will fail all future objects in the posting rule change, and triggering a rollback of the transaction by taking the `cloneInverse()` of each Entry and reapplying them.
-
-![Example of an Asynchronous Model](http://www.felocity.org/media/2006/02/17-transaction_manager_p1/asynchronous_model.png)
 
 Every Account then has a public `postEntry()` method, which takes an Entry object as an argument.  Using the generic accessor functions from the base TransactionEntry Object, the Account can apply the Object ID, Attribute, and Polarity to their entry.  Each call to `postEntry()` returns `TRUE` on rule posting success.  All that remains is to tackle the fact that the web (and the Accounts) are constantly in use.  Collisions can occur when a second transaction manager is started while the first one is still in process.  Since the first transaction hasn't saved, the second process has dirty stale old data.
 

@@ -8,7 +8,11 @@ title: document.createElement and checkboxes
 
 I ran into a problem in building the web interface for SnapTest today, where I couldn't seem to get a checkbox to show up as checked in IE. The original code looked something like
 
-[The Original Code](https://gist.github.com/3383252#file_original.js)
+{% highlight js %}
+var cb = document.createElement("input");
+cb.type = "checkbox";
+cb.checked = true;
+{% endhighlight %}
 
 And no matter how many times I tried, IE (6 specifically) refused to check the checkbox. It turns out IE want your checkboxes made in a Mozilla-incompatible way. Specifically, IE lets you call document.createElement using an entire HTML tag, which will result in a node you can perform operations on.
 
@@ -16,6 +20,16 @@ I almost fell back on the [conditional comment browser sniff](http://dean.edward
 
 A couple minutes later, I had a working solution.
 
-[A Solution Using IE's createElement as a "Feature"](https://gist.github.com/3383252#file_solution.js)
+{% highlight js %}
+// IE requires a checkbox to be made differently
+try {
+  var cb = document.createElement("<input type=\"checkbox\" checked>");
+}
+catch (e) {
+  var cb = document.createElement("input");
+  cb.type = "checkbox";
+  cb.checked = true;
+}
+{% endhighlight %}
 
 I guess I had never really thought of IE's bugs as features before; changing the way you can code for IE's differences from other browsers.

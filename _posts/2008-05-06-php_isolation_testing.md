@@ -12,7 +12,21 @@ When doing research on how to spawn sub processes cross-platform, the options en
 
 The final piece was building out the classes needed. Specifically, a dispatcher for managing and collecting data off of STDIN and an aggregator for handling completed result sets. The bare bones structure ended up looking a lot like a simple JavaScript event model:
 
-[Sample Dispatcher Code](https://gist.github.com/3383249#file_sample.php)
+{% highlight php %}
+<?php
+class Dispatcher {
+    public function dispatch($call, $key_stack, $options = array()) {
+        // ... set up an array for child processes
+        // ... dispatch, collect round robin
+        // ... got a complete response from a child
+        call_user_func_array($options['thread_complete_callback'], array($results));
+        // ... continue until all dispatches are made for $key_stack
+        // ... dispatch complete callback
+        return call_user_func_array($options['dispatch_complete_callback'], array($results));
+    }
+}
+?>
+{% endhighlight %}
 
 The final implementation ends up being a bit more verbose, but the concept is there. Unfortunately, one caveat of this approach is that call_user_func_array() is not known for its speed, as PHP isn't very good at mapping an array to function arguments.
 

@@ -19,10 +19,6 @@ It's been a while since I've touched on the topic, mostly because I've been busy
 
 As in most programming languages, PHP provides support for both public and private methods within a class.  In development, one of the primary objectives was to minimize the external facing interface for the end-developer, while still keeping the backend components easy for a developer to maintain.  Each component was given specific tasks, responsibilities, and a list of classes that it would couple with in order to provide functionality.
 
-For a helpful guide, I strongly reccomend having the following image open in a new window:
-
-[Transaction Overview Diagram](/media/2006/10/02-transaction_architecture/banktransactionmanager.png)
-
 ## Bank Transaction Manager
 
 The first component is the first of three end-developer facing classes.  The Bank Transaction Manager is responsible for creating Transaction Entries, adding Transaction Entries to its internal stack, and then processing the entry stack while reporting on the success or failure of the process.  When a Bank Transaction Manager is initialized, it creates an Account Manager object for tracking the accounts which it needs to load.  As entries are created with the `createEntry()` method, they are fed to the end developer and then added back in to the system via `addEntry()`.
@@ -43,7 +39,9 @@ In a horizontally scaled environment, a user's inventory or a row of trading inf
 
 During the execution of the Bank Transaction Manager, the Account Manager is called (specifically when `BankTransactionManager::addEntry()` is used).  Accounts are queued for loading as entries are added, and are then loaded at once.  There are two ways to load the account data, one which uses blocking, and one which does not.  Even at 4.5 million registered members, the blocking method has not been an issue, and so that is the method we'll be talking about.  In an InnoDB database, a row can be locked during the select phase as part of a transaction by using the following syntax:
 
-[The "For Update" MySQL Call](https://gist.github.com/3383208#file_for_update.sql)
+{% highlight sql %}
+SELECT "columns" FROM "table" WHERE "criteria" FOR UPDATE;
+{% endhighlight %}
 
 The `FOR UPDATE` places a lock on the row, leaving your PHP script as the only script that has access until the lock expires.  This feature is only available on InnoDB however, as the MyISAM engine supports neither row locking nor transactions.
 
@@ -65,5 +63,26 @@ Adding new accounts or extending existing accounts to add functionality is very 
 
 For as complicated as this all seems, the code which ends up facing the developer is only the Bank Transaction Manager and Transaction Entry's public methods.  The Account Manager and Account exist outside of the end-developer's scope, unless they are building in support for additional account types.
 
-[Creating a Balanced Transaction](https://gist.github.com/3383208#file_bank_transaction_manager.php)
+{% highlight php %}
+<?php
+$btm = new BankTransactionManager($transaction);
 
+// create entry (Account, Entry Type)
+$e = $btm->createEntry("Gold.Gold");
+$e->setUserId($user_id);
+$e->addGold($gold_amount);
+$btm->addEntry($e);
+
+$e = $btm->createEntry("ServerGold.Gold");
+$e->setUserId(ENTITY_SERVER);
+$e->subtractGold($gold_amount);
+$btm->addEntry($e);
+
+try {
+     $btm->execute();
+}
+catch (Exception $e) {
+     throw $e;
+}
+?>
+{% endhighlight %}
