@@ -54,5 +54,5 @@ lang      : en
 # Set 'shortname' to the disqus shortname
 # Set 'developer' to 0 in production, 1 in development to view proper comments
 disqus :
-  shortname : injectjs
+  shortname : felocity
   developer : 0
