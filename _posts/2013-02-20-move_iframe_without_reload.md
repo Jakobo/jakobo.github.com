@@ -1,8 +1,8 @@
 ---
-published: false
+published: true
 layout: post
 permalink: /article/insertbefore_appendchild_and_reloading_iframes
-title: insertBefore(), appendChild() and reloading iframes
+title: DOM Iframe Operations Without Reload
 ---
 
 If you're playing around with iframes, there's a nasty bug that occurs when you attempt to move the iframe using methods such as appendChild() or insertBefore(). How nasty the bug is depends on how tolerant your code is of reloading behaviors. Any attempts to move the iframe around will cause reloads in older Safari as well as Firefox. The problem lies in how the browsers interpret these events, removing the node and then adding it to its new destination which triggers a reload. Dragging and dropping iframes comes to mind as the first of many scenarios that may have this problem, and developers using LinkedIn's Platform or the Facebook Social Widgets are likely to notice this weirdness. Strangely enough, IE doesn't exhibit this behavior, which leaves the problem to just Webkit and Firefox.
@@ -14,7 +14,8 @@ A quick scan in your search engine of choice reveals only one consistent techniq
   <div id="#placeholder"></div>
 
   <!-- ...last node in the page... -->
-  <iframe id="theFrame" src="http://www.example.com" style="left: -12345px; top: 0; position: absolute;"></iframe>
+  <iframe id="theFrame" src="http://www.example.com"
+   style="left: -12345px; top: 0; position: absolute;"></iframe>
 </body>
 {% endhighlight %}
 
@@ -53,11 +54,12 @@ Using the above Firefox-proof code, it's possible to use adoptNode() when it's a
 
 {% highlight js %}
 try {
-  document.adoptNode(window.opener.$("#my-iframe"))
+  document.adoptNode(window.opener.$("#my-iframe"));
 }
 catch(exc) {
-  // performance hit. Either importNode, or load the frame contents with appendChild()
-  document.importNode(window.opener.$("#my-iframe"))
+  // performance hit. Either importNode, or load the
+  // frame contents with appendChild()
+  document.importNode(window.opener.$("#my-iframe"));
 }
 {% endhighlight %}
 
