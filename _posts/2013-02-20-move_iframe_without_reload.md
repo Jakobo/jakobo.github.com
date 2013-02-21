@@ -2,7 +2,7 @@
 published: true
 layout: post
 permalink: /article/insertbefore_appendchild_and_reloading_iframes
-title: DOM Iframe Operations Without Reload
+title: inserBefore, appendChild, and Reloading Iframes
 ---
 
 If you're playing around with iframes, there's a nasty bug that occurs when you attempt to move the iframe using methods such as appendChild() or insertBefore(). How nasty the bug is depends on how tolerant your code is of reloading behaviors. Any attempts to move the iframe around will cause reloads in older Safari as well as Firefox. The problem lies in how the browsers interpret these events, removing the node and then adding it to its new destination which triggers a reload. Dragging and dropping iframes comes to mind as the first of many scenarios that may have this problem, and developers using LinkedIn's Platform or the Facebook Social Widgets are likely to notice this weirdness. Strangely enough, IE doesn't exhibit this behavior, which leaves the problem to just Webkit and Firefox.
