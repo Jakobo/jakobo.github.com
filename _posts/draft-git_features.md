@@ -33,6 +33,12 @@ Every time you tell git if things are good/bad, it will cut the remaining revisi
 ## git pull --rebase: cleaner merges
 Often times, you will have to pull down changes from somewhere like github. By default, `git pull` will create a full merge, interweaving your code and the upstream code together. On large projects, this can be incredibly painful if it comes time to bisect something. Instead, the `git pull` command has the ability to rebase your changes. You'll jump to your upstream version, and then apply your commits as if they were a series of patches. The result? A nice linear commit history.
 
+{% highlight bash %}
+git pull --rebase origin master
+{% endhighlight %}
+
+The above command rebases the `origin` remote's `master` branch into your current working copy. If you're tracking an upstream branch, the remote and branch names become optional items.
+
 ## git config --global alias: less typing
 Sometimes, you probably feel like a rediculous string of git commands is necessary to get exactly what you want. Git helpfully makes it easy for you to rerun that command by aliasing your favorite command (which might now be `git pull --rebase` to a new git command), to something like `git rpull`.
 
@@ -40,8 +46,12 @@ Sometimes, you probably feel like a rediculous string of git commands is necessa
 git config --global alias.rpull 'pull --rebase'
 {% endhighlight %}
 
+Other uses of the alias command I've seen is to shorten the `git bisect` commands, use special arguments for `git log`, or generate work specific diff files using the options for `git diff`.
+
 ## git-reflog: proof you can undo just about anything
-`git reset --hard` is probably one of the scariest operations you can do. Just like that, it could appear your entire repository was rocked back in time.
+`git reset --hard` is probably one of the scariest operations you can do. Just like that, it could appear your entire repository was catapulted back in time. This can be pretty great... as long as you didn't need any of those changes. It only took me accidentally resetting my changes once before I did `git reset` in a new branch. This was before I learned about the "reflog".
+
+It's really hard to lose something in git. As you commit, rewind, replay, and revert, git keeps a record of every single thing you've done
 
 ## Keep Learning
 http://gitready.com/
