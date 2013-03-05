@@ -96,4 +96,4 @@ b9e19d0 HEAD@{8}: commit: converting to pygment happy land
 A quick `git reset --hard 1907832`, and everything is back. Making reflog the **absolutely coolest tool in a version control system**.
 
 ## Keep Learning
-http://gitready.com/
+Most of these tips were pulled from notes I took while learning git. I then learned there is an entire website dedicated to improving your git-fu. [http://gitready.com/](http://gitready.com/) has examples, tricks, tips, and even more amazing things that go beyond this basic article.
