@@ -1,8 +1,7 @@
 ---
-published: false
 layout: post
-permalink: /article/less_known_git_features
-title: Git Tips, Tricks, and Nuggets
+permalink: /article/good_git_commands_to_know
+title: Good Git Commands To Know
 ---
 
 I love git. It and its other distributed version control systems have changed the way we think and write about code. Not too long ago, we used to commit giant monoliths of code to SVN locations. Complex environments often had to dedicate at least one person to managing branches. It was the complete opposite of good. I've been using git now for over 6 years, and I'm still learning tips and tricks that make my day to day development easier and better. These are my favorite commands.
