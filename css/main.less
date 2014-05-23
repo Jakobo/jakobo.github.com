@@ -1,98 +1,216 @@
-@colorPunch: #99cc00;
-@colorBackground: #fff;
+/*
+--------------------------------------------------------------------------------
+VARIABLES
+Don't use these directly... :)
+--------------------------------------------------------------------------------
+*/
+@colorPunch: #99CC00;
+@colorBackground: #FFFFFF;
 @colorDefault: #666666;
 @colorHeadline: #333333;
 @colorEdging: #999999;
+
 @sizeXLarge: 36px;
 @sizeLarge: 18px;
 @sizeMedium: 16px;
 @sizeSmall: 14px;
 @sizeMicro: 10px;
+@lineHeightLarge: 48px;
+@lineHeightMedium: 20px;
+@lineHeightHeader: 22px; /* a special line height for header blob */
+
 @box: 100;
 @boxEdging: 2;
 @gutter: 20;
 @gridSize: 0px + (8 * @box + 7 * @gutter);
 @gridGutter: 0px + (@gutter * 0.5);
+
 @sprite: url(../img/sprite_v4_1.png);
+@sprite-linkedin-height: 43px;
+
+@media-large:  ~"only screen and (min-width: 735px)";
+@media-medium: ~"only screen and (min-width: 500px) and (max-width: 734px)";
+@media-small:  ~"only screen and (max-width: 499px)";
 
 
-
-
-
-.helper-link-on {
-  color: #fff;
+/*
+--------------------------------------------------------------------------------
+HELPERS
+Used to provide additional mixins to less. Never called
+directly
+--------------------------------------------------------------------------------
+*/
+.helper-link-on() {
+  color: @colorBackground;
   background: @colorPunch;
   text-decoration: none;
 }
-.helper-link-off {
+.helper-link-off() {
   color: @colorDefault;
   font-weight: bold;
   text-decoration: underline;
 }
-.helper-link-discover {
+.helper-link-discover() {
   color: @colorEdging;
   text-decoration: none;
 }
 
+/*
+See reference around dynamic variables in LESS
+http://stackoverflow.com/questions/18272285/less-css-calling-dynamic-variables-from-a-loop
+*/
+.helper-setSectionBox(@width, @height) {
+  @sectionWidth: '@{width}';
+  @thisWidth: %("only screen and (min-width: %spx)", @sectionWidth);
+  @thisMedia: ~"@{thisWidth}";
 
+  width: auto;
+  height: auto;
+  @media @thisMedia {
+    width: 0px + @width;
+    height: 0px + @height;
+  }
+  @media @media-small {
+    height: auto;
+  }
+}
 
+/*
+--------------------------------------------------------------------------------
+MIXINS
+These do the majority of the heavy lifiting for the
+stylehseet. They take the primitives and helpers
+above to generate final mixins for consumption by
+the main stylesheet.
 
+Where possible, mobile breakpoints are placed here
+instead.
+--------------------------------------------------------------------------------
+*/
+.default-fonts() {
+  font-family: Helvetica, Arial, sans-serif;
+}
 
+.paragraph() {
+  font-size: @sizeMedium;
+  color: @colorDefault;
+  line-height: @lineHeightMedium;
+  margin-bottom: @lineHeightMedium;
+}
 
-
-.headline {
+.headline() {
   font-size: @sizeXLarge;
   font-weight: bold;
   color: @colorHeadline;
 }
-.supportingHeadline {
+
+.supportingHeadline() {
   font-size: @sizeLarge;
   color: @colorHeadline;
 }
 
-.link {
+.headline-padding() {
+  padding-bottom: 0;
+  @media @media-medium, @media-large {
+    padding-bottom: 24px;
+  }
+}
+
+.xlarge-headline-box() {
+  padding-top: 0;
+  height: auto;
+  line-height: 1;
+  @media @media-medium, @media-large {
+    height: 184px;
+    padding-top: 56px;
+    line-height: @lineHeightLarge;
+  }
+}
+
+.large-headline-box() {
+  height: auto;
+  @media @media-medium, @media-large {
+    height: 60px;
+  }
+}
+
+.small-headline-box() {
+  height: auto;
+  @media @media-medium, @media-large {
+    height: 30px;
+  }
+}
+
+.sprite-logo() {
+  background: @sprite 0 0 no-repeat;
+}
+
+.sprite-twitter() {
+  .sprite-logo;
+  background-position: 0 -100px;
+}
+
+.sprite-email() {
+  .sprite-logo;
+  background-position: -100px -100px;
+}
+
+.sprite-linkedin() {
+  .sprite-logo;
+  background-position: -200px -100px;
+}
+
+.link() {
   .helper-link-off;
   &:link { .helper-link-off; }
   &:visited { .helper-link-off; }
   &:hover { .helper-link-on; }
   &:active { .helper-link-on; }
 }
-.link-thin {
+
+.link-thin() {
   font-weight: normal;
   &:link { font-weight: normal; }
   &:visited { font-weight: normal; }
   &:hover { font-weight: normal; }
   &:active { font-weight: normal; }
 }
-.link-always-off {
+
+.link-always-off() {
   .helper-link-off;
   &:link { .helper-link-off; }
   &:visited { .helper-link-off; }
   &:hover { .helper-link-off; }
   &:active { .helper-link-off; }
 }
-.link-always-on {
+
+.link-always-on() {
   .link;
   &:link { .helper-link-on; }
   &:visited { .helper-link-on; }
 }
-.link-inactive {
+
+.link-inactive() {
   .helper-link-off;
 }
-.link-reveal {
+
+.link-reveal() {
   .helper-link-discover;
   &:link { .helper-link-discover; }
   &:visited { .helper-link-discover; }
   &:hover { .helper-link-on; }
   &:active { .helper-link-on; }
 }
-.section (@columns: 2, @rows: 2, @clears: none) {
+
+.section(@columns: 2, @rows: 2, @clears: none) {
   position: relative;
   display: block;
   float: left;
   clear: @clears;
-  width: 0px + (@box * @columns + @gutter * (@columns - 1));
-  height: 0px + (@box * @rows + @gutter * (@rows - 1));
+
+  /* must be a parametric mixin in order to get media queries working */
+  .helper-setSectionBox((@box * @columns) + (@gutter * (@columns - 1)), (@box * @rows) + (@gutter * (@rows - 1)));
+
   overflow: hidden;
   margin-top: 0px + ((@gutter - @boxEdging) / 2);
   padding-top: 0px + ((@gutter - @boxEdging) / 2);
@@ -101,13 +219,32 @@
   border-right: 0;
   border-bottom: 0;
 }
-.limitless {
-  height: auto;
+
+.page-size() {
+  max-width: @gridSize;
+
+  margin: 0;
+  @media @media-medium {
+    margin: @gridGutter;
+  }
+  @media @media-large {
+    margin: @gridGutter;
+  }
 }
-.gutter (@size: 20) {
-  margin-left: 0px + @size;
+
+.limitless() {
+  height: auto !important;
 }
-.chevron (@color: @colorPunch) {
+
+.gutter() {
+  margin-left: 0px + @gutter;
+}
+
+.noGutter() {
+  margin-left: 0px;
+}
+
+.chevron(@color: @colorPunch) {
   content: ">>";
   display: block;
   right: 0;
@@ -125,27 +262,27 @@ Begin Main Styles
 */
 
 body {
-  /*
-  background: url(../resources/felocity_v4.png) left top no-repeat;
-  */
-  font-family: Helvetica, Arial, sans-serif;
-  font-size: @sizeMedium;
-  color: @colorDefault;
+  .default-fonts;
+  .paragraph;
   #wrapper {
-    width: @gridSize;
-    margin: @gridGutter;
+    .page-size;
   }
 }
 
+/*
+HEADER
+The header section is more of a one-off. It doesn't use many of the grid
+structures, and may call in to primitives. It will use media queries directly
+many times.
+*/
 header {
-  height: 100px;
   #logo {
+    .sprite-logo;
     display: inline-block;
-    width: 220px;
+    width: 100px;
     height: 87px;
-    background: @sprite 0 0 no-repeat;
     vertical-align: top;
-    margin-top: 13px;
+    margin-top: 13px; /* creates 100x100 square */
     a {
       display: inline-block;
       width: 100%;
@@ -153,47 +290,80 @@ header {
       text-indent: -12345px;
     }
   }
+  /* the list of articles when on a single article page */
   ul.cloud {
-    height: 81px;
+    height: (0px + @lineHeightMedium) * 4 + 1; /* 4 lines of text at @lineHeightMedium */
     overflow: hidden;
     li {
       display: inline;
-      line-height: 20px;
-      margin-right: 0.3em;
+      line-height: @lineHeightMedium;
+      margin-right: 0.3em; /* relative right edge to avoid going flush */
       a {
         .link-reveal;
       }
     }
   }
   div {
-    display: inline-block;
-    margin-left: 20px;
-    width: 680px;
+    /* This div contains the "about" block. To make it render
+       well, the following breakpoints are being used
+       @breakLarge x >= 735
+         width is 680 (max comfortable reading length)
+         about is visible
+       @breakMedium 500 <= x < 735
+         width is "auto" (flex for small screens)
+         about is visible
+       @breakSmall x < 500
+         width is "auto"
+         about is hidden (preserve screen space)
+       */
+    .noGutter;
+    width: auto;
+    display: none;
+    @media @media-medium {
+      .gutter;
+      display: inline-block;
+      width: auto;
+    }
+    @media @media-large {
+      .gutter;
+      display: inline-block;
+      width: 680px;
+    }
+
     height: 90px;
     vertical-align: middle;
     padding-top: 10px;
-  }
-  p {
-    font-size: @sizeLarge;
-    color: #666;
-    line-height: 22px;
-    a {
-      .link-always-on;
-      .link-thin;
-      font-weight: normal;
+
+    p {
+      font-size: @sizeLarge;
+      color: @colorDefault;
+      line-height: @lineHeightHeader;
+      a {
+        .link-always-on;
+        .link-thin;
+        font-weight: normal;
+      }
+    }
+
+    .tagline {
+      font-weight: bold;
+      color: @colorHeadline;
+      font-size: @lineHeightHeader; /* this font size matches the line height */
+      line-height: 1;
+      padding-bottom: 10px;
+    }
+
+    strong {
+      font-weight: bold;
     }
   }
-  .tagline {
-    font-weight: bold;
-    color: #333;
-    font-size: 22px;
-    line-height: 1;
-    padding-bottom: 10px;
-  }
-  strong {
-    font-weight: bold;
-  }
 }
+
+/*
+STANDARD TAGS
+These are the tags that make up the rest of the page. Any media queries here
+should be pushed up into mixins at the top of the file.
+*/
 
 section {
   a.touchable {
@@ -215,6 +385,7 @@ section {
     }
   }
 
+  /* A supporting section (homepage) */
   &.supporting {
     .section;
     .gutter;
@@ -223,59 +394,60 @@ section {
     }
     h2.title {
       .supportingHeadline;
-      height: 60px;
+      .large-headline-box;
     }
     h3 {
       .supportingHeadline;
-      height: 30px;
+      .small-headline-box;
     }
   }
 
+  /* When there is a dominant section (think "blog" pages) */
   &.dominant {
     .section(4, 4, left);
-    .gutter(0);
+    .noGutter;
     h2.title {
       .headline;
-      padding-top: 56px;
-      height: 184px;
-      line-height: 48px;
+      .xlarge-headline-box;
     }
   }
 
+  /* A primary section (larger than others, but not the "main" content) */
   &.primary {
     .section(6, 6, left);
-    .gutter(0);
+    .noGutter;
     .limitless;
     h2.title {
       .headline;
-      padding-bottom: 24px;
+      .headline-padding;
     }
     h2 {
       .supportingHeadline;
       height: auto;
-      line-height: 48px;
+      line-height: @lineHeightLarge;
     }
   }
 
+  /* When the content is the only section on the page */
   &.only {
     .section(8, 8, left);
-    .gutter(0);
+    .noGutter;
     .limitless;
     h2.title {
       .headline;
-      padding-bottom: 24px;
+      .headline-padding;
     }
     h2 {
       .supportingHeadline;
       height: auto;
-      line-height: 48px;
+      line-height: @lineHeightLarge;
     }
   }
 
+  /* special styles for blog module */
   &.blog {
     p {
-      line-height: 20px;
-      margin-bottom: 20px;
+      .paragraph;
       a {
         .link;
       }
@@ -285,16 +457,16 @@ section {
       }
     }
     div.highlight {
-      margin-bottom: 20px;
+      margin-bottom: @lineHeightMedium;
     }
     ul, ol {
-      margin-bottom: 20px;
+      margin-bottom: @lineHeightMedium;
     }
     li {
       list-style-type: square;
       text-indent: 0;
       margin-left: 2em;
-      line-height: 20px;
+      line-height: @lineHeightMedium;
       padding-left: 1em;
       padding-bottom: 1em;
       a {
@@ -303,6 +475,33 @@ section {
     }
   }
 
+  /* comments sections */
+  &.blog .discuss {
+    &.linkedin {
+      .logo {
+        .sprite-linkedin;
+        display: block;
+        float: left;
+        width: @sprite-linkedin-height;
+        height: @sprite-linkedin-height;
+        overflow: hidden;
+      }
+      p {
+        display: block;
+        float: left;
+        height: @sprite-linkedin-height;
+        line-height: @sprite-linkedin-height;
+        a {
+          display:inline-block;
+          padding-left: 0.3em;
+          padding-right: 0.3em;
+          height: @sprite-linkedin-height;
+          line-height: @sprite-linkedin-height;
+        }
+      }
+    }
+  }
+  /* TODO: is this going away eventually once posts are on LinkedIn? */
   &.comments {
     border: 0;
     #livefyre {
@@ -324,12 +523,7 @@ section {
     }
   }
 
-  &.contact {
-    &:before {
-      content: "";
-    }
-  }
-
+  /* The photography module */
   &.photo {
     h2.title {
       text-indent: -12345px;
@@ -337,7 +531,7 @@ section {
       bottom: 0;
       right: 0;
       width: 100%;
-      height: 14px;
+      height: @sizeSmall;
       background: @colorPunch;
       z-index: 2;
     }
@@ -349,13 +543,10 @@ section {
       overflow: hidden;
       width: 100%;
       height: 100%;
-      img {
-        max-width: 220px;
-        max-height: 220px;
-      }
     }
   }
 
+  /* The github module */
   &.github {
     span {
       display: block;
@@ -380,7 +571,11 @@ section {
     }
   }
 
+  /* The contact info module: this is pretty custom/hardcoded due to logos */
   &.contact {
+    &:before {
+      content: "";
+    }
     ul {
       width: 165px;
       height: 165px;
@@ -417,30 +612,30 @@ section {
           overflow: hidden;
           position: relative;
           &:after {
+            /* reposition the sprite based on the class */
             content: "";
             display: block;
             width: 100%;
             height: 100%;
             position: absolute;
-            background: @sprite 0 0 no-repeat;
             margin: 0 auto;
           }
           &.twitter:after {
-            background-position: 0 -100px;
+            .sprite-twitter;
             width: 49px;
             height: 34px;
             top: 23px;
             left: 16px;
           }
           &.email:after {
-            background-position: -100px -100px;
+            .sprite-email;
             width: 38px;
             height: 29px;
             top: 26px;
             left: 21px;
           }
           &.linkedin:after {
-            background-position: -200px -100px;
+            .sprite-linkedin;
             width: 44px;
             height: 44px;
             top: 18px;
@@ -448,7 +643,7 @@ section {
           }
           &.more {
             text-indent: 0;
-            line-height: 80px;
+            line-height: 80px; /* hard coded for centering vertically */
             text-align: center;
             text-transform: uppercase;
             color: @colorDefault;
@@ -464,9 +659,10 @@ section {
   }
 }
 
+/* The footer for the page */
 footer {
   clear: both;
-  padding-top: 20px;
+  padding-top: @sizeMedium;
   font-size: @sizeMicro;
   a {
     .link-always-off;

@@ -34,6 +34,17 @@ css:
   </ul>
 </section>
 
+{% if page.discussOn %}
+<section class="primary blog">
+  <h2>Discuss This Article</h2>
+  {% if page.discussOn == "LinkedIn" %}
+    <div class="discuss linkedin">
+      <div class="logo"></div>
+      <p><a href="{{page.discussAt}}">Comments and discussion for this article are available on LinkedIn</a></p>
+    </div>
+  {% endif %}
+</section>
+{% else %}
 <section class="primary comments">
   <div id="disqus_thread"></div>
   <script type="text/javascript">
@@ -54,6 +65,7 @@ css:
   <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
   <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 </section>
+{% endif %}
 
 <!-- Social Media Plugins -->
 <script src="http://platform.linkedin.com/in.js" type="text/javascript"></script>
