@@ -1,3 +1,5 @@
+// TODO: switch to a browserify build
+
 // main.js, where the real money in the movie is made
 Inject.setModuleRoot("/js/");
 Inject.reset();
