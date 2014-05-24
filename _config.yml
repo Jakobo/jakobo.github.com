@@ -6,6 +6,11 @@ description :
     short : Website of Jakob Heuser
     long  : The personal website of Jakob Heuser
 
+photo:
+  title : Surfing the Eisbach
+  image : http://jakobo.smugmug.com/People/i-PPC9Mfp/0/S/Surfing%20The%20Eisbach_20120907-S.jpg
+  url   : http://jakobo.smugmug.com/People/i-PPC9Mfp/A
+
 # permalinks
 permalink : /article/:title/
 
@@ -16,28 +21,15 @@ future    : true
 production_url : http://www.felocity.com
 url            : http://www.felocity.com
 
-# build config
-auto      : true
-
 # github defaults
-lsi       : false
-pygments  : true
-safe      : true
+lsi         : false
+highlighter : pygments
+safe        : true
 
 # overrides maruku
 markdown  : kramdown
 kramdown  :
   entity_output : symbolic
-
-# asset management
-# assets :
-#   cacheBurst : true
-#   stylesheets :
-#     - main
-#   vendor :
-#     scripts :
-#       jQuery :
-#         version : 1.8.2
 
 # language
 lang      : en

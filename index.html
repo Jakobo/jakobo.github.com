@@ -19,9 +19,6 @@ layout: frontdoor
     '']).join("")
   })
 </script>
-<script type="felocity/control" data-felocity-describes=".photo">
-  $(this).googlePlusPhotos({user: '115806050983038854461', album: '5792309377280225217', size: 'w220-h220-p'})
-</script>
 <section class="dominant blog more">
   {% for post in site.posts limit:1 offset:0 %}
   <h2 class="title">{{ post.title }}</h2>
@@ -42,6 +39,7 @@ layout: frontdoor
 </section>
 <section class="supporting photo more">
   <h2 class="title">Photography</h2>
+  <a href="{{site.photo.url}}" title="{{site.photo.title}}"><img src="{{site.photo.image}}" title="{{site.photo.title}}" alt="Photo: {{site.photo.title}}"></a>
 </section>
 <section class="supporting contact">
   <h2 class="title">Contact Jakob</h2>
@@ -52,4 +50,3 @@ layout: frontdoor
     <li><a href="https://plus.google.com/115806050983038854461/about" class="more" title="More Options">More</a></li>
   </ul>
 </section>
-
