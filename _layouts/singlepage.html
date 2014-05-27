@@ -1,0 +1,13 @@
+---
+layout: default
+show_about: false
+show_postlog: false
+css:
+  - /css/pygments.css
+---
+
+<section class="only blog">
+  <h2 class="title" itemprop="name">{{page.title}}</h2>
+  <p itemprop="description" style="display:none">{{page.summary}}</p>
+  {{content}}
+</section>

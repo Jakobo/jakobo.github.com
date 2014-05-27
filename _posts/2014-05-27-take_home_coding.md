@@ -1,9 +1,8 @@
 ---
-published: false
 layout: post
 permalink: /article/no_take_home_coding
 discussOn: LinkedIn
-discussAt: http://www.example.com
+discussAt: https://www.linkedin.com/today/post/article/20140527182428-5276101-i-m-sorry-i-won-t-do-your-take-home-coding-exercise
 title: I'm Sorry, I Won't Do Your Take Home Coding Exercise
 ---
 
