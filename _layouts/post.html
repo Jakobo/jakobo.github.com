@@ -26,14 +26,14 @@ css:
 <section class="supporting blog-meta">
   <p>This article was written on {{page.date | date: "%B %d, %Y" }}</p>
 
-  {% unless page.noShare %}
+  {% if page.noShare %}{% else %}
   <h3>Share this</h3>
   <ul>
     <li><script type="IN/Share" data-counter="right" data-showZero="true"></script></li>
     <li><a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="jakobo">Tweet</a></li>
     <li><div class="g-plusone" data-size="medium"></div></li>
   </ul>
-  {% endunless %}
+  {% endif %}
 </section>
 <section class="supporting blog-meta">
   <h3>Disclaimers, etc</h3>
@@ -76,7 +76,7 @@ css:
 {% endif %}
 
 <!-- Social Media Plugins -->
-{% if !page.noShare %}
+{% if page.noShare %}{% else %}
 <script src="http://platform.linkedin.com/in.js" type="text/javascript"></script>
 <script type="text/javascript">
   (function() {
