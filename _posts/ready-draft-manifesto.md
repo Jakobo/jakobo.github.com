@@ -7,7 +7,7 @@ title: One Programmer's Manifesto
 
 When mentoring other developers, I get asked a lot what process I go through when I am picking my battles. When that happens, I go grab my manifesto.
 
-[![My Professional Manifesto](https://lh3.googleusercontent.com/-9wQSz5S3f3A/U5T3ktSPwEI/AAAAAAAAPX4/JkMXmgwhmgY/s200/2014-06-manifesto.png)](/resources/2014-06-manifesto.pdf)
+[![My Professional Manifesto](https://lh3.googleusercontent.com/-9wQSz5S3f3A/U5T3ktSPwEI/AAAAAAAAPX4/JkMXmgwhmgY/s200/2014-06-manifesto.png)](/resources/manifesto/2014-06-manifesto.pdf)
 
 It didn't actually start with the design you see above. Originally, it was just a text file I kept on my computer and would revisit every few months. A manifesto is a powerful way to communicate your values and beliefs. While I have a personal manifesto for my everyday life, I have this one easily accessible where I do my work. When I am prioritizing things that need my attention, and I must make either/or choices, having your manifesto handy gives me a stern reminder of the things I valued when you sat down to write my beliefs down.
 
