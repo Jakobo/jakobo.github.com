@@ -11,10 +11,10 @@ When mentoring other developers, I get asked a lot what process I go through whe
 
 It didn't actually start with the design you see above. Originally, it was just a text file I kept on my computer and would revisit every few months. A manifesto is a powerful way to communicate your values and beliefs. While I have a personal manifesto for my everyday life, I have this one easily accessible where I do my work. When I am prioritizing things that need my attention, and I must make either/or choices, having your manifesto handy gives me a stern reminder of the things I valued when you sat down to write my beliefs down.
 
-## It's Honest
+## It Reflects You
 Manifestos do not need to be public. They don't ask to be designed. A manifesto, however, will only multiply the value you put into it; so be honest with yourself. Be willing to challenge your opinions, and be open to changing your manifesto over time. You'll notice the above manifesto is dated. I've evolved my manifesto a few times now as I have moved companies, positions, and learned new things. As we grow, our values change and the manifesto we look to should change to reflect the things most important to us.
 
-## Getting Started
+## Write Your Own
 To get started writing your own manifesto, take a pass at the following questions:
 
 What should people in your position do for themselves?  
