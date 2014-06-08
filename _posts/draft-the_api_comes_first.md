@@ -1,9 +1,11 @@
 ---
 published: false
 layout: post
-permalink: /article/the_api_comes_first
-title: The API Comes First
+permalink: /article/write_the_api_first
+title: Write the API First
 ---
+
+Taking the time upfront to design the interface other developers will use can save you heada
 
 It's easy to overengineer. It's hard to course correct. It's impossible to think your code will be as beautiful as the day you wrote it. You can, however, improve the survivability of your code by focusing on the most important part of software you write: your API. No matter if it is a library, public methods, or integration code, writing a good API will make refactoring and updating the code easier as it ages.
 
