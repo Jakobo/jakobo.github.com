@@ -25,4 +25,4 @@ What inspirational quote resonates best with you?
 
 With the above, you should have 3-5 sentences of content. You'll also have the start of your professional manifesto. If you'd prefer more visual inspiration, a [search for manifestos on Pinterest](http://www.pinterest.com/search/pins/?q=manifesto) offers a neverending supply of visual ideas. If you've thought through yours and you are interested in sharing, I'd love to see other individuals' beliefs below in the comments.
 
-Many thanks to Micha Alpern and Shana Hu for their help in converting the above manifesto from text to graphical form.
+Many thanks to [Micha Alpern](https://www.linkedin.com/in/malpern) and [Shana Hu](http://shanahu.com/) for their help in converting the above manifesto from text to graphical form.
