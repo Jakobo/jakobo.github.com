@@ -4,7 +4,12 @@ VARIABLES
 Don't use these directly... :)
 --------------------------------------------------------------------------------
 */
+/* Default Green @colorPunch: #99CC00; */
+/* Purple Meyer June 12 @colorPunch: #663399 */
 @colorPunch: #99CC00;
+
+@colorPunch_meyer: #663399;
+
 @colorBackground: #FFFFFF;
 @colorDefault: #666666;
 @colorHeadline: #333333;
@@ -25,7 +30,7 @@ Don't use these directly... :)
 @gridSize: 0px + (8 * @box + 7 * @gutter);
 @gridGutter: 0px + (@gutter * 0.5);
 
-@sprite: url(../img/sprite_v4_1.png);
+@sprite: url(../img/sprite_v5_1.png);
 @sprite-linkedin-height: 43px;
 
 @media-large:  ~"only screen and (min-width: 735px)";
@@ -43,6 +48,9 @@ directly
 .helper-link-on() {
   color: @colorBackground;
   background: @colorPunch;
+  body.special-meyer & {
+    background: @colorPunch_meyer;
+  }
   text-decoration: none;
 }
 .helper-link-off() {
@@ -139,7 +147,10 @@ instead.
 }
 
 .sprite-logo() {
-  background: @sprite 0 0 no-repeat;
+  background: @colorPunch @sprite 0 0 no-repeat;
+  body.special-meyer & {
+    background-color: @colorPunch_meyer;
+  }
 }
 
 .sprite-twitter() {
@@ -250,6 +261,9 @@ instead.
   z-index: 5;
   font-size: @sizeMedium;
   color: @color;
+  body.special-meyer & {
+    color: @colorPunch_meyer;
+  }
 }
 
 /*
@@ -263,6 +277,9 @@ body {
   .paragraph;
   #wrapper {
     .page-size;
+  }
+  @media @media-small {
+    margin: 0px 5px 5px 5px;
   }
 }
 
@@ -378,7 +395,7 @@ section {
       .link-inactive;
     }
     &:before {
-      .chevron(@colorPunch);
+      .chevron();
     }
   }
 
@@ -544,6 +561,9 @@ section {
       height: @sizeSmall;
       background: @colorPunch;
       z-index: 2;
+      body.special-meyer & {
+        background: @colorPunch_meyer;
+      }
     }
     &:before {
       .chevron(@colorBackground);

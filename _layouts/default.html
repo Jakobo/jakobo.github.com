@@ -54,20 +54,24 @@
       {% endif %}
     {% endif %}
   </head>
-  <body>
+  <body class="{% if page.showMeyer %}special-meyer{% endif %}">
     <div id="wrapper">
       <header>
         <h1 id="logo"><a href="/">Felocity</a></h1>
         <div class="info">
-          {% if page.show_about %}
+          {% if page.showMeyer %}
+          <p class="tagline"><a href="http://meyerweb.com/eric/thoughts/2014/06/09/in-memoriam-2/">In Memoriam</a> <a href="http://www.zeldman.com/2014/06/10/the-color-purple/">#663399Becca</a></p>
+          <p>
+            I owe much of my learning about CSS and interest in my current career to Eric Meyer. Words and a site's color are very little I can offer to him and his family for the devestating loss they are grieving. Please visit above to learn more.
+          </p>
+          {% else if page.show_about %}
           <p class="tagline">Bangs on Keyboard, Makes Shiny</p>
           <p>
             I am Jakob Heuser. I <a href="https://github.com/jakobo">code</a>, I <a href="/articles">write</a>, &amp; I strive to keep things simple.
             <a href="http://jakobo.smugmug.com">Photography</a> is a hobby I'm happy not being paid for. I work at
             <a href="http://www.linkedin.com/in/jakobheuser">LinkedIn</a>, and enjoy making an <strong>impact</strong>.
           </p>
-          {% endif %}
-          {% if page.show_postlog %}
+          {% else if page.show_postlog %}
           <ul class="cloud">
             {% assign start = 0 %}
             {% for post in site.posts %}
