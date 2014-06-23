@@ -1,20 +1,24 @@
 var gulp = require('gulp');
 
-var jekyll = require('gulp-jekyll');
-
+// util
 var filter = require('gulp-filter');
 var order = require('gulp-order');
 var tap = require('gulp-tap');
 var toBuffer = require('gulp-buffer');
 
-var less = require('gulp-less');
-var cssMin = require('gulp-cssmin');
+// all types
 var concat = require('gulp-concat');
 var rename = require('gulp-rename');
-// var browserify = require('gulp-browserify');
+
+// css
+var less = require('gulp-less');
+var cssMin = require('gulp-cssmin');
+
+// js
 var browserify = require('browserify');
 var uglify = require('gulp-uglify');
 
+// TASKS ==================================================
 gulp.task('default', ['css', 'js']);
 
 gulp.task('css', function() {
