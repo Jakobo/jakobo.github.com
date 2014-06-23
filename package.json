@@ -1,0 +1,33 @@
+{
+  "private": true,
+  "name": "jakobo.github.com",
+  "version": "0.0.0",
+  "description": "jakobo.github.com =================",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Jakobo/jakobo.github.com.git"
+  },
+  "author": "jakob@felocity.com",
+  "license": "none",
+  "bugs": {
+    "url": "https://github.com/Jakobo/jakobo.github.com/issues"
+  },
+  "devDependencies": {
+    "gulp-concat": "~2.2.0",
+    "gulp-uglify": "~0.3.1",
+    "gulp": "~3.8.1",
+    "gulp-cssmin": "~0.1.6",
+    "gulp-less": "~1.2.3",
+    "gulp-filter": "~0.5.0",
+    "gulp-order": "~1.1.1",
+    "gulp-rename": "~1.2.0",
+    "jquery": "~2.1.1",
+    "brfs": "~1.1.1",
+    "browserify": "~4.1.11",
+    "gulp-buffer": "0.0.2"
+  }
+}

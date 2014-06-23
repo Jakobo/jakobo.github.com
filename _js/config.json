@@ -1,0 +1,15 @@
+{
+  "ui": [
+    {
+      "selector": ".blog p:first",
+      "uiModule": "reduce"
+    },
+    {
+      "selector": ".blog p:first",
+      "uiModule": "elipsis",
+      "config": {
+        "words": -4
+      }
+    }
+  ]
+}
