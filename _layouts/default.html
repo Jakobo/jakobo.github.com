@@ -54,39 +54,47 @@
       {% endif %}
     {% endif %}
   </head>
-  <body class="{% if page.showMeyer %}special-meyer{% endif %}">
+  {% if page.showMeyer %}
+    <body class="special-meyer {% if page.bodyclass %}{{page.bodyclass}}{% endif %}">
+  {% else %}
+    <body class="{% if page.bodyclass %}{{page.bodyclass}}{% endif %}">
+  {% endif %}
     <div id="wrapper">
       <header>
         <h1 id="logo"><a href="/">Felocity</a></h1>
         <div class="info">
           {% if page.showMeyer %}
-          <p class="tagline"><a href="http://meyerweb.com/eric/thoughts/2014/06/09/in-memoriam-2/">In Memoriam</a> <a href="/article/663399becca">#663399Becca</a></p>
-          <p>
-            I owe much of my learning about CSS and interest in my current career to Eric Meyer. Words and a site's color are very little I can offer to him and his family for the devestating loss they are grieving. Please visit above to learn more.
-          </p>
-          {% else if page.show_about %}
-          <p class="tagline">Bangs on Keyboard, Makes Shiny</p>
-          <p>
-            I am Jakob Heuser. I <a href="https://github.com/jakobo">code</a>, I <a href="/articles">write</a>, &amp; I strive to keep things simple.
-            <a href="http://jakobo.smugmug.com">Photography</a> is a hobby I'm happy not being paid for. I work at
-            <a href="http://www.linkedin.com/in/jakobheuser">LinkedIn</a>, and enjoy making an <strong>impact</strong>.
-          </p>
-          {% else if page.show_postlog %}
-          <ul class="cloud">
-            {% assign start = 0 %}
-            {% for post in site.posts %}
-              {% if post.date > page.date %}
-                {% assign start = forloop.index %}
+            <p class="tagline"><a href="http://meyerweb.com/eric/thoughts/2014/06/09/in-memoriam-2/">In Memoriam</a> <a href="/article/663399becca">#663399Becca</a></p>
+            <p>
+              I owe much of my learning about CSS and interest in my current career to Eric Meyer. Words and a site's color are very little I can offer to him and his family for the devestating loss they are grieving. Please visit above to learn more.
+            </p>
+          {% else %}
+            {% if page.show_postlog %}
+              <ul class="cloud">
+                {% assign start = 0 %}
+                {% for post in site.posts %}
+                  {% if post.date > page.date %}
+                    {% assign start = forloop.index %}
+                  {% endif %}
+                {% endfor %}
+                {% for item in site.posts limit:10 offset:start %}
+                  {% unless forloop.first %}
+                    <li><a href="{{item.url}}">{{item.title}}</a></li>
+                  {% endunless %}
+                {% endfor %}
+                <!-- <li><a href="{{post.url}}">{{post.title}}</a></li> -->
+                <li>...&nbsp;<a href="/articles">just see them all</a></li>
+              </ul>
+            {% else %}
+              {% if page.show_about %}
+                <p class="tagline">Bangs on Keyboard, Makes Shiny</p>
+                <p>
+                  I am Jakob Heuser. I <a href="https://github.com/jakobo">code</a>, I <a href="/articles">write</a>, &amp; I strive to keep things simple.
+                  <a href="http://jakobo.smugmug.com">Photography</a> is a hobby I'm happy not being paid for. I work at
+                  <a href="http://www.linkedin.com/in/jakobheuser">LinkedIn</a>, and enjoy making an <strong>impact</strong>.
+                </p>
               {% endif %}
-            {% endfor %}
-            {% for item in site.posts limit:10 offset:start %}
-              {% unless forloop.first %}
-                <li><a href="{{item.url}}">{{item.title}}</a></li>
-              {% endunless %}
-            {% endfor %}
-            <!-- <li><a href="{{post.url}}">{{post.title}}</a></li> -->
-            <li>...&nbsp;<a href="/articles">just see them all</a></li>
-          </ul>
+            {% endif %}
           {% endif %}
         </div>
       </header>
@@ -98,8 +106,11 @@
     <!--[if lte IE 7]>
       <script src="/js/lib/inject/inject-0.4.0-rc2/ie-localstorage-json-shim.js" type="text/javascript" id="ie-localstorage-shim"></script>
     <![endif]-->
+    <!--
     <script type="text/javascript" src="/js/lib/inject/inject-v0.4.0rc4-4-gb67abc7/inject.js"></script>
     <script type="text/javascript" src="/js/main.js"></script>
+    -->
+    <script type="text/javascript" src="/js/test_index.js"></script>
 
     {% for js in page.javascript %}
     <script type="text/javascript" src="{{ js }}"></script>

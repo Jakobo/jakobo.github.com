@@ -34,7 +34,7 @@ gulp.task('css', function() {
     .pipe(lessFiles)
     .pipe(less())
     .pipe(lessFiles.restore())
-    .pipe(concat('_test_build.css'))
+    .pipe(concat('test_build.css'))
     .pipe(cssMin())
     .pipe(gulp.dest('./css'))
 });
@@ -51,7 +51,7 @@ gulp.task('js', function() {
     .pipe(toBuffer())
     .pipe(uglify())
     .pipe(rename(function(path) {
-      path.basename = '_test_' + path.basename
+      path.basename = 'test_' + path.basename
     }))
     .pipe(gulp.dest('./js'));
 });

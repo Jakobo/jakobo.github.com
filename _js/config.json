@@ -1,15 +1,23 @@
 {
   "ui": [
     {
-      "selector": ".blog p:first",
-      "uiModule": "reduce"
+      "selector": ".index .blog p:first",
+      "use": "reduce"
     },
     {
-      "selector": ".blog p:first",
-      "uiModule": "elipsis",
+      "selector": ".index .blog p:first",
+      "use": "elipsis",
       "config": {
         "words": -4
       }
+    },
+    {
+      "selector": ".post .blog a[href*='gist.github.com']",
+      "use": "gist"
+    },
+    {
+      "selector": ".post .blog img[src*='googleusercontent.com']",
+      "use": "googleimagesize"
     }
   ]
 }
