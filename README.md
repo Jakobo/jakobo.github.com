@@ -7,6 +7,7 @@ A Jekyll port of felocity.com
 npm install
 gulp
 jekyll server
+# commit, push!
 ```
 
 My personal todo list:
