@@ -43,7 +43,7 @@ module.exports = function($el, opts) {
       url = "https://github.com/__USERNAME__.json",
       date_as = opts.date_as || "LLL",
       remaining = opts.limit,
-      into = $el.after('<ul></ul>');
+      $into = $('<ul></ul>');
 
   url = url.replace(/__USERNAME__/g, opts.user);
 
@@ -75,7 +75,8 @@ module.exports = function($el, opts) {
       });
 
       // append successfully
-      into.append(output.join(""));
+      $into.append(output.join(""));
+      $el.before($into);
     }
   });
 

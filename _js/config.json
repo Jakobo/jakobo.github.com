@@ -12,7 +12,7 @@
       }
     },
     {
-      "selector": ".index .github",
+      "selector": ".index .github a",
       "use": "github",
       "config": {
         "limit": 2,
