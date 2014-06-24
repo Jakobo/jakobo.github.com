@@ -1,1 +1,1043 @@
-a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0;border:0;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:after,blockquote:before,q:after,q:before{content:'';content:none}table{border-collapse:collapse;border-spacing:0}body{font-family:Helvetica,Arial,sans-serif;font-size:16px;color:#666;line-height:20px;margin-bottom:20px}body #wrapper{max-width:940px;margin:0}@media only screen and (min-width:500px) and (max-width:734px){body #wrapper{margin:10px}}@media only screen and (min-width:735px){body #wrapper{margin:10px}}@media only screen and (max-width:499px){body{margin:0 5px 5px}}header #logo{background:#68b8d9 url(../img/sprite_v5_1.png) 0 0 no-repeat;display:inline-block;width:100px;height:87px;vertical-align:top;margin-top:13px}body.special-meyer header #logo{background-color:#639}header #logo a{display:inline-block;width:100%;height:100%;text-indent:-12345px}header ul.cloud{height:81px;overflow:hidden}header ul.cloud li{display:inline;line-height:20px;margin-right:.3em}header ul.cloud li a,header ul.cloud li a:link,header ul.cloud li a:visited{color:#999;text-decoration:none}header ul.cloud li a:hover{color:#fff;background:#68b8d9;text-decoration:none}body.special-meyer header ul.cloud li a:hover{background:#639}header ul.cloud li a:active{color:#fff;background:#68b8d9;text-decoration:none}body.special-meyer header ul.cloud li a:active{background:#639}header div{margin-left:0;width:auto;display:none;height:90px;vertical-align:middle;padding-top:10px}@media only screen and (min-width:500px) and (max-width:734px){header div{margin-left:20px;display:inline-block;width:auto}}@media only screen and (min-width:735px){header div{margin-left:20px;display:inline-block;width:680px}}header div p{font-size:18px;color:#666;line-height:22px}header div p a{color:#666;text-decoration:underline;font-weight:400}header div p a:hover{color:#fff;background:#68b8d9;text-decoration:none}body.special-meyer header div p a:hover{background:#639}header div p a:active{color:#fff;background:#68b8d9;text-decoration:none}body.special-meyer header div p a:active{background:#639}header div p a:link{color:#fff;background:#68b8d9;text-decoration:none}body.special-meyer header div p a:link{background:#639}header div p a:visited{color:#fff;background:#68b8d9;text-decoration:none}body.special-meyer header div p a:visited{background:#639}header div p a:active,header div p a:hover,header div p a:link,header div p a:visited{font-weight:400}header div .tagline{font-weight:700;color:#333;font-size:22px;line-height:1;padding-bottom:10px}header div strong{font-weight:700}section a.touchable{position:absolute;left:0;top:0;width:100%;height:100%;z-index:10;text-indent:-12345px}section.more a{color:#666;font-weight:700;text-decoration:underline}section.more:before{content:">>";display:block;right:0;bottom:0;position:absolute;z-index:5;font-size:16px;color:#68b8d9}body.special-meyer section.more:before{color:#639}section.supporting{position:relative;display:block;float:left;clear:none;width:auto;height:auto;overflow:hidden;margin-top:9px;padding-top:9px;border:2px solid #999;border-left:0;border-right:0;border-bottom:0;margin-left:20px}@media only screen and (min-width:220px){section.supporting{width:220px;height:220px}}section.supporting p{padding-bottom:1em}section.supporting h2.title,section.supporting h3{font-size:18px;color:#333;height:auto}@media only screen and (min-width:500px) and (max-width:734px),only screen and (min-width:735px){section.supporting h2.title{height:60px}}@media only screen and (min-width:500px) and (max-width:734px),only screen and (min-width:735px){section.supporting h3{height:30px}}section.dominant{position:relative;display:block;float:left;clear:left;width:auto;height:auto;overflow:hidden;margin-top:9px;padding-top:9px;border:2px solid #999;border-left:0;border-right:0;border-bottom:0;margin-left:0}@media only screen and (min-width:460px){section.dominant{width:460px;height:460px}}section.dominant h2.title{font-size:36px;font-weight:700;color:#333;padding-top:0;height:auto;line-height:1}@media only screen and (min-width:500px) and (max-width:734px),only screen and (min-width:735px){section.dominant h2.title{height:184px;padding-top:56px;line-height:48px}}section.primary{position:relative;display:block;float:left;clear:left;width:auto;overflow:hidden;margin-top:9px;padding-top:9px;border:2px solid #999;border-left:0;border-right:0;border-bottom:0;margin-left:0;height:auto!important}@media only screen and (min-width:700px){section.primary{width:700px;height:700px}}section.primary h2.title{font-size:36px;font-weight:700;color:#333;padding-bottom:0}@media only screen and (min-width:500px) and (max-width:734px),only screen and (min-width:735px){section.primary h2.title{padding-bottom:24px}}section.primary h2{font-size:18px;color:#333;height:auto;line-height:48px}section.only{position:relative;display:block;float:left;clear:left;width:auto;overflow:hidden;margin-top:9px;padding-top:9px;border:2px solid #999;border-left:0;border-right:0;border-bottom:0;margin-left:0;height:auto!important}@media only screen and (min-width:940px){section.only{width:940px;height:940px}}section.only h2.title{font-size:36px;font-weight:700;color:#333;padding-bottom:0}@media only screen and (min-width:500px) and (max-width:734px),only screen and (min-width:735px){section.only h2.title{padding-bottom:24px}}section.only h2{font-size:18px;color:#333;height:auto;line-height:48px}section.blog hr{margin-bottom:20px}section.blog p{font-size:16px;color:#666;line-height:20px;margin-bottom:20px}section.blog p a,section.blog p a:link,section.blog p a:visited{color:#666;font-weight:700;text-decoration:underline}section.blog p a:hover{color:#fff;background:#68b8d9;text-decoration:none}body.special-meyer section.blog p a:hover{background:#639}section.blog p a:active{color:#fff;background:#68b8d9;text-decoration:none}body.special-meyer section.blog p a:active{background:#639}section.blog p img{display:block;margin:0 auto}section.blog div.highlight,section.blog ol,section.blog ul{margin-bottom:20px}section.blog li{list-style-type:square;text-indent:0;margin-left:2em;line-height:20px;padding-left:1em;padding-bottom:1em}section.blog li a,section.blog li a:link,section.blog li a:visited{color:#666;font-weight:700;text-decoration:underline}section.blog li a:hover{color:#fff;background:#68b8d9;text-decoration:none}body.special-meyer section.blog li a:hover{background:#639}section.blog li a:active{color:#fff;background:#68b8d9;text-decoration:none}body.special-meyer section.blog li a:active{background:#639}section.blog-meta p{font-size:16px;color:#666;line-height:20px;margin-bottom:20px}section.blog-meta p a,section.blog-meta p a:link,section.blog-meta p a:visited{color:#666;font-weight:700;text-decoration:underline}section.blog-meta p a:hover{color:#fff;background:#68b8d9;text-decoration:none}body.special-meyer section.blog-meta p a:hover{background:#639}section.blog-meta p a:active{color:#fff;background:#68b8d9;text-decoration:none}body.special-meyer section.blog-meta p a:active{background:#639}section.blog-meta p img{display:block;margin:0 auto}section.blog .discuss.linkedin .logo{background:#68b8d9 url(../img/sprite_v5_1.png) 0 0 no-repeat -200px -100px;display:block;float:left;width:43px;height:43px;overflow:hidden}body.special-meyer section.blog .discuss.linkedin .logo{background-color:#639}section.blog .discuss.linkedin p{display:block;float:left;height:43px;line-height:43px}section.blog .discuss.linkedin p a{display:inline-block;padding-left:.3em;padding-right:.3em;height:43px;line-height:43px}section.comments{border:0}section.comments #livefyre{margin-top:0}section.comments .lf_head_bar{display:none}section.comments-meta{border:0;padding-top:102px}section.comments-meta p{font-size:14px}section.comments-meta p code{font-size:10px}section.photo h2.title{text-indent:-12345px;position:absolute;bottom:0;right:0;width:100%;height:18px;background:#68b8d9;z-index:2}body.special-meyer section.photo h2.title{background:#639}section.photo:before{content:">>";display:block;right:0;bottom:0;position:absolute;z-index:5;font-size:16px;color:#fff}body.special-meyer section.photo:before{color:#639}section.photo a{position:relative;overflow:hidden;width:100%;height:100%;text-align:center}section.photo img{margin-left:-50%}section.github span{display:block}section.github span.date{font-size:18px;color:#333;padding-bottom:8px}section.github span.event{font-size:14px;padding-bottom:17px}section.github dt{font-size:18px;color:#333;padding-bottom:8px}section.github dd{font-size:14px;padding-bottom:17px}section.contact:before{content:""}section.contact ul{width:165px;height:165px;margin:0 auto}section.contact ul li{display:block;float:left;width:80px;height:80px;overflow:hidden}section.contact ul li:first-child a{border:0}section.contact ul li:nth-child(2) a{border-right:0;border-top:0;border-bottom:0;width:79px}section.contact ul li:nth-child(3) a{border-left:0;border-bottom:0}section.contact ul li:last-child a{border-right:0;border-bottom:0}section.contact ul li a{border:1px dotted #999;display:block;width:80px;height:80px;text-indent:-12345px;overflow:hidden;position:relative}section.contact ul li a:after{content:"";display:block;width:100%;height:100%;position:absolute;margin:0 auto}section.contact ul li a.twitter:after{background:#68b8d9 url(../img/sprite_v5_1.png) 0 0 no-repeat 0 -100px;width:49px;height:34px;top:23px;left:16px}body.special-meyer section.contact ul li a.twitter:after{background-color:#639}section.contact ul li a.email:after{background:#68b8d9 url(../img/sprite_v5_1.png) 0 0 no-repeat -100px -100px;width:38px;height:29px;top:26px;left:21px}body.special-meyer section.contact ul li a.email:after{background-color:#639}section.contact ul li a.linkedin:after{background:#68b8d9 url(../img/sprite_v5_1.png) 0 0 no-repeat -200px -100px;width:44px;height:44px;top:18px;left:18px}body.special-meyer section.contact ul li a.linkedin:after{background-color:#639}section.contact ul li a.more{text-indent:0;line-height:80px;text-align:center;text-transform:uppercase;color:#666;font-size:12px;font-weight:700}section.contact ul li a.more:after{background-image:none}footer{clear:both;padding-top:16px;font-size:10px}footer a,footer a:active,footer a:hover,footer a:link,footer a:visited{color:#666;text-decoration:underline;font-weight:400}pre{padding-left:18px;margin:0 0 0 -20px;text-shadow:none;overflow:auto;font-family:Consolas,"Bitstream Vera Sans Mono","Courier New",Courier,monospace!important;font-size:14px;line-height:16px}.linenos pre code{line-height:10px}.linenos{color:#AFAFAF!important;border-right:3px solid #6CE26C!important;padding:0 .5em 0 1em!important}div.highlight{border-left:2px solid #CCC;padding-left:10px;margin-left:10px;overflow:hidden}.highlighttable div.highlight{padding-left:10px}.special{background-color:#F8F8F8}pre .hll{background-color:#ffc}pre .c{color:#008200;font-style:italic}pre .err{border:1px solid red}pre .k{color:#069;font-weight:700}pre .o{color:#666}pre .cm{color:#008200}pre .cp{color:#BC7A00}pre .c1,pre .cs{color:#008200}pre .gd{color:#A00000}pre .ge{font-style:italic}pre .gr{color:red}pre .gh{color:navy;font-weight:700}pre .gi{color:#00A000}pre .go{color:gray}pre .gp{color:navy;font-weight:700}pre .gs{font-weight:700}pre .gu{color:purple;font-weight:700}pre .gt{color:#0040D0}pre .kc{color:#000}pre .kd{color:#069;font-weight:700}pre .kn{color:green;font-weight:700}pre .kp{color:green}pre .kr{color:green;font-weight:700}pre .kt{color:#B00040}pre .m{color:#666}pre .s{color:#756BB1}pre .na{color:#7D9029}pre .nb{color:#000}pre .nc{color:#00F;font-weight:700}pre .no{color:#800}pre .nd{color:#A2F}pre .ni{color:#999;font-weight:700}pre .ne{color:#D2413A;font-weight:700}pre .nf{color:#00F}pre .nl{color:#A0A000}pre .nn{color:#00F;font-weight:700}pre .nt{color:green;font-weight:700}pre .nv{color:#19177C}pre .ow{color:#A2F;font-weight:700}pre .w{color:#bbb}pre .mf,pre .mh,pre .mi{color:#000}pre .mo{color:#666}pre .sb,pre .sc{color:#756BB1}pre .sd{color:#756BB1;font-style:italic}pre .s2{color:#756BB1}pre .se{color:#B62;font-weight:700}pre .sh{color:#756BB1}pre .si{color:#B68;font-weight:700}pre .sx{color:green}pre .sr{color:#B68}pre .s1{color:#756BB1}pre .ss{color:#19177C}pre .bp{color:green}pre .vc,pre .vg,pre .vi{color:#19177C}pre .il{color:#666}
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/*
+--------------------------------------------------------------------------------
+VARIABLES
+Don't use these directly... :)
+--------------------------------------------------------------------------------
+*/
+/* Default Green @colorPunch: #99CC00; */
+/* Summer 2014: #68b8d9 */
+/* Purple Meyer June 12 @colorPunch: #663399 */
+/* a special line height for header blob */
+/*
+--------------------------------------------------------------------------------
+HELPERS
+Used to provide additional mixins to less. Never called
+directly
+--------------------------------------------------------------------------------
+*/
+/*
+See reference around dynamic variables in LESS
+http://stackoverflow.com/questions/18272285/less-css-calling-dynamic-variables-from-a-loop
+*/
+/*
+--------------------------------------------------------------------------------
+MIXINS
+These do the majority of the heavy lifiting for the
+stylehseet. They take the primitives and helpers
+above to generate final mixins for consumption by
+the main stylesheet.
+
+Where possible, mobile breakpoints are placed here
+instead.
+--------------------------------------------------------------------------------
+*/
+/*
+--------------------------------------------------------------------------------
+Begin Main Styles
+--------------------------------------------------------------------------------
+*/
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  color: #666666;
+  line-height: 20px;
+  margin-bottom: 20px;
+}
+body #wrapper {
+  max-width: 940px;
+  margin: 0;
+}
+@media only screen and (min-width: 500px) and (max-width: 734px) {
+  body #wrapper {
+    margin: 10px;
+  }
+}
+@media only screen and (min-width: 735px) {
+  body #wrapper {
+    margin: 10px;
+  }
+}
+@media only screen and (max-width: 499px) {
+  body {
+    margin: 0px 5px 5px 5px;
+  }
+}
+/*
+HEADER
+The header section is more of a one-off. It doesn't use many of the grid
+structures, and may call in to primitives. It will use media queries directly
+many times.
+*/
+header {
+  /* the list of articles when on a single article page */
+}
+header #logo {
+  background: #68b8d9 url(../img/sprite_v5_1.png) 0 0 no-repeat;
+  display: inline-block;
+  width: 100px;
+  height: 87px;
+  vertical-align: top;
+  margin-top: 13px;
+  /* creates 100x100 square */
+}
+body.special-meyer header #logo {
+  background-color: #663399;
+}
+header #logo a {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  text-indent: -12345px;
+}
+header ul.cloud {
+  height: 81px;
+  /* 4 lines of text at @lineHeightMedium */
+  overflow: hidden;
+}
+header ul.cloud li {
+  display: inline;
+  line-height: 20px;
+  margin-right: 0.3em;
+  /* relative right edge to avoid going flush */
+}
+header ul.cloud li a {
+  color: #999999;
+  text-decoration: none;
+}
+header ul.cloud li a:link {
+  color: #999999;
+  text-decoration: none;
+}
+header ul.cloud li a:visited {
+  color: #999999;
+  text-decoration: none;
+}
+header ul.cloud li a:hover {
+  color: #ffffff;
+  background: #68b8d9;
+  text-decoration: none;
+}
+body.special-meyer header ul.cloud li a:hover {
+  background: #663399;
+}
+header ul.cloud li a:active {
+  color: #ffffff;
+  background: #68b8d9;
+  text-decoration: none;
+}
+body.special-meyer header ul.cloud li a:active {
+  background: #663399;
+}
+header div {
+  /* This div contains the "about" block. To make it render
+       well, the following breakpoints are being used
+       @breakLarge x >= 735
+         width is 680 (max comfortable reading length)
+         about is visible
+       @breakMedium 500 <= x < 735
+         width is "auto" (flex for small screens)
+         about is visible
+       @breakSmall x < 500
+         width is "auto"
+         about is hidden (preserve screen space)
+       */
+  margin-left: 0px;
+  width: auto;
+  display: none;
+  height: 90px;
+  vertical-align: middle;
+  padding-top: 10px;
+}
+@media only screen and (min-width: 500px) and (max-width: 734px) {
+  header div {
+    margin-left: 20px;
+    display: inline-block;
+    width: auto;
+  }
+}
+@media only screen and (min-width: 735px) {
+  header div {
+    margin-left: 20px;
+    display: inline-block;
+    width: 680px;
+  }
+}
+header div p {
+  font-size: 18px;
+  color: #666666;
+  line-height: 22px;
+}
+header div p a {
+  color: #666666;
+  font-weight: bold;
+  text-decoration: underline;
+  font-weight: normal;
+}
+header div p a:link {
+  color: #666666;
+  font-weight: bold;
+  text-decoration: underline;
+}
+header div p a:visited {
+  color: #666666;
+  font-weight: bold;
+  text-decoration: underline;
+}
+header div p a:hover {
+  color: #ffffff;
+  background: #68b8d9;
+  text-decoration: none;
+}
+body.special-meyer header div p a:hover {
+  background: #663399;
+}
+header div p a:active {
+  color: #ffffff;
+  background: #68b8d9;
+  text-decoration: none;
+}
+body.special-meyer header div p a:active {
+  background: #663399;
+}
+header div p a:link {
+  color: #ffffff;
+  background: #68b8d9;
+  text-decoration: none;
+}
+body.special-meyer header div p a:link {
+  background: #663399;
+}
+header div p a:visited {
+  color: #ffffff;
+  background: #68b8d9;
+  text-decoration: none;
+}
+body.special-meyer header div p a:visited {
+  background: #663399;
+}
+header div p a:link {
+  font-weight: normal;
+}
+header div p a:visited {
+  font-weight: normal;
+}
+header div p a:hover {
+  font-weight: normal;
+}
+header div p a:active {
+  font-weight: normal;
+}
+header div .tagline {
+  font-weight: bold;
+  color: #333333;
+  font-size: 22px;
+  /* this font size matches the line height */
+  line-height: 1;
+  padding-bottom: 10px;
+}
+header div strong {
+  font-weight: bold;
+}
+/*
+STANDARD TAGS
+These are the tags that make up the rest of the page. Any media queries here
+should be pushed up into mixins at the top of the file.
+*/
+section {
+  /* A supporting section (homepage) */
+  /* When there is a dominant section (think "blog" pages) */
+  /* A primary section (larger than others, but not the "main" content) */
+  /* When the content is the only section on the page */
+  /* special styles for blog module */
+  /* comments sections */
+  /* TODO: is this going away eventually once posts are on LinkedIn? */
+  /* The photography module */
+  /* The github module */
+  /* The contact info module: this is pretty custom/hardcoded due to logos */
+}
+section a.touchable {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  text-indent: -12345px;
+}
+section.more a {
+  color: #666666;
+  font-weight: bold;
+  text-decoration: underline;
+}
+section.more:before {
+  content: ">>";
+  display: block;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  z-index: 5;
+  font-size: 16px;
+  color: #68b8d9;
+}
+body.special-meyer section.more:before {
+  color: #663399;
+}
+section.supporting {
+  position: relative;
+  display: block;
+  float: left;
+  clear: none;
+  /* must be a parametric mixin in order to get media queries working */
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  margin-top: 9px;
+  padding-top: 9px;
+  border: 2px solid #999999;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+  margin-left: 20px;
+}
+@media only screen and (min-width: 220px) {
+  section.supporting {
+    width: 220px;
+    height: 220px;
+  }
+}
+section.supporting p {
+  padding-bottom: 1em;
+}
+section.supporting h2.title {
+  font-size: 18px;
+  color: #333333;
+  height: auto;
+}
+@media only screen and (min-width: 500px) and (max-width: 734px), only screen and (min-width: 735px) {
+  section.supporting h2.title {
+    height: 60px;
+  }
+}
+section.supporting h3 {
+  font-size: 18px;
+  color: #333333;
+  height: auto;
+}
+@media only screen and (min-width: 500px) and (max-width: 734px), only screen and (min-width: 735px) {
+  section.supporting h3 {
+    height: 30px;
+  }
+}
+section.dominant {
+  position: relative;
+  display: block;
+  float: left;
+  clear: left;
+  /* must be a parametric mixin in order to get media queries working */
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  margin-top: 9px;
+  padding-top: 9px;
+  border: 2px solid #999999;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+  margin-left: 0px;
+}
+@media only screen and (min-width: 460px) {
+  section.dominant {
+    width: 460px;
+    height: 460px;
+  }
+}
+section.dominant h2.title {
+  font-size: 36px;
+  font-weight: bold;
+  color: #333333;
+  padding-top: 0;
+  height: auto;
+  line-height: 1;
+}
+@media only screen and (min-width: 500px) and (max-width: 734px), only screen and (min-width: 735px) {
+  section.dominant h2.title {
+    height: 184px;
+    padding-top: 56px;
+    line-height: 48px;
+  }
+}
+section.primary {
+  position: relative;
+  display: block;
+  float: left;
+  clear: left;
+  /* must be a parametric mixin in order to get media queries working */
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  margin-top: 9px;
+  padding-top: 9px;
+  border: 2px solid #999999;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+  margin-left: 0px;
+  height: auto !important;
+}
+@media only screen and (min-width: 700px) {
+  section.primary {
+    width: 700px;
+    height: 700px;
+  }
+}
+section.primary h2.title {
+  font-size: 36px;
+  font-weight: bold;
+  color: #333333;
+  padding-bottom: 0;
+}
+@media only screen and (min-width: 500px) and (max-width: 734px), only screen and (min-width: 735px) {
+  section.primary h2.title {
+    padding-bottom: 24px;
+  }
+}
+section.primary h2 {
+  font-size: 18px;
+  color: #333333;
+  height: auto;
+  line-height: 48px;
+}
+section.only {
+  position: relative;
+  display: block;
+  float: left;
+  clear: left;
+  /* must be a parametric mixin in order to get media queries working */
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  margin-top: 9px;
+  padding-top: 9px;
+  border: 2px solid #999999;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+  margin-left: 0px;
+  height: auto !important;
+}
+@media only screen and (min-width: 940px) {
+  section.only {
+    width: 940px;
+    height: 940px;
+  }
+}
+section.only h2.title {
+  font-size: 36px;
+  font-weight: bold;
+  color: #333333;
+  padding-bottom: 0;
+}
+@media only screen and (min-width: 500px) and (max-width: 734px), only screen and (min-width: 735px) {
+  section.only h2.title {
+    padding-bottom: 24px;
+  }
+}
+section.only h2 {
+  font-size: 18px;
+  color: #333333;
+  height: auto;
+  line-height: 48px;
+}
+section.blog hr {
+  margin-bottom: 20px;
+}
+section.blog p {
+  font-size: 16px;
+  color: #666666;
+  line-height: 20px;
+  margin-bottom: 20px;
+}
+section.blog p a {
+  color: #666666;
+  font-weight: bold;
+  text-decoration: underline;
+}
+section.blog p a:link {
+  color: #666666;
+  font-weight: bold;
+  text-decoration: underline;
+}
+section.blog p a:visited {
+  color: #666666;
+  font-weight: bold;
+  text-decoration: underline;
+}
+section.blog p a:hover {
+  color: #ffffff;
+  background: #68b8d9;
+  text-decoration: none;
+}
+body.special-meyer section.blog p a:hover {
+  background: #663399;
+}
+section.blog p a:active {
+  color: #ffffff;
+  background: #68b8d9;
+  text-decoration: none;
+}
+body.special-meyer section.blog p a:active {
+  background: #663399;
+}
+section.blog p img {
+  display: block;
+  margin: 0 auto;
+}
+section.blog div.highlight {
+  margin-bottom: 20px;
+}
+section.blog ul,
+section.blog ol {
+  margin-bottom: 20px;
+}
+section.blog li {
+  list-style-type: square;
+  text-indent: 0;
+  margin-left: 2em;
+  line-height: 20px;
+  padding-left: 1em;
+  padding-bottom: 1em;
+}
+section.blog li a {
+  color: #666666;
+  font-weight: bold;
+  text-decoration: underline;
+}
+section.blog li a:link {
+  color: #666666;
+  font-weight: bold;
+  text-decoration: underline;
+}
+section.blog li a:visited {
+  color: #666666;
+  font-weight: bold;
+  text-decoration: underline;
+}
+section.blog li a:hover {
+  color: #ffffff;
+  background: #68b8d9;
+  text-decoration: none;
+}
+body.special-meyer section.blog li a:hover {
+  background: #663399;
+}
+section.blog li a:active {
+  color: #ffffff;
+  background: #68b8d9;
+  text-decoration: none;
+}
+body.special-meyer section.blog li a:active {
+  background: #663399;
+}
+section.blog-meta p {
+  font-size: 16px;
+  color: #666666;
+  line-height: 20px;
+  margin-bottom: 20px;
+}
+section.blog-meta p a {
+  color: #666666;
+  font-weight: bold;
+  text-decoration: underline;
+}
+section.blog-meta p a:link {
+  color: #666666;
+  font-weight: bold;
+  text-decoration: underline;
+}
+section.blog-meta p a:visited {
+  color: #666666;
+  font-weight: bold;
+  text-decoration: underline;
+}
+section.blog-meta p a:hover {
+  color: #ffffff;
+  background: #68b8d9;
+  text-decoration: none;
+}
+body.special-meyer section.blog-meta p a:hover {
+  background: #663399;
+}
+section.blog-meta p a:active {
+  color: #ffffff;
+  background: #68b8d9;
+  text-decoration: none;
+}
+body.special-meyer section.blog-meta p a:active {
+  background: #663399;
+}
+section.blog-meta p img {
+  display: block;
+  margin: 0 auto;
+}
+section.blog .discuss.linkedin .logo {
+  background: #68b8d9 url(../img/sprite_v5_1.png) 0 0 no-repeat;
+  background-position: -200px -100px;
+  display: block;
+  float: left;
+  width: 43px;
+  height: 43px;
+  overflow: hidden;
+}
+body.special-meyer section.blog .discuss.linkedin .logo {
+  background-color: #663399;
+}
+section.blog .discuss.linkedin p {
+  display: block;
+  float: left;
+  height: 43px;
+  line-height: 43px;
+}
+section.blog .discuss.linkedin p a {
+  display: inline-block;
+  padding-left: 0.3em;
+  padding-right: 0.3em;
+  height: 43px;
+  line-height: 43px;
+}
+section.comments {
+  border: 0;
+}
+section.comments #livefyre {
+  margin-top: 0;
+}
+section.comments .lf_head_bar {
+  display: none;
+}
+section.comments-meta {
+  border: 0;
+  padding-top: 102px;
+}
+section.comments-meta p {
+  font-size: 14px;
+}
+section.comments-meta p code {
+  font-size: 10px;
+}
+section.photo h2.title {
+  text-indent: -12345px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 18px;
+  background: #68b8d9;
+  z-index: 2;
+}
+body.special-meyer section.photo h2.title {
+  background: #663399;
+}
+section.photo:before {
+  content: ">>";
+  display: block;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  z-index: 5;
+  font-size: 16px;
+  color: #ffffff;
+}
+body.special-meyer section.photo:before {
+  color: #663399;
+}
+section.photo a {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+section.photo img {
+  margin-left: -50%;
+}
+section.github span {
+  display: block;
+}
+section.github span.date {
+  font-size: 18px;
+  color: #333333;
+  padding-bottom: 8px;
+}
+section.github span.event {
+  font-size: 14px;
+  padding-bottom: 17px;
+}
+section.github dt {
+  font-size: 18px;
+  color: #333333;
+  padding-bottom: 8px;
+}
+section.github dd {
+  font-size: 14px;
+  padding-bottom: 17px;
+}
+section.contact:before {
+  content: "";
+}
+section.contact ul {
+  width: 165px;
+  height: 165px;
+  margin: 0 auto;
+}
+section.contact ul li {
+  display: block;
+  float: left;
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+}
+section.contact ul li:first-child a {
+  border: 0;
+}
+section.contact ul li:nth-child(2) a {
+  border-right: 0;
+  border-top: 0;
+  border-bottom: 0;
+  width: 79px;
+}
+section.contact ul li:nth-child(3) a {
+  border-left: 0;
+  border-bottom: 0;
+}
+section.contact ul li:last-child a {
+  border-right: 0;
+  border-bottom: 0;
+}
+section.contact ul li a {
+  border: 1px dotted #999;
+  display: block;
+  width: 80px;
+  height: 80px;
+  text-indent: -12345px;
+  overflow: hidden;
+  position: relative;
+}
+section.contact ul li a:after {
+  /* reposition the sprite based on the class */
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  margin: 0 auto;
+}
+section.contact ul li a.twitter:after {
+  background: #68b8d9 url(../img/sprite_v5_1.png) 0 0 no-repeat;
+  background-position: 0 -100px;
+  width: 49px;
+  height: 34px;
+  top: 23px;
+  left: 16px;
+}
+body.special-meyer section.contact ul li a.twitter:after {
+  background-color: #663399;
+}
+section.contact ul li a.email:after {
+  background: #68b8d9 url(../img/sprite_v5_1.png) 0 0 no-repeat;
+  background-position: -100px -100px;
+  width: 38px;
+  height: 29px;
+  top: 26px;
+  left: 21px;
+}
+body.special-meyer section.contact ul li a.email:after {
+  background-color: #663399;
+}
+section.contact ul li a.linkedin:after {
+  background: #68b8d9 url(../img/sprite_v5_1.png) 0 0 no-repeat;
+  background-position: -200px -100px;
+  width: 44px;
+  height: 44px;
+  top: 18px;
+  left: 18px;
+}
+body.special-meyer section.contact ul li a.linkedin:after {
+  background-color: #663399;
+}
+section.contact ul li a.more {
+  text-indent: 0;
+  line-height: 80px;
+  /* hard coded for centering vertically */
+  text-align: center;
+  text-transform: uppercase;
+  color: #666666;
+  font-size: 12px;
+  font-weight: bold;
+}
+section.contact ul li a.more:after {
+  background-image: none;
+}
+/* The footer for the page */
+footer {
+  clear: both;
+  padding-top: 16px;
+  font-size: 10px;
+}
+footer a {
+  color: #666666;
+  font-weight: bold;
+  text-decoration: underline;
+  font-weight: normal;
+}
+footer a:link {
+  color: #666666;
+  font-weight: bold;
+  text-decoration: underline;
+}
+footer a:visited {
+  color: #666666;
+  font-weight: bold;
+  text-decoration: underline;
+}
+footer a:hover {
+  color: #666666;
+  font-weight: bold;
+  text-decoration: underline;
+}
+footer a:active {
+  color: #666666;
+  font-weight: bold;
+  text-decoration: underline;
+}
+footer a:link {
+  font-weight: normal;
+}
+footer a:visited {
+  font-weight: normal;
+}
+footer a:hover {
+  font-weight: normal;
+}
+footer a:active {
+  font-weight: normal;
+}
+
+pre {
+  /*border-left: solid 2px #CCC;*/
+  padding-left: 18px;
+  margin: 0 0 0 -20px;
+  text-shadow: none;
+  overflow: auto;
+  font-family: "Consolas","Bitstream Vera Sans Mono","Courier New",Courier,monospace!important;
+  font-size: 14px;
+  line-height: 16px;
+}
+.linenos pre code {
+  line-height: 10px;
+}
+.linenos {
+  color: #AFAFAF !important;
+  border-right: 3px solid #6CE26C !important;
+  padding: 0 .5em 0 1em !important;
+}
+div.highlight {
+  border-left: 2px solid #CCC;
+  padding-left: 10px;
+  margin-left: 10px;
+  overflow: hidden;
+}
+.highlighttable div.highlight {
+  padding-left: 10px;
+}
+.special {
+  background-color: #F8F8F8;
+}
+pre .hll { background-color: #ffffcc }
+pre .c { color: #008200; font-style: italic } /* Comment */
+pre .err { border: 1px solid #FF0000 } /* Error */
+pre .k { color: #069; font-weight: bold } /* Keyword */
+pre .o { color: #666666; } /* 333 */
+pre .cm { color: #008200; } /* Comment.Multiline */
+pre .cp { color: #BC7A00; } /* Comment.Preproc */
+pre .c1 { color: #008200; } /* Comment.Single */
+pre .cs { color: #008200; } /* Comment.Special */
+pre .gd { color: #A00000; } /* Generic.Deleted */
+pre .ge { font-style: italic } /* Generic.Emph */
+pre .gr { color: #FF0000; } /* Generic.Error */
+pre .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+pre .gi { color: #00A000; } /* Generic.Inserted */
+pre .go { color: #808080; } /* Generic.Output */
+pre .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+pre .gs { font-weight: bold } /* Generic.Strong */
+pre .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+pre .gt { color: #0040D0; } /* Generic.Traceback */
+pre .kc { color: #000; } /* Keyword.Constant */
+pre .kd { color: #069; font-weight: bold } /* Keyword.Declaration */
+pre .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+pre .kp { color: #008000; } /* Keyword.Pseudo */
+pre .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+pre .kt { color: #B00040; } /* Keyword.Type */
+pre .m { color: #666666; } /* Literal.Number */
+pre .s { color: #756BB1; } /* Literal.String */
+pre .na { color: #7D9029; } /* Name.Attribute */
+pre .nb { color: #000; } /* Name.Builtin */
+pre .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+pre .no { color: #880000; } /* Name.Constant */
+pre .nd { color: #AA22FF; } /* Name.Decorator */
+pre .ni { color: #999999; font-weight: bold } /* Name.Entity */
+pre .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+pre .nf { color: #0000FF; } /* Name.Function */
+pre .nl { color: #A0A000; } /* Name.Label */
+pre .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+pre .nt { color: #008000; font-weight: bold } /* Name.Tag */
+pre .nv { color: #19177C; } /* Name.Variable */
+pre .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+pre .w { color: #bbbbbb; } /* Text.Whitespace */
+pre .mf { color: #000; } /* Literal.Number.Float */
+pre .mh { color: #000; } /* Literal.Number.Hex */
+pre .mi { color: #000; } /* Literal.Number.Integer */
+pre .mo { color: #666666; } /* Literal.Number.Oct */
+pre .sb { color: #756BB1; } /* Literal.String.Backtick */
+pre .sc { color: #756BB1; } /* Literal.String.Char */
+pre .sd { color: #756BB1; font-style: italic } /* Literal.String.Doc */
+pre .s2 { color: #756BB1; } /* Literal.String.Double */
+pre .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+pre .sh { color: #756BB1; } /* Literal.String.Heredoc */
+pre .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+pre .sx { color: #008000; } /* Literal.String.Other */
+pre .sr { color: #BB6688; } /* Literal.String.Regex */
+pre .s1 { color: #756BB1; } /* Literal.String.Single */
+pre .ss { color: #19177C; } /* Literal.String.Symbol */
+pre .bp { color: #008000; } /* Name.Builtin.Pseudo */
+pre .vc { color: #19177C; } /* Name.Variable.Class */
+pre .vg { color: #19177C; } /* Name.Variable.Global */
+pre .vi { color: #19177C; } /* Name.Variable.Instance */
+pre .il { color: #666666; } /* Literal.Number.Integer.Long */
