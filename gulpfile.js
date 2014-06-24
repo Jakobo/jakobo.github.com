@@ -46,7 +46,9 @@ gulp.task('js', function() {
     './_js/index.js'
     ])
     .pipe(tap(function(file) {
-      var bundler = (browserify)({entries: [file.path]});
+      var bundler = browserify({
+        entries: [file.path]
+      });
       bundler.transform('brfs');
       file.contents = bundler.bundle();
     }))
