@@ -8,16 +8,6 @@ css:
   - /css/pygments.css
 ---
 
-<script type="felocity/control" data-felocity-describes=".blog">
-  $("a", this).filter(function() {
-    return (/https:\/\/gist.github.com\/.*#.*/).test($(this).attr("href"))
-  }).each(function() {
-    $(this).gist()
-  });
-  $("img", this).each(function() {
-    $(this).resizeImage()
-  });
-</script>
 <section class="primary blog">
   <h2 class="title" itemprop="name">{{page.title}}</h2>
   <p itemprop="description" style="display:none">{{page.summary}}</p>

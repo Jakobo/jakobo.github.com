@@ -1,4 +1,5 @@
 var $ = require('jquery');
+var moment = require('moment');
 
 function format(evt) {
   var str = "did something cool on github",
