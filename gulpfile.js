@@ -35,7 +35,7 @@ gulp.task('css', function() {
     .pipe(less())
     .pipe(lessFiles.restore())
     .pipe(concat('all.css'))
-    // .pipe(cssMin())
+    // .pipe(cssMin()) // not handling background position right
     .pipe(gulp.dest('./css'))
 });
 
