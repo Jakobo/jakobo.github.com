@@ -12,7 +12,7 @@ var rename = require('gulp-rename');
 
 // css
 var less = require('gulp-less');
-var cssMin = require('gulp-cssmin');
+var cssMin = require('gulp-minify-css');
 
 // js
 var browserify = require('browserify');
@@ -35,7 +35,9 @@ gulp.task('css', function() {
     .pipe(less())
     .pipe(lessFiles.restore())
     .pipe(concat('all.css'))
-    // .pipe(cssMin()) // not handling background position right
+    .pipe(cssMin({
+      keepBreaks: true
+    }))
     .pipe(gulp.dest('./css'))
 });
 
