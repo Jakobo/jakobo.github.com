@@ -3,23 +3,6 @@ layout: frontdoor
 show_about: true
 ---
 
-<script type="felocity/control" data-felocity-describes=".blog">
-  $("p:first", this).reduceTo().ellipsis({ words: -4 })
-</script>
-<script type="felocity/control" data-felocity-describes=".github">
-  $("a", this).after("<ul></ul>");
-  $("ul", this).githubActivity({
-    limit: 2,
-    user: "Jakobo",
-    date_as: "MMM Do YYYY HH:mm", // Aug 20th 2012 hh:mm
-    tmpl: ([
-      '<li>',
-        '<span class="date">__DATE__</span>',
-        '<span class="event">__EVENT__</span>',
-      '</li>',
-    '']).join("")
-  })
-</script>
 <section class="dominant blog more">
   {% for post in site.posts limit:1 offset:0 %}
   <h2 class="title">{{ post.title }}</h2>

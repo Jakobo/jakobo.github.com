@@ -39,11 +39,11 @@ function format(evt) {
 module.exports = function($el, opts) {
   // https://github.com/Jakobo.json?callback=foo
   var username = opts.name,
-      tmpl = opts.tmpl,
+      tmpl = opts.tmpl.join(''),
       url = "https://github.com/__USERNAME__.json",
-      into = $el,
       date_as = opts.date_as || "LLL",
-      remaining = opts.limit;
+      remaining = opts.limit,
+      into = $el.after('<ul></ul>');
 
   url = url.replace(/__USERNAME__/g, opts.user);
 
