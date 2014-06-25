@@ -49,7 +49,6 @@ gulp.task('js', function() {
       var bundler = browserify({
         entries: [file.path]
       });
-      bundler.transform('brfs');
       file.contents = bundler.bundle();
     }))
     .pipe(toBuffer())

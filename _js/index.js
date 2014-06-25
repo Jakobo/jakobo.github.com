@@ -3,7 +3,7 @@ var path = require('path');
 
 var $ = require('jquery');
 
-var config = JSON.parse(fs.readFileSync(__dirname + '/config.json').toString());
+var config = require('./config');
 
 var visuals = {
   elipsis: require('./visuals/elipsis'),
