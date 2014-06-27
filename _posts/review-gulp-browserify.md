@@ -7,13 +7,29 @@ title: A recipe for gulp and browserify
 
 If you've tried [gulp](http://gulpjs.com/), you've probably also tried [browserify](http://browserify.org/). This also means you googled for "gulp browserify" and were led to the gulp-browserify plugin on npm. I haven't linked to it because the gulp team has ruled the blacklisted that plugin on the basis it is redundant. Instead, the current consensus is a [recipe leveraging vinyl](https://github.com/gulpjs/gulp/issues/369), the underlying virtual file system in gulp. While I think that's technically correct, it requires intimate knowledge of browserify, streams, and the vinyl system. I think we can do better.
 
-## The Code
-Let's start with the code and work backwards.
+## The Vinyl Code
+Let's start with the code and work backwards. First up, the recommended solution (simplified).
 
+```js
+var gulp = require('gulp');
+var browserify = require('browserify');
+var toVinyl = require('vinyl-source-stream');
+gulp.task('js', function() {
+  return browserify('file.js')
+    .bundle()
+    .pipe(toVinyl('bundle.js'))
+    .pipe(gulp.dest('output_dir/'));
+});
+```
+
+This is a very powerful pattern. We're able to leverage the default browserify npm module. [viny-source-stream](https://www.npmjs.org/package/vinyl-source-stream) (npm) can take a stream in progress and convert it to a vinyl supported stream, thus giving it a virtual file system and name. By using this, you no longer have to use a special plugin for browserify. However, this solution breaks down if you want to leverage the globbing in `gulp.src` that makes for powerful pipelines. Thankfully, there's a plugin that lets us tap into a gulp pipeline, making our own modifications. That plugin is appropriately named gulp-tap.
+
+## The Code With gulp-tap
 ```js
 var gulp = require('gulp');
 var tap = require('gulp-tap');
 var toBuffer = require('gulp-buffer');
+var browserify = require('browserify');
 gulp.task('js', function() {
   return gulp.src('**/*.js')
     .pipe(tap(function(file) {
@@ -28,10 +44,7 @@ gulp.task('js', function() {
 })
 ```
 
-We are going to need two modules for this recipe, both of which are general purpose gulp utilities you way want to use again and again after you learn how powerful they are.
-
-## gulp-tap
-[gulp-tap](https://www.npmjs.org/package/gulp-tap) (npm) is a swiss army knife in the gulp world. It's purpose is to expose the file in the middle of the pipeline, allowing you to call whatever custom transformations you may need. The signature for the gulp-tap configuration takes two parameters. The first is the file object (vinyl-fs) and contains `file.contents`, `file.path`, etc. The second is an instance of the `through2` module in case you need it.
+Okay, we've added a few more lines courtesy of the [gulp-tap](https://www.npmjs.org/package/gulp-tap) (npm) plugin. However, this is a pattern that goes well beyond browserify. gulp-tap is a swiss army knife in the gulp world. It's purpose is to expose the file in the middle of the pipeline, allowing you to call whatever custom transformations you may need. The signature for the gulp-tap configuration takes two parameters. The first is the file object (vinyl-fs) and contains `file.contents`, `file.path`, etc. The second is an instance of the `through2` module in case you need it.
 
 Return a buffer, return a stream, or modify `file.contents` and you're done. Even operations that don't normally return streams or buffers are automatically moved into a buffer for compatibility with the next step on the gulp pipeline.
 
@@ -43,4 +56,4 @@ Not all gulp plugins are stream ready. Because of their design, they might be op
 In our above code, browserify provides a stream, but uglify only operates on a buffer. Piping through gulp-buffer solves this problem.
 
 ## The "gulp way"
-The most successful gulp pipelines are those built with small modular components. Per the gulp team's recommendation, plugins shouldn't be created when there is already a node module that accomplishes your goal. Thanks to utilities like gulp-tap, gulp-buffer, and gulp-stream, you can make the entire npm ecosystem gulp friendly.
+The most successful gulp pipelines are those built with small modular components. Per the gulp team's recommendation, plugins shouldn't be created when there is already a node module that accomplishes your goal. Thanks to utilities like vinyl-source-stream, gulp-tap, gulp-buffer, and gulp-stream, you can make the entire npm ecosystem gulp friendly. You really don't need to write a gulp plugin for most use cases, and that's leverage.
