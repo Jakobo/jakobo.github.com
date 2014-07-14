@@ -14,22 +14,16 @@ photo:
 # permalinks
 permalink : /article/:title/
 
-# publish posts with a future date
-future    : true
-
 # The production_url is only used when full-domain names are needed such as sitemap.txt
 production_url : http://www.felocity.com
 url            : http://www.felocity.com
 
 # github defaults
 lsi         : false
-highlighter : pygments
 safe        : true
 
 # overrides maruku
-markdown  : kramdown
-kramdown  :
-  entity_output : symbolic
+markdown  : redcarpet
 
 # language
 lang      : en
