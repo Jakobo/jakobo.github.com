@@ -6,7 +6,7 @@ discussOn: LinkedIn
 discussAt: https://www.linkedin.com/today/post/article/20140714184735-5276101-recipes-for-gulp-and-browserify
 ---
 
-If you've tried [gulp](http://gulpjs.com/), you've probably also tried [browserify](http://browserify.org/). This also means you googled for "gulp browserify" and were led to the gulp-browserify plugin on npm. I haven’t linked to it because the gulp team has ruled that the gulp-browserify plugin is blacklisted due to redundancy. Instead, the current consensus is a [recipe leveraging vinyl](https://github.com/gulpjs/gulp/issues/369), the underlying virtual file system in gulp. While I think that's technically correct, it requires intimate knowledge of browserify, streams, and the vinyl system.
+If you've tried [gulp](http://gulpjs.com/), you've probably also tried [browserify](http://browserify.org/). This also means you googled for "gulp browserify" and were led to the gulp-browserify plugin on npm. I haven't linked to it because the gulp team has ruled that the gulp-browserify plugin is blacklisted due to redundancy. Instead, the current consensus is a [recipe leveraging vinyl](https://github.com/gulpjs/gulp/issues/369), the underlying virtual file system in gulp. While I think that's technically correct, it requires intimate knowledge of browserify, streams, and the vinyl system.
 
 ## The Vinyl Code
 Let's start with the code and work backwards. First up, the recommended solution (simplified).
