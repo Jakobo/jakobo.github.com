@@ -1,0 +1,88 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title></title>
+  <meta name="description" content="The personal website of Jakob Heuser">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- link rel="apple-touch-icon" href="apple-touch-icon.png" -->
+  <link rel="stylesheet" href="css/all.css">
+</head>
+<body>
+  <!--[if lt IE 8]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+  <nav>
+    <ul>
+      <li><a href="#code">Code</a></li>
+      <li><a href="#write">Writing</a></li>
+      <li><a href="#photo">Photography</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section id="code" class="carousel">
+    <!-- https://api.github.com/users/:username/events?callback=xnxx -->
+    <!-- resolvedRepoUrl based on repo.name (and payload.ref if exists) -->
+    <script type="text/html">
+      <article class="<%= eventType %> carousel__item">
+      <% switch(eventType) { %>
+        <% case "push": %>
+          <% if (payload.commits.length > 2) { %>
+            pushed <%= payload.commits.length %> times to <a href="<%= resolvedRepoUrl %>"><%= resolvedRepoName %></a>
+          <% } else { %>
+            pushed to <a href="<%= resolvedRepoUrl %>"><%= resolvedRepoName %></a>
+          <% } %>
+        <% break; %>
+        <% case "closeIssue": %>
+          closed <a href="<%= resolvedRepoUrl %>"><%= resolvedRepoName %></a> <a href="<%= payload.issue.url %>">#<%= payload.issue.number %></a>
+        <% break; %>
+        <% case "commentIssue": %>
+          commented on <a href="<%= resolvedRepoUrl %>"><%= resolvedRepoName %></a> <a href="<%= payload.issue.url %>">#<%= payload.issue.number %></a>
+        <% break; %>
+        <% case "watching": %>
+          started watching <a href="<%= resolvedRepoUrl %>"><%= resolvedRepoName %></a>
+        <% break; %>
+        <% case "fork": %>
+          created a fork of <a href="<%= payload.forkee.html_url %>"><%= resolvedRepoName %></a>
+        <% break; %>
+      <% } %>
+      </article>
+    </script>
+    <noscript>
+      View all of the code I write on my github profile: <a href="https://github.com/jakobo">@jakobo</a>
+    </noscript>
+  </section>
+
+  <section id="write">
+    <!-- publication badge https://medium.com/echo-print-delete -->
+    <a class="m-collection" href="https://medium.com/echo-print-delete">echo. print. delete.</a>
+  </section>
+
+  <section id="photo" class="carousel">
+    <!-- use "embed" link from 500px in article + img tags -->
+    <article>
+      <div class="pixels-photo">
+        <p><img src="https://drscdn.500px.org/photo/100215261/m=900/88974915b3dff8b4de8fc1826fa1ee3e" alt="Photograph Changing by Jakob Heuser on 500px"></p>
+        <a href="https://500px.com/photo/100215261/changing-by-jakob-heuser">Changing by Jakob Heuser on 500px</a>
+      </div>
+    </article>
+  </section>
+
+  <section id="contact">
+    <ul>
+      <li>LinkedIn</li>
+      <li>Twitter</li>
+      <li>Github</li>
+      <li>vCard</li>
+    </ul>
+  </section>
+
+  <script async src="js/app.js"></script>
+</body>
+</html>
