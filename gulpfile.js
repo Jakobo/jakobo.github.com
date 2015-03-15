@@ -1,77 +1,51 @@
-var gulp = require('gulp');
-var fs = require('fs');
-var rimraf = require('rimraf');
-var _ = require('lodash');
+var gulp = require("gulp");
+var fs = require("fs");
+var rimraf = require("rimraf");
 
 // JS
-var browserify = require('browserify');
-var watchify = require('watchify');
-var babelify = require('babelify');
+var browserify = require("browserify");
+var babelify = require("babelify");
 
 // Source Streams, File Transforms, etc
-var source = require('vinyl-source-stream');
+var source = require("vinyl-source-stream");
+var watch = require("gulp-watch");
+var plumber = require("gulp-plumber");
+var batch = require("gulp-batch");
 
 // Server
-var browserSync = require('browser-sync');
+var browserSync = require("browser-sync");
 var reload = browserSync.reload;
 
-// configuration
-var bundler;
-var config = {
-  js: {
-    entryFile: './_js/app.js',
-    outputDir: './js/',
-    outputFile: 'app.js'
-  }
-};
-
-// bundler is a watchify wrapped browserify instance
-function getBundler() {
-  if (!bundler) {
-    bundler = watchify(browserify(config.js.entryFile, _.extend({ debug: true }, watchify.args)));
-  }
-  return bundler;
-};
-
 // clean the output directory
-gulp.task('clean', function(cb){
-    rimraf(config.js.outputDir, cb);
+gulp.task("cleanJS", function(cb){
+  rimraf("./js", cb);
 });
 
 // the meta-build task
 gulp.task("build-all", ["js"]);
 
 // js from a single entry point using browserify
-gulp.task('js', ['clean'], function() {
-  return getBundler()
+gulp.task("js", ["cleanJS"], function() {
+  return browserify("./_js/app.js")
     .transform(babelify)
     .bundle()
-    .on('error', function(err) { console.log('Error: ' + err.message); })
-    .pipe(source(config.js.outputFile))
-    .pipe(gulp.dest(config.js.outputDir))
+    .pipe(plumber())
+    .pipe(source("app.js"))
+    .pipe(gulp.dest("./js"))
     .pipe(reload({ stream: true }));
 });
 
 // build will exit on complete
-gulp.task('build', ['build-all'], function() {
+gulp.task("build", ["build-all"], function() {
   process.exit(0);
 });
 
 // watch starts a browser sync and retriggers builds
-gulp.task('watch', ['build-all'], function() {
-  browserSync({
-    server: {
-      baseDir: './'
-    }
+gulp.task("watch", ["build-all"], function() {
+  watch("_js/**/*", function() {
+    gulp.start("js");
   });
 
-  getBundler().on('update', function() {
-    gulp.start('build-all')
-  });
-});
-
-// web server with no builds
-gulp.task('serve', function () {
   browserSync({
     server: {
       baseDir: './'

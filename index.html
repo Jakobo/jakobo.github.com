@@ -26,60 +26,20 @@
     </ul>
   </nav>
 
-  <section id="code" class="carousel">
-    <!-- https://api.github.com/users/:username/events?callback=xnxx -->
-    <!-- resolvedRepoUrl based on repo.name (and payload.ref if exists) -->
-    <script type="text/html">
-      <article class="<%= eventType %> carousel__item">
-      <% switch(eventType) { %>
-        <% case "push": %>
-          <% if (payload.commits.length > 2) { %>
-            pushed <%= payload.commits.length %> times to <a href="<%= resolvedRepoUrl %>"><%= resolvedRepoName %></a>
-          <% } else { %>
-            pushed to <a href="<%= resolvedRepoUrl %>"><%= resolvedRepoName %></a>
-          <% } %>
-        <% break; %>
-        <% case "closeIssue": %>
-          closed <a href="<%= resolvedRepoUrl %>"><%= resolvedRepoName %></a> <a href="<%= payload.issue.url %>">#<%= payload.issue.number %></a>
-        <% break; %>
-        <% case "commentIssue": %>
-          commented on <a href="<%= resolvedRepoUrl %>"><%= resolvedRepoName %></a> <a href="<%= payload.issue.url %>">#<%= payload.issue.number %></a>
-        <% break; %>
-        <% case "watching": %>
-          started watching <a href="<%= resolvedRepoUrl %>"><%= resolvedRepoName %></a>
-        <% break; %>
-        <% case "fork": %>
-          created a fork of <a href="<%= payload.forkee.html_url %>"><%= resolvedRepoName %></a>
-        <% break; %>
-      <% } %>
-      </article>
-    </script>
-    <noscript>
-      View all of the code I write on my github profile: <a href="https://github.com/jakobo">@jakobo</a>
-    </noscript>
-  </section>
+  <noscript>
+    <p id="code">View all of the code I write on my github profile: <a href="https://github.com/jakobo">@jakobo</a></p>
+    <p id="write">I also write non-code things on Medium under the username <a href="https://medium.com/@jakob">@jakob</a></p>
+    <p id="photo">Photography is a hobby I enjoy not being paid for. You can find my photos on 500px under <a href="https://500px.com/jakobo">jakobo</a> in addition to on other social media sites</p>
+  </noscript>
 
-  <section id="write">
-    <!-- publication badge https://medium.com/echo-print-delete -->
-    <a class="m-collection" href="https://medium.com/echo-print-delete">echo. print. delete.</a>
-  </section>
-
-  <section id="photo" class="carousel">
-    <!-- use "embed" link from 500px in article + img tags -->
-    <article>
-      <div class="pixels-photo">
-        <p><img src="https://drscdn.500px.org/photo/100215261/m=900/88974915b3dff8b4de8fc1826fa1ee3e" alt="Photograph Changing by Jakob Heuser on 500px"></p>
-        <a href="https://500px.com/photo/100215261/changing-by-jakob-heuser">Changing by Jakob Heuser on 500px</a>
-      </div>
-    </article>
-  </section>
+  <div id="app" />
 
   <section id="contact">
     <ul>
-      <li>LinkedIn</li>
-      <li>Twitter</li>
-      <li>Github</li>
-      <li>vCard</li>
+      <li><a href="http://www.linkedin.com/in/jakobheuser">LinkedIn</a></li>
+      <li><a href="http://www.twitter.com/jakobo">Twitter</a></li>
+      <li><a href="http://www.github.com/jakobo">Github</a></li>
+      <li><a href="vcard/">vCard</a></li>
     </ul>
   </section>
 
