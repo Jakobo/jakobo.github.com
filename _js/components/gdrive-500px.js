@@ -22,22 +22,31 @@ module.exports = React.createClass({
     this.setState(getState(this.props.source));
   },
   render: function() {
-    var feed = "";
+    var tile = null;
+    var entries;
+    var row;
 
     if (this.state.feed && this.state.feed.length > 0) {
-      feed = (
-        <ul>
-          {this.state.feed.map(function(row) {
-            return (
-              <li key={row.id} className="500px__list-item">
-                <a href="{row.link}">{row.text}</a>
-              </li>
-            );
-          })}
-        </ul>
-      );
+      entries = dedupe(this.state.feed, 'text');
+      row = entries[this.props.item] || null;
+
+      if (row) {
+        tile = (
+          <article key={row.id} className={[
+              "tile",
+              "n500px",
+              tiles.getTileClasses(this.props["tile-width"], this.props["tile-height"])
+            ].join(" ")}>
+            <a href={row.link} className="n500px__link"><img src={row.image} className="n500px__image" /></a>
+            <aside className="n500px__about">
+              <a href={row.link}>{row.title}</a>
+              <p>{row.caption}</p>
+            </aside>
+          </article>
+        );
+      }
     }
 
-    return <section className="500px">{feed}</section>;
+    return tile;
   }
 });

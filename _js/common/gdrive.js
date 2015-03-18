@@ -3,8 +3,9 @@
 // (sometimes, this is the only way to get RSS to JSON...)
 // ( ( I'm looking @ you, medium ) )
 
-// example
+// examples
 // https://spreadsheets.google.com/feeds/list/10AzPn7DVSM-C-dlvffqD6M2_laj0KCullSExDz6ssoo/1/public/values?alt=json-in-script&callback=XNXX
+// https://spreadsheets.google.com/feeds/list/1aETLR_5FGF2yLqxx32Voqz1g5NxA1yMaLiVz98TZyRk/1/public/values?alt=json-in-script&callback=XNXX
 
 var jsonp = require("jsonp");
 
