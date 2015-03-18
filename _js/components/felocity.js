@@ -6,7 +6,7 @@ var Github = require("./gdrive-github");
 module.exports = React.createClass({
   render: function() {
     return (
-      <Github source={ghc.SOURCE_ID} />
+      <Github source="10AzPn7DVSM-C-dlvffqD6M2_laj0KCullSExDz6ssoo" />
     );
   }
 });

@@ -1,10 +1,10 @@
 var Browser = require('../dispatchers/browser');
-var GithubConstants = require('../constants/gdrive-github');
+var PXConstants = require('../constants/gdrive-500px');
 
 var Actions = {
   load: function(data) {
     AppDispatcher.handleAction({
-      actionType: GithubConstants.LOAD_GITHUB,
+      actionType: PXConstants.LOAD_500PX,
       data: data
     })
   }

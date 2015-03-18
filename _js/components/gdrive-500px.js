@@ -1,8 +1,8 @@
 var React = require("react");
-var GHStore = require("../stores/gdrive-github");
+var PXStore = require("../stores/gdrive-500px");
 
 function getState(key) {
-  var data = GHStore.get(key);
+  var data = PXStore.get(key);
   return {
     feed: data
   };
@@ -13,35 +13,31 @@ module.exports = React.createClass({
     return getState(this.props.source);
   },
   componentDidMount: function() {
-    GHStore.addChangeListener(this._onChange);
+    PXStore.addChangeListener(this._onChange);
   },
   componentWillUnmount: function() {
-    GHStore.removeChangeListener(this._onChange);
+    PXStore.removeChangeListener(this._onChange);
   },
   _onChange: function() {
     this.setState(getState(this.props.source));
   },
   render: function() {
     var feed = "";
-    var seen = {};
 
     if (this.state.feed && this.state.feed.length > 0) {
       feed = (
         <ul>
           {this.state.feed.map(function(row) {
-            if (!seen[row.text]) {
-              seen[row.text] = 1;
-              return (
-                <li key={row.id} className="github__list-item">
-                  <a href="{row.link}">{row.text}</a>
-                </li>
-              );
-            }
+            return (
+              <li key={row.id} className="500px__list-item">
+                <a href="{row.link}">{row.text}</a>
+              </li>
+            );
           })}
         </ul>
       );
     }
 
-    return <section className="github">{feed}</section>;
+    return <section className="500px">{feed}</section>;
   }
 });
