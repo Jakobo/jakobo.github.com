@@ -11,6 +11,7 @@ var source = require("vinyl-source-stream");
 var watch = require("gulp-watch");
 var plumber = require("gulp-plumber");
 var batch = require("gulp-batch");
+var replace = require("gulp-replace");
 
 // Server
 var browserSync = require("browser-sync");
@@ -31,6 +32,7 @@ gulp.task("js", ["cleanJS"], function() {
     .bundle()
     .pipe(plumber())
     .pipe(source("app.js"))
+    // .pipe(replace("\r\n", "\n"))
     .pipe(gulp.dest("./js"))
     .pipe(reload({ stream: true }));
 });
