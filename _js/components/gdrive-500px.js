@@ -1,5 +1,6 @@
 var React = require("react");
 var PXStore = require("../stores/gdrive-500px");
+var tiles = require("../common/tiles");
 
 function getState(key) {
   var data = PXStore.get(key);
@@ -27,8 +28,8 @@ module.exports = React.createClass({
     var row;
 
     if (this.state.feed && this.state.feed.length > 0) {
-      entries = dedupe(this.state.feed, 'text');
-      row = entries[this.props.item] || null;
+      entries = this.state.feed;
+      row = entries[parseInt(this.props.item, 10) - 1] || null;
 
       if (row) {
         tile = (

@@ -59,7 +59,7 @@ module.exports = React.createClass({
 
     if (this.state.feed && this.state.feed.length > 0) {
       entries = dedupe(this.state.feed, 'text');
-      row = entries[this.props.item] || null;
+      row = entries[parseInt(this.props.item, 10) - 1] || null;
 
       if (row) {
         tile = (

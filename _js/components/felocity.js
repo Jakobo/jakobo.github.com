@@ -18,16 +18,17 @@ relationship made sense here.
 var React = require("react");
 var ghc = require("../constants/gdrive-github");
 var Github = require("./gdrive-github");
+var FiveHundredPx = require("./gdrive-500px");
 var Isotope = require("isotope-layout");
 
 module.exports = React.createClass({
   isotope: null,
   componentDidMount: function() {
-    if (!this.isotope) {
-      this.isotope = new Isotope(this.refs.tiles.getDomNode(), {
-       item_selector: ".tile"
-     });
-    }
+    // if (!this.isotope) {
+    //   this.isotope = new Isotope(this.refs.tiles.getDomNode(), {
+    //    item_selector: ".tile"
+    //  });
+    // }
   },
   componentDidUpdate: function() {
     if (!this.isotope) return;
@@ -59,6 +60,8 @@ module.exports = React.createClass({
           item="1" tile-width="1" tile-height="1" />
         <Github source="10AzPn7DVSM-C-dlvffqD6M2_laj0KCullSExDz6ssoo"
           item="2" tile-width="1" tile-height="1" />
+        <FiveHundredPx source="1aETLR_5FGF2yLqxx32Voqz1g5NxA1yMaLiVz98TZyRk"
+          item="1" tile-width="2" tile-height="2" />
         <Github source="10AzPn7DVSM-C-dlvffqD6M2_laj0KCullSExDz6ssoo"
           item="3" tile-width="1" tile-height="1" />
         <Github source="10AzPn7DVSM-C-dlvffqD6M2_laj0KCullSExDz6ssoo"
