@@ -16,10 +16,11 @@ relationship made sense here.
 */
 
 var React = require("react");
-var ghc = require("../constants/gdrive-github");
+var Isotope = require("isotope-layout");
+
 var Github = require("./gdrive-github");
 var FiveHundredPx = require("./gdrive-500px");
-var Isotope = require("isotope-layout");
+var Medium = require("./gdrive-medium");
 
 module.exports = React.createClass({
   isotope: null,
@@ -45,8 +46,6 @@ module.exports = React.createClass({
   /*
   <!--FiveHundredPx source="1aETLR_5FGF2yLqxx32Voqz1g5NxA1yMaLiVz98TZyRk"
     item="1" tile-width="2" tile-height="2" / -->
-  <!--Medium source=""
-    item="1" tile-width="2" tile-height="1" / -->
   <!-- FiveHundredPx source="1aETLR_5FGF2yLqxx32Voqz1g5NxA1yMaLiVz98TZyRk"
     item="2" tile-width="1" tile-height="2" / -->
   <!-- Medium source=""
@@ -62,6 +61,8 @@ module.exports = React.createClass({
           item="2" tile-width="1" tile-height="1" />
         <FiveHundredPx source="1aETLR_5FGF2yLqxx32Voqz1g5NxA1yMaLiVz98TZyRk"
           item="1" tile-width="2" tile-height="2" />
+        <Medium source="1RXKjQ57k07-GEhctT4MHWflxK840ENcsM_MXzuKiKLw"
+          item="1" tile-width="2" tile-height="1" />
         <Github source="10AzPn7DVSM-C-dlvffqD6M2_laj0KCullSExDz6ssoo"
           item="3" tile-width="1" tile-height="1" />
         <Github source="10AzPn7DVSM-C-dlvffqD6M2_laj0KCullSExDz6ssoo"

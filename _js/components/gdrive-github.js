@@ -63,7 +63,7 @@ module.exports = React.createClass({
 
       if (row) {
         tile = (
-          <article key={row.id} className={[
+          <article key={"gdrive-github-" + row.id} className={[
               "tile",
               "github",
               "github--" + getType(row.text),

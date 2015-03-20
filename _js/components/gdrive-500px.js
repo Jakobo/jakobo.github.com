@@ -33,7 +33,7 @@ module.exports = React.createClass({
 
       if (row) {
         tile = (
-          <article key={row.id} className={[
+          <article key={"gdrive-500px-" + row.id} className={[
               "tile",
               "n500px",
               tiles.getTileClasses(this.props["tile-width"], this.props["tile-height"])
