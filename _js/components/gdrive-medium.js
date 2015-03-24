@@ -1,6 +1,5 @@
 var React = require("react");
 var MedStore = require("../stores/gdrive-medium");
-var tiles = require("../common/tiles");
 var $ = require("jquery");
 
 function getState(key) {
@@ -66,11 +65,7 @@ module.exports = React.createClass({
       meta = parseSnippet(row.snippet);
 
       tile = (
-        <article key={"gdrive-medium-" + row.id} className={[
-            "tile",
-            "medium",
-            tiles.getTileClasses(this.props["tile-width"], this.props["tile-height"])
-          ].join(" ")}>
+        <article key={"gdrive-medium-" + row.id}>
           <a href={row.link} className="medium__link"><img src={meta.flexImage.replace("__WIDTH__", "500").replace("__HEIGHT__", "500")} className="medium__image" /></a>
           <aside className="medium__about">
             <a href={row.link}>{row.title}</a>

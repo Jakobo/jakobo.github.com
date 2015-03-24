@@ -1,8 +1,6 @@
 var React = require("react");
 var GHStore = require("../stores/gdrive-github");
 var ghc = require("../constants/gdrive-github");
-var tiles = require("../common/tiles");
-
 
 function getState(key) {
   var data = GHStore.get(key);
@@ -63,12 +61,7 @@ module.exports = React.createClass({
 
       if (row) {
         tile = (
-          <article key={"gdrive-github-" + row.id} className={[
-              "tile",
-              "github",
-              "github--" + getType(row.text),
-              tiles.getTileClasses(this.props["tile-width"], this.props["tile-height"])
-            ].join(" ")}>
+          <article key={"gdrive-github-" + row.id}>
             <p className="github__text">
               <a className="github__link" href={row.link}>{row.text}</a>
             </p>

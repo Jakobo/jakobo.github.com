@@ -6,6 +6,10 @@ var rimraf = require("rimraf");
 var browserify = require("browserify");
 var babelify = require("babelify");
 
+// CSS
+var sass = require("gulp-sass");
+var minifyCSS = require('gulp-minify-css')
+
 // Source Streams, File Transforms, etc
 var source = require("vinyl-source-stream");
 var watch = require("gulp-watch");
@@ -22,8 +26,12 @@ gulp.task("cleanJS", function(cb){
   rimraf("./js", cb);
 });
 
+gulp.task("cleanCSS", function(cb) {
+  rimraf("./css", cb);
+});
+
 // the meta-build task
-gulp.task("build-all", ["js"]);
+gulp.task("build-all", ["js", "css"]);
 
 // js from a single entry point using browserify
 gulp.task("js", ["cleanJS"], function() {
@@ -37,6 +45,13 @@ gulp.task("js", ["cleanJS"], function() {
     .pipe(reload({ stream: true }));
 });
 
+gulp.task("css", ["cleanCSS"], function() {
+  return gulp.src("./_sass/app.scss")
+    .pipe(sass())
+    .pipe(minifyCSS())
+    .pipe(gulp.dest("./css"))
+});
+
 // build will exit on complete
 gulp.task("build", ["build-all"], function() {
   process.exit(0);
@@ -46,6 +61,10 @@ gulp.task("build", ["build-all"], function() {
 gulp.task("watch", ["build-all"], function() {
   watch("_js/**/*", function() {
     gulp.start("js");
+  });
+
+  watch("_scss/**/*", function() {
+    gulp.start("css");
   });
 
   browserSync({

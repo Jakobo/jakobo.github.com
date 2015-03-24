@@ -1,6 +1,5 @@
 var React = require("react");
 var PXStore = require("../stores/gdrive-500px");
-var tiles = require("../common/tiles");
 
 function getState(key) {
   var data = PXStore.get(key);
@@ -33,11 +32,7 @@ module.exports = React.createClass({
 
       if (row) {
         tile = (
-          <article key={"gdrive-500px-" + row.id} className={[
-              "tile",
-              "n500px",
-              tiles.getTileClasses(this.props["tile-width"], this.props["tile-height"])
-            ].join(" ")}>
+          <article key={"gdrive-500px-" + row.id}>
             <a href={row.link} className="n500px__link"><img src={row.image} className="n500px__image" /></a>
             <aside className="n500px__about">
               <a href={row.link}>{row.title}</a>
