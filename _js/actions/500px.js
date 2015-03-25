@@ -3,7 +3,7 @@ var PXConstants = require('../constants/gdrive-500px');
 
 var Actions = {
   load: function(data) {
-    AppDispatcher.handleAction({
+    Browser.handleAction({
       actionType: PXConstants.LOAD_500PX,
       data: data
     })

@@ -1,11 +1,20 @@
 var React = require("react");
-var GHStore = require("../stores/gdrive-github");
+var m = require("merge");
+
 var ghc = require("../constants/gdrive-github");
+
+var GHStore = require("../stores/gdrive-github");
+var tileStore = require("../stores/tile-layout");
+
+var IsotopeActions = require("../actions/isotope");
+var tileStyles = require("../styles/tiles");
 
 function getState(key) {
   var data = GHStore.get(key);
+  var layout = tileStore.get();
   return {
-    feed: data
+    feed: data,
+    layout: layout
   };
 }
 
@@ -43,32 +52,43 @@ module.exports = React.createClass({
   },
   componentDidMount: function() {
     GHStore.addChangeListener(this._onChange);
+    tileStore.addChangeListener(this._onChange);
   },
   componentWillUnmount: function() {
     GHStore.removeChangeListener(this._onChange);
+    tileStore.removeChangeListener(this._onChange);
+  },
+  componentDidUpdate: function() {
+    IsotopeActions.rearrange();
   },
   _onChange: function() {
     this.setState(getState(this.props.source));
   },
   render: function() {
-    var tile = null;
-    var entries;
-    var row;
-
-    if (this.state.feed && this.state.feed.length > 0) {
-      entries = dedupe(this.state.feed, 'text');
-      row = entries[parseInt(this.props.item, 10) - 1] || null;
-
-      if (row) {
-        tile = (
-          <article key={"gdrive-github-" + row.id}>
-            <p className="github__text">
-              <a className="github__link" href={row.link}>{row.text}</a>
-            </p>
-          </article>
-        );
-      }
+    if (!this.state.feed || this.state.feed.length === 0) {
+      return null;
     }
+
+    var tile = null;
+    var entries = dedupe(this.state.feed, 'text');
+    var row = entries[parseInt(this.props.item, 10) - 1] || null;
+
+    if (!row) {
+      return null;
+    }
+
+    var tileCSS = m(tileStyles, {
+      width: this.state.layout.px + "px",
+      height: this.state.layout.px + "px"
+    });
+
+    tile = (
+      <article key={"gdrive-github-" + row.id} style={tileCSS} className={this.props.className}>
+        <p className="github__text">
+          <a className="github__link" href={row.link}>{row.text}</a>
+        </p>
+      </article>
+    );
 
     return tile;
   }

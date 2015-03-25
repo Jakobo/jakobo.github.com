@@ -22,25 +22,39 @@ var Github = require("./gdrive-github");
 var FiveHundredPx = require("./gdrive-500px");
 var Medium = require("./gdrive-medium");
 
+var tileStore = require("../stores/tile-layout");
+var TileActions = require("../actions/tile");
+
+var isotopeStore = require("../stores/isotope");
+
 module.exports = React.createClass({
   isotope: null,
   componentDidMount: function() {
-    // if (!this.isotope) {
-    //   this.isotope = new Isotope(this.refs.tiles.getDomNode(), {
-    //    item_selector: ".tile"
-    //  });
-    // }
-  },
-  componentDidUpdate: function() {
-    if (!this.isotope) return;
-    this.isotope.reloadItems();
-    this.isotope.layout();
-    this.isotope.arrange();
+    if (!this.isotope) {
+      this.isotope = new Isotope(this.refs.tiles.getDOMNode(), {
+       item_selector: ".tile",
+       layoutMode: "masonry"
+     });
+    }
+
+    // if the tiles change (or a new tile appears, redo)
+    tileStore.addChangeListener(this._isotopeRedraw);
+    isotopeStore.addChangeListener(this._isotopeRedraw);
   },
   componentWillUnmount: function() {
-    if (!this.isotope) return;
-    this.isotope.destroy();
-    this.isotope = null;
+    tileStore.removeChangeListener(this._isotopeRedraw);
+    isotopeStore.removeChangeListener(this._isotopeRedraw);
+    if (this.isotope) {
+      this.isotope.destroy();
+      this.isotope = null;
+    }
+  },
+  _isotopeRedraw: function() {
+    if (this.isotope) {
+      this.isotope.reloadItems();
+      this.isotope.layout();
+      this.isotope.arrange();
+    }
   },
 
   /*
@@ -56,19 +70,19 @@ module.exports = React.createClass({
     return (
       <section ref="tiles">
         <Github source="10AzPn7DVSM-C-dlvffqD6M2_laj0KCullSExDz6ssoo"
-          item="1" tile-width="1" tile-height="1" />
+          item="1" tile-width="1" tile-height="1" className="tile" />
         <Github source="10AzPn7DVSM-C-dlvffqD6M2_laj0KCullSExDz6ssoo"
-          item="2" tile-width="1" tile-height="1" />
+          item="2" tile-width="1" tile-height="1" className="tile" />
         <FiveHundredPx source="1aETLR_5FGF2yLqxx32Voqz1g5NxA1yMaLiVz98TZyRk"
-          item="1" tile-width="2" tile-height="2" />
+          item="1" tile-width="2" tile-height="2" className="tile" />
         <Medium source="1RXKjQ57k07-GEhctT4MHWflxK840ENcsM_MXzuKiKLw"
-          item="1" tile-width="2" tile-height="1" />
+          item="1" tile-width="2" tile-height="1" className="tile" />
         <Github source="10AzPn7DVSM-C-dlvffqD6M2_laj0KCullSExDz6ssoo"
-          item="3" tile-width="1" tile-height="1" />
+          item="3" tile-width="1" tile-height="1" className="tile" />
         <Github source="10AzPn7DVSM-C-dlvffqD6M2_laj0KCullSExDz6ssoo"
-          item="4" tile-width="1" tile-height="1" />
+          item="4" tile-width="1" tile-height="1" className="tile" />
         <Github source="10AzPn7DVSM-C-dlvffqD6M2_laj0KCullSExDz6ssoo"
-          item="5" tile-width="1" tile-height="1" />
+          item="5" tile-width="1" tile-height="1" className="tile" />
       </section>
     );
   }

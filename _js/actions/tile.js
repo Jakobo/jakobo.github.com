@@ -1,12 +1,12 @@
 var Browser = require('../dispatchers/browser');
-var GithubConstants = require('../constants/gdrive-github');
+var TileConstants = require('../constants/tiles');
 
 var Actions = {
-  load: function(data) {
+  recalculate: function(data) {
     Browser.handleAction({
-      actionType: GithubConstants.LOAD_GITHUB,
+      actionType: TileConstants.RECALCULATE_TILES,
       data: data
-    })
+    });
   }
 };
 

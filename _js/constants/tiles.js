@@ -1,8 +1,8 @@
 var keyMirror = require("react/lib/keyMirror");
 
-module.exports = Object.assign({},
+module.exports = Object.assign({}, {
   // when the number of tiles change based on width
-  maxTileWidth: 200
+  maxTileWidth: 300 // we don't have image support larger 3x this
 },
 keyMirror({
   // modes

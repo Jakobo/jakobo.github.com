@@ -3,7 +3,7 @@ var MedConstants = require('../constants/gdrive-medium');
 
 var Actions = {
   load: function(data) {
-    AppDispatcher.handleAction({
+    Browser.handleAction({
       actionType: MedConstants.LOAD_MEDIUM,
       data: data
     })
