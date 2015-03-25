@@ -8,7 +8,7 @@ var tileStore = require("../stores/tile-layout");
 
 var IsotopeActions = require("../actions/isotope");
 
-var backgroundColors = require("../styles/colors/background");
+var backgroundColors = require("../styles/colors/background-light");
 var tileStyles = require("../styles/tiles");
 
 function getState(key) {

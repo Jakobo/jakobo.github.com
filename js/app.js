@@ -298,7 +298,7 @@ var tileStore = require("../stores/tile-layout");
 
 var IsotopeActions = require("../actions/isotope");
 
-var backgroundColors = require("../styles/colors/background");
+var backgroundColors = require("../styles/colors/background-light");
 var tileStyles = require("../styles/tiles");
 
 function getState(key) {
@@ -394,7 +394,7 @@ module.exports = React.createClass({
   }
 });
 
-},{"../actions/isotope":2,"../constants/gdrive-github":10,"../stores/gdrive-github":16,"../stores/tile-layout":19,"../styles/colors/background":20,"../styles/tiles":22,"merge":63,"react":209}],8:[function(require,module,exports){
+},{"../actions/isotope":2,"../constants/gdrive-github":10,"../stores/gdrive-github":16,"../stores/tile-layout":19,"../styles/colors/background-light":20,"../styles/tiles":22,"merge":63,"react":209}],8:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -1004,7 +1004,7 @@ var rgb = require("./now").rgb;
 var chromath = require("chromath");
 
 module.exports = {
-  backgroundColor: chromath.darken(rgb, 0.7).toRGBString()
+  backgroundColor: chromath.lighten(rgb, 0.8).toRGBString()
 };
 
 },{"./now":21,"chromath":30}],21:[function(require,module,exports){

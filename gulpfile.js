@@ -1,7 +1,8 @@
+var IS_PRODUCTION = true;
+
 var gulp = require("gulp");
 var fs = require("fs");
 var rimraf = require("rimraf");
-
 
 // JS
 var browserify = require("browserify");
@@ -17,6 +18,7 @@ var source = require("vinyl-source-stream");
 var watch = require("gulp-watch");
 var plumber = require("gulp-plumber");
 var streamProxy = require("gulp-streamify");
+var iff = require("gulp-if");
 
 // Server
 var browserSync = require("browser-sync");
@@ -41,7 +43,7 @@ gulp.task("js", ["cleanJS"], function() {
     .bundle()
     .pipe(plumber())
     .pipe(source("app.js"))
-    // .pipe(streamProxy(uglify()))
+    .pipe(iff(IS_PRODUCTION, streamProxy(uglify())))
     .pipe(gulp.dest("./js"))
     .pipe(reload({ stream: true }));
 });
@@ -59,7 +61,7 @@ gulp.task("build", ["build-all"], function() {
 });
 
 // watch starts a browser sync and retriggers builds
-gulp.task("watch", ["build-all"], function() {
+gulp.task("watch", function() {
   watch("_js/**/*", function() {
     gulp.start("js");
   });
@@ -67,6 +69,10 @@ gulp.task("watch", ["build-all"], function() {
   watch("_scss/**/*", function() {
     gulp.start("css");
   });
+
+  // TODO: this goes away once gulp4 is out and will require a rethink
+  IS_PRODUCTION = false;
+  gulp.start("build-all");
 
   browserSync({
     server: {
