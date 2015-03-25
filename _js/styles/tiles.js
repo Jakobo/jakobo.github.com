@@ -4,5 +4,5 @@ module.exports = {
   display: "block",
   position: "relative",
   overflow: "hidden",
-  backgroundColor: "#fcc"
+  backgroundColor: "#fff"
 };

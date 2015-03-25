@@ -7,6 +7,8 @@ var GHStore = require("../stores/gdrive-github");
 var tileStore = require("../stores/tile-layout");
 
 var IsotopeActions = require("../actions/isotope");
+
+var backgroundColors = require("../styles/colors/background");
 var tileStyles = require("../styles/tiles");
 
 function getState(key) {
@@ -80,7 +82,7 @@ module.exports = React.createClass({
     var tileCSS = m(tileStyles, {
       width: this.state.layout.px + "px",
       height: this.state.layout.px + "px"
-    });
+    }, backgroundColors);
 
     tile = (
       <article key={"gdrive-github-" + row.id} style={tileCSS} className={this.props.className}>

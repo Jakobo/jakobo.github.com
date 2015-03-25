@@ -2,9 +2,11 @@ var gulp = require("gulp");
 var fs = require("fs");
 var rimraf = require("rimraf");
 
+
 // JS
 var browserify = require("browserify");
 var babelify = require("babelify");
+var uglify = require("gulp-uglify");
 
 // CSS
 var sass = require("gulp-sass");
@@ -14,8 +16,7 @@ var minifyCSS = require('gulp-minify-css')
 var source = require("vinyl-source-stream");
 var watch = require("gulp-watch");
 var plumber = require("gulp-plumber");
-var batch = require("gulp-batch");
-var replace = require("gulp-replace");
+var streamProxy = require("gulp-streamify");
 
 // Server
 var browserSync = require("browser-sync");
@@ -40,7 +41,7 @@ gulp.task("js", ["cleanJS"], function() {
     .bundle()
     .pipe(plumber())
     .pipe(source("app.js"))
-    // .pipe(replace("\r\n", "\n"))
+    .pipe(streamProxy(uglify()))
     .pipe(gulp.dest("./js"))
     .pipe(reload({ stream: true }));
 });
