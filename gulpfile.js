@@ -41,7 +41,7 @@ gulp.task("js", ["cleanJS"], function() {
     .bundle()
     .pipe(plumber())
     .pipe(source("app.js"))
-    .pipe(streamProxy(uglify()))
+    // .pipe(streamProxy(uglify()))
     .pipe(gulp.dest("./js"))
     .pipe(reload({ stream: true }));
 });
