@@ -50,6 +50,7 @@ gulp.task("js", ["cleanJS"], function() {
 
 gulp.task("css", ["cleanCSS"], function() {
   return gulp.src("./_sass/app.scss")
+    .pipe(plumber())
     .pipe(sass())
     .pipe(minifyCSS())
     .pipe(gulp.dest("./css"))
