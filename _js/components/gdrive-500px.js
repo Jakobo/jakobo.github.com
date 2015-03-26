@@ -3,11 +3,8 @@ var m = require("merge");
 
 var PXStore = require("../stores/gdrive-500px");
 var tileStore = require("../stores/tile-layout");
-
 var IsotopeActions = require("../actions/isotope");
-var tileStyles = require("../styles/tiles/outer");
-var containerStyles = require("../styles/tiles/inner");
-var tileEdge = require("../styles/tiles/widths").border;
+var tileCSS = require("../common/tiles");
 
 function getState(key) {
   var data = PXStore.get(key);
@@ -49,22 +46,11 @@ module.exports = React.createClass({
       return null;
     }
 
-    var width = (this.state.layout.px * this.props["tile-width"]);
-    var height = (this.state.layout.px * this.props["tile-height"]);
-
-    var tileCSS = m(tileStyles, {
-      width: width + "px",
-      height: height + "px"
-    });
-
-    var containerCSS = m(containerStyles, {
-      width: (width - tileEdge) + "px",
-      height: (height - tileEdge) + "px"
-    });
+    var styles = tileCSS.css(this.state.layout.px, this.props["tile-width"], this.props["tile-height"]);
 
     tile = (
-      <article key={"gdrive-500px-" + row.id} style={tileCSS} className={this.props.className}>
-        <div style={containerCSS}>
+      <article key={"gdrive-500px-" + row.id} style={styles.tile} className={this.props.className}>
+        <div style={styles.inner}>
           <a href={row.link} className="n500px__link"><img src={row.image} className="n500px__image" /></a>
           <aside className="n500px__about">
             <a href={row.link}>{row.title}</a>

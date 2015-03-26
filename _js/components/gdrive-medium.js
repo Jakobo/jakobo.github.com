@@ -6,7 +6,8 @@ var MedStore = require("../stores/gdrive-medium");
 var tileStore = require("../stores/tile-layout");
 
 var IsotopeActions = require("../actions/isotope");
-var tileStyles = require("../styles/tiles");
+
+var tileCSS = require("../common/tiles");
 
 function getState(key) {
   var data = MedStore.get(key);
@@ -75,18 +76,18 @@ module.exports = React.createClass({
     }
 
     var meta = parseSnippet(row.snippet);
-    var tileCSS = m(tileStyles, {
-      width: (this.state.layout.px * this.props["tile-width"]) + "px",
-      height: (this.state.layout.px * this.props["tile-height"]) + "px"
-    });
+
+    var styles = tileCSS.css(this.state.layout.px, this.props["tile-width"], this.props["tile-height"]);
 
     tile = (
-      <article key={"gdrive-medium-" + row.id} style={tileCSS} className={this.props.className}>
-        <a href={row.link} className="medium__link"><img src={meta.flexImage.replace("__WIDTH__", "500").replace("__HEIGHT__", "500")} className="medium__image" /></a>
-        <aside className="medium__about">
-          <a href={row.link}>{row.title}</a>
-          <p>{meta.snip}</p>
-        </aside>
+      <article key={"gdrive-medium-" + row.id} style={styles.tile} className={this.props.className}>
+        <div style={styles.inner}>
+          <a href={row.link} className="medium__link"><img src={meta.flexImage.replace("__WIDTH__", "500").replace("__HEIGHT__", "500")} className="medium__image" /></a>
+          <aside className="medium__about">
+            <a href={row.link}>{row.title}</a>
+            <p>{meta.snip}</p>
+          </aside>
+        </div>
       </article>
     );
 

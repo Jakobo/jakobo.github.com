@@ -5,11 +5,9 @@ var ghc = require("../constants/gdrive-github");
 
 var GHStore = require("../stores/gdrive-github");
 var tileStore = require("../stores/tile-layout");
-
 var IsotopeActions = require("../actions/isotope");
 
-var backgroundColors = require("../styles/colors/background-light");
-var tileStyles = require("../styles/tiles");
+var tileCSS = require("../common/tiles");
 
 function getState(key) {
   var data = GHStore.get(key);
@@ -79,16 +77,15 @@ module.exports = React.createClass({
       return null;
     }
 
-    var tileCSS = m(tileStyles, {
-      width: this.state.layout.px + "px",
-      height: this.state.layout.px + "px"
-    }, backgroundColors);
+    var styles = tileCSS.css(this.state.layout.px, this.props["tile-width"], this.props["tile-height"]);
 
     tile = (
-      <article key={"gdrive-github-" + row.id} style={tileCSS} className={this.props.className}>
-        <p className="github__text">
-          <a className="github__link" href={row.link}>{row.text}</a>
-        </p>
+      <article key={"gdrive-github-" + row.id} style={styles.tile} className={this.props.className}>
+        <div style={styles.inner}>
+          <p className="github__text">
+            <a className="github__link" href={row.link}>{row.text}</a>
+          </p>
+        </div>
       </article>
     );
 

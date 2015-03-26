@@ -1,32 +1,32 @@
 // determines a "now" color based on moving through the year
-
+var constants = require("../../constants/colors");
 var now = new Date();
 
 // easy to read points for the seasons
 var points = {
   lastWinter: {
     at: new Date(now.getFullYear() - 1, 11, 1),
-    is: [77, 0, 171]
+    is: constants.WINTER
   },
   spring: {
     at: new Date(now.getFullYear(), 2, 1),
-    is: [153, 204, 0]
+    is: constants.SPRING
   },
   summer: {
     at: new Date(now.getFullYear(), 6, 1),
-    is: [104, 184, 217]
+    is: constants.SUMMER
   },
   fall: {
     at: new Date(now.getFullYear(), 9, 1),
-    is: [222, 163, 0]
+    is: constants.FALL
   },
   winter: {
     at: new Date(now.getFullYear(), 11, 1),
-    is: [77, 0, 171]
+    is: constants.WINTER
   },
   nextSpring: {
     at: new Date(now.getFullYear() + 1, 2, 1),
-    is: [153, 204, 0]
+    is: constants.SPRING
   }
 };
 

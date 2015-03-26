@@ -1,4 +1,4 @@
-var rgb = require("./now").rgb;
+var rgb = require("../util/now").rgb;
 var chromath = require("chromath");
 
 module.exports = {

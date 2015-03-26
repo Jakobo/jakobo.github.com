@@ -13,7 +13,7 @@ var React = require("react");
 var Felocity = require("./components/felocity");
 React.render(React.createElement(Felocity, null), document.getElementById("app"));
 
-},{"../_vendor/google/analytics":27,"./components/felocity":5,"babel/polyfill":31,"react":213}],2:[function(require,module,exports){
+},{"../_vendor/google/analytics":27,"./components/felocity":6,"babel/polyfill":31,"react":213}],2:[function(require,module,exports){
 "use strict";
 
 var Browser = require("../dispatchers/browser");
@@ -30,7 +30,7 @@ var Actions = {
 
 module.exports = Actions;
 
-},{"../constants/isotope":12,"../dispatchers/browser":14}],3:[function(require,module,exports){
+},{"../constants/isotope":14,"../dispatchers/browser":16}],3:[function(require,module,exports){
 "use strict";
 
 var Browser = require("../dispatchers/browser");
@@ -47,7 +47,7 @@ var Actions = {
 
 module.exports = Actions;
 
-},{"../constants/tiles":13,"../dispatchers/browser":14}],4:[function(require,module,exports){
+},{"../constants/tiles":15,"../dispatchers/browser":16}],4:[function(require,module,exports){
 "use strict";
 
 // https://spreadsheets.google.com/feeds/list/{KEY}/1/public/values?alt=json-in-script&callback=XNXX
@@ -104,6 +104,37 @@ module.exports = function (key, cb) {
 };
 
 },{"jsonp":61}],5:[function(require,module,exports){
+"use strict";
+
+var outerStyles = require("../styles/tiles/outer");
+var innerStyles = require("../styles/tiles/inner");
+var border = require("../constants/tiles").tileBorder;
+
+function trbl(w, unit) {
+  return [Math.floor(w / 2), 0, 0, Math.floor(w / 2)].join(unit + " ") + unit;
+}
+
+function css(size, width, height) {
+  var actualWidth = width * size;
+  var actualHeight = height * size;
+
+  var styles = {
+    tile: Object.assign({}, outerStyles, {
+      width: actualWidth + "px",
+      height: actualHeight + "px"
+    }),
+    inner: Object.assign({}, innerStyles, {
+      width: actualWidth - border + "px",
+      height: actualHeight - border + "px",
+      margin: trbl(border, "px")
+    })
+  };
+  return styles;
+}
+
+module.exports.css = css;
+
+},{"../constants/tiles":15,"../styles/tiles/inner":24,"../styles/tiles/outer":25}],6:[function(require,module,exports){
 "use strict";
 
 /*
@@ -198,7 +229,7 @@ module.exports = React.createClass({
   }
 });
 
-},{"../actions/tile":3,"../stores/isotope":18,"../stores/tile-layout":19,"./gdrive-500px":6,"./gdrive-github":7,"./gdrive-medium":8,"isotope-layout":44,"react":213}],6:[function(require,module,exports){
+},{"../actions/tile":3,"../stores/isotope":20,"../stores/tile-layout":21,"./gdrive-500px":7,"./gdrive-github":8,"./gdrive-medium":9,"isotope-layout":44,"react":213}],7:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -206,11 +237,8 @@ var m = require("merge");
 
 var PXStore = require("../stores/gdrive-500px");
 var tileStore = require("../stores/tile-layout");
-
 var IsotopeActions = require("../actions/isotope");
-var tileStyles = require("../styles/tiles/outer");
-var containerStyles = require("../styles/tiles/inner");
-var tileEdge = require("../styles/tiles/widths").border;
+var tileCSS = require("../common/tiles");
 
 function getState(key) {
   var data = PXStore.get(key);
@@ -254,25 +282,14 @@ module.exports = React.createClass({
       return null;
     }
 
-    var width = this.state.layout.px * this.props["tile-width"];
-    var height = this.state.layout.px * this.props["tile-height"];
-
-    var tileCSS = m(tileStyles, {
-      width: width + "px",
-      height: height + "px"
-    });
-
-    var containerCSS = m(containerStyles, {
-      width: width - tileEdge + "px",
-      height: height - tileEdge + "px"
-    });
+    var styles = tileCSS.css(this.state.layout.px, this.props["tile-width"], this.props["tile-height"]);
 
     tile = React.createElement(
       "article",
-      { key: "gdrive-500px-" + row.id, style: tileCSS, className: this.props.className },
+      { key: "gdrive-500px-" + row.id, style: styles.tile, className: this.props.className },
       React.createElement(
         "div",
-        { style: containerCSS },
+        { style: styles.inner },
         React.createElement(
           "a",
           { href: row.link, className: "n500px__link" },
@@ -299,7 +316,7 @@ module.exports = React.createClass({
   }
 });
 
-},{"../actions/isotope":2,"../stores/gdrive-500px":15,"../stores/tile-layout":19,"../styles/tiles/inner":24,"../styles/tiles/outer":25,"../styles/tiles/widths":26,"merge":67,"react":213}],7:[function(require,module,exports){
+},{"../actions/isotope":2,"../common/tiles":5,"../stores/gdrive-500px":17,"../stores/tile-layout":21,"merge":67,"react":213}],8:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -309,11 +326,9 @@ var ghc = require("../constants/gdrive-github");
 
 var GHStore = require("../stores/gdrive-github");
 var tileStore = require("../stores/tile-layout");
-
 var IsotopeActions = require("../actions/isotope");
 
-var backgroundColors = require("../styles/colors/background-light");
-var tileStyles = require("../styles/tiles");
+var tileCSS = require("../common/tiles");
 
 function getState(key) {
   var data = GHStore.get(key);
@@ -385,21 +400,22 @@ module.exports = React.createClass({
       return null;
     }
 
-    var tileCSS = m(tileStyles, {
-      width: this.state.layout.px + "px",
-      height: this.state.layout.px + "px"
-    }, backgroundColors);
+    var styles = tileCSS.css(this.state.layout.px, this.props["tile-width"], this.props["tile-height"]);
 
     tile = React.createElement(
       "article",
-      { key: "gdrive-github-" + row.id, style: tileCSS, className: this.props.className },
+      { key: "gdrive-github-" + row.id, style: styles.tile, className: this.props.className },
       React.createElement(
-        "p",
-        { className: "github__text" },
+        "div",
+        { style: styles.inner },
         React.createElement(
-          "a",
-          { className: "github__link", href: row.link },
-          row.text
+          "p",
+          { className: "github__text" },
+          React.createElement(
+            "a",
+            { className: "github__link", href: row.link },
+            row.text
+          )
         )
       )
     );
@@ -408,7 +424,7 @@ module.exports = React.createClass({
   }
 });
 
-},{"../actions/isotope":2,"../constants/gdrive-github":10,"../stores/gdrive-github":16,"../stores/tile-layout":19,"../styles/colors/background-light":21,"../styles/tiles":23,"merge":67,"react":213}],8:[function(require,module,exports){
+},{"../actions/isotope":2,"../common/tiles":5,"../constants/gdrive-github":12,"../stores/gdrive-github":18,"../stores/tile-layout":21,"merge":67,"react":213}],9:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -419,7 +435,8 @@ var MedStore = require("../stores/gdrive-medium");
 var tileStore = require("../stores/tile-layout");
 
 var IsotopeActions = require("../actions/isotope");
-var tileStyles = require("../styles/tiles");
+
+var tileCSS = require("../common/tiles");
 
 function getState(key) {
   var data = MedStore.get(key);
@@ -490,31 +507,33 @@ module.exports = React.createClass({
     }
 
     var meta = parseSnippet(row.snippet);
-    var tileCSS = m(tileStyles, {
-      width: this.state.layout.px * this.props["tile-width"] + "px",
-      height: this.state.layout.px * this.props["tile-height"] + "px"
-    });
+
+    var styles = tileCSS.css(this.state.layout.px, this.props["tile-width"], this.props["tile-height"]);
 
     tile = React.createElement(
       "article",
-      { key: "gdrive-medium-" + row.id, style: tileCSS, className: this.props.className },
+      { key: "gdrive-medium-" + row.id, style: styles.tile, className: this.props.className },
       React.createElement(
-        "a",
-        { href: row.link, className: "medium__link" },
-        React.createElement("img", { src: meta.flexImage.replace("__WIDTH__", "500").replace("__HEIGHT__", "500"), className: "medium__image" })
-      ),
-      React.createElement(
-        "aside",
-        { className: "medium__about" },
+        "div",
+        { style: styles.inner },
         React.createElement(
           "a",
-          { href: row.link },
-          row.title
+          { href: row.link, className: "medium__link" },
+          React.createElement("img", { src: meta.flexImage.replace("__WIDTH__", "500").replace("__HEIGHT__", "500"), className: "medium__image" })
         ),
         React.createElement(
-          "p",
-          null,
-          meta.snip
+          "aside",
+          { className: "medium__about" },
+          React.createElement(
+            "a",
+            { href: row.link },
+            row.title
+          ),
+          React.createElement(
+            "p",
+            null,
+            meta.snip
+          )
         )
       )
     );
@@ -523,7 +542,17 @@ module.exports = React.createClass({
   }
 });
 
-},{"../actions/isotope":2,"../stores/gdrive-medium":17,"../stores/tile-layout":19,"../styles/tiles":23,"jquery":60,"merge":67,"react":213}],9:[function(require,module,exports){
+},{"../actions/isotope":2,"../common/tiles":5,"../stores/gdrive-medium":19,"../stores/tile-layout":21,"jquery":60,"merge":67,"react":213}],10:[function(require,module,exports){
+"use strict";
+
+module.exports = {
+  SPRING: [153, 204, 0],
+  SUMMER: [104, 184, 217],
+  FALL: [222, 163, 0],
+  WINTER: [77, 0, 171]
+};
+
+},{}],11:[function(require,module,exports){
 "use strict";
 
 var keyMirror = require("react/lib/keyMirror");
@@ -533,7 +562,7 @@ module.exports = Object.assign({}, keyMirror({
   CHANGE_500PX: null
 }));
 
-},{"react/lib/keyMirror":199}],10:[function(require,module,exports){
+},{"react/lib/keyMirror":199}],12:[function(require,module,exports){
 "use strict";
 
 var keyMirror = require("react/lib/keyMirror");
@@ -552,7 +581,7 @@ module.exports = Object.assign({}, {
   CHANGE_GITHUB: null
 }));
 
-},{"react/lib/keyMirror":199}],11:[function(require,module,exports){
+},{"react/lib/keyMirror":199}],13:[function(require,module,exports){
 "use strict";
 
 var keyMirror = require("react/lib/keyMirror");
@@ -562,7 +591,7 @@ module.exports = Object.assign({}, keyMirror({
   CHANGE_MEDIUM: null
 }));
 
-},{"react/lib/keyMirror":199}],12:[function(require,module,exports){
+},{"react/lib/keyMirror":199}],14:[function(require,module,exports){
 "use strict";
 
 var keyMirror = require("react/lib/keyMirror");
@@ -572,14 +601,14 @@ module.exports = Object.assign(keyMirror({
   ISOTOPE_REDRAW: null
 }));
 
-},{"react/lib/keyMirror":199}],13:[function(require,module,exports){
+},{"react/lib/keyMirror":199}],15:[function(require,module,exports){
 "use strict";
 
 var keyMirror = require("react/lib/keyMirror");
 
 module.exports = Object.assign({}, {
-  // when the number of tiles change based on width
-  maxTileWidth: 300 // we don't have image support larger 3x this
+  maxTileWidth: 300, // we don't have image support larger 3x this
+  tileBorder: 5
 }, keyMirror({
   // modes
   TILE_PORTRAIT: null,
@@ -590,7 +619,7 @@ module.exports = Object.assign({}, {
   RECALCULATE_TILES: null
 }));
 
-},{"react/lib/keyMirror":199}],14:[function(require,module,exports){
+},{"react/lib/keyMirror":199}],16:[function(require,module,exports){
 "use strict";
 
 var Dispatcher = require("flux").Dispatcher;
@@ -605,7 +634,7 @@ BrowserDispatcher.handleAction = function (action) {
 
 module.exports = BrowserDispatcher;
 
-},{"flux":41}],15:[function(require,module,exports){
+},{"flux":41}],17:[function(require,module,exports){
 "use strict";
 
 /*
@@ -697,7 +726,7 @@ var x500pxStore = Object.assign({}, EventEmitter.prototype, {
 
 module.exports = x500pxStore;
 
-},{"../common/gdrive":4,"../constants/gdrive-500px":9,"../dispatchers/browser":14,"events":32}],16:[function(require,module,exports){
+},{"../common/gdrive":4,"../constants/gdrive-500px":11,"../dispatchers/browser":16,"events":32}],18:[function(require,module,exports){
 "use strict";
 
 /*
@@ -789,7 +818,7 @@ var GitHubStore = Object.assign({}, EventEmitter.prototype, {
 
 module.exports = GitHubStore;
 
-},{"../common/gdrive":4,"../constants/gdrive-github":10,"../dispatchers/browser":14,"events":32}],17:[function(require,module,exports){
+},{"../common/gdrive":4,"../constants/gdrive-github":12,"../dispatchers/browser":16,"events":32}],19:[function(require,module,exports){
 "use strict";
 
 /*
@@ -880,7 +909,7 @@ var MedStore = Object.assign({}, EventEmitter.prototype, {
 
 module.exports = MedStore;
 
-},{"../common/gdrive":4,"../constants/gdrive-medium":11,"../dispatchers/browser":14,"events":32}],18:[function(require,module,exports){
+},{"../common/gdrive":4,"../constants/gdrive-medium":13,"../dispatchers/browser":16,"events":32}],20:[function(require,module,exports){
 "use strict";
 
 // Isotope Store is a pass-through store with no data
@@ -917,7 +946,7 @@ var IsotopeStore = Object.assign({}, EventEmitter.prototype, {
 
 module.exports = IsotopeStore;
 
-},{"../constants/isotope":12,"../dispatchers/browser":14,"events":32}],19:[function(require,module,exports){
+},{"../constants/isotope":14,"../dispatchers/browser":16,"events":32}],21:[function(require,module,exports){
 "use strict";
 
 var EventEmitter = require("events").EventEmitter;
@@ -1011,58 +1040,83 @@ $(window).on("orientationchange", debouncedRecalculate);
 
 module.exports = tileLayoutStore;
 
-},{"../constants/tiles":13,"../dispatchers/browser":14,"events":32,"jquery":60,"lodash.debounce":65}],20:[function(require,module,exports){
+},{"../constants/tiles":15,"../dispatchers/browser":16,"events":32,"jquery":60,"lodash.debounce":65}],22:[function(require,module,exports){
 "use strict";
 
-var rgb = require("./now").rgb;
+var rgb = require("../util/now").rgb;
 var chromath = require("chromath");
 
 module.exports = {
   backgroundColor: chromath.darken(rgb, 0.5).toRGBString()
 };
 
-},{"./now":22,"chromath":34}],21:[function(require,module,exports){
+},{"../util/now":26,"chromath":34}],23:[function(require,module,exports){
 "use strict";
 
-var rgb = require("./now").rgb;
+var rgb = require("../util/now").rgb;
 var chromath = require("chromath");
 
 module.exports = {
   backgroundColor: chromath.lighten(rgb, 0.8).toRGBString()
 };
 
-},{"./now":22,"chromath":34}],22:[function(require,module,exports){
+},{"../util/now":26,"chromath":34}],24:[function(require,module,exports){
+"use strict";
+
+var bg = require("../colors/background-light");
+
+module.exports = Object.assign({}, bg, {
+  width: "100%",
+  height: "100%",
+  display: "block",
+  position: "relative",
+  overflow: "hidden"
+});
+
+},{"../colors/background-light":23}],25:[function(require,module,exports){
+"use strict";
+
+var bg = require("../colors/background-dark");
+
+module.exports = Object.assign({}, bg, {
+  width: "100%",
+  height: "100%",
+  display: "block",
+  overflow: "hidden"
+});
+
+},{"../colors/background-dark":22}],26:[function(require,module,exports){
 "use strict";
 
 // determines a "now" color based on moving through the year
-
+var constants = require("../../constants/colors");
 var now = new Date();
 
 // easy to read points for the seasons
 var points = {
   lastWinter: {
     at: new Date(now.getFullYear() - 1, 11, 1),
-    is: [77, 0, 171]
+    is: constants.WINTER
   },
   spring: {
     at: new Date(now.getFullYear(), 2, 1),
-    is: [153, 204, 0]
+    is: constants.SPRING
   },
   summer: {
     at: new Date(now.getFullYear(), 6, 1),
-    is: [104, 184, 217]
+    is: constants.SUMMER
   },
   fall: {
     at: new Date(now.getFullYear(), 9, 1),
-    is: [222, 163, 0]
+    is: constants.FALL
   },
   winter: {
     at: new Date(now.getFullYear(), 11, 1),
-    is: [77, 0, 171]
+    is: constants.WINTER
   },
   nextSpring: {
     at: new Date(now.getFullYear() + 1, 2, 1),
-    is: [153, 204, 0]
+    is: constants.SPRING
   }
 };
 
@@ -1101,56 +1155,7 @@ module.exports = {
   blue: blue
 };
 
-},{}],23:[function(require,module,exports){
-"use strict";
-
-module.exports = {
-  width: "100%",
-  height: "100%",
-  display: "block",
-  position: "relative",
-  overflow: "hidden",
-  backgroundColor: "#fff"
-};
-
-},{}],24:[function(require,module,exports){
-"use strict";
-
-var widths = require("./widths");
-
-function trbl(w, unit) {
-  return [Math.floor(w / 2), 0, 0, Math.floor(w / 2)].join(unit + " ") + unit;
-}
-
-module.exports = {
-  width: "100%",
-  height: "100%",
-  margin: trbl(widths.border, "px"),
-  display: "block",
-  position: "relative",
-  overflow: "hidden"
-};
-
-},{"./widths":26}],25:[function(require,module,exports){
-"use strict";
-
-var m = require("merge");
-var bg = require("../colors/background-dark");
-
-module.exports = m({
-  width: "100%",
-  height: "100%",
-  display: "block"
-}, bg);
-
-},{"../colors/background-dark":20,"merge":67}],26:[function(require,module,exports){
-"use strict";
-
-module.exports = {
-  border: 5
-};
-
-},{}],27:[function(require,module,exports){
+},{"../../constants/colors":10}],27:[function(require,module,exports){
 "use strict";
 
 (function (b, o, i, l, e, r) {
