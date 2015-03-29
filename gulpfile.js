@@ -34,7 +34,7 @@ gulp.task("cleanCSS", function(cb) {
 });
 
 // the meta-build task
-gulp.task("build-all", ["js", "css"]);
+gulp.task("build-all", ["js", "css", "octicons"]);
 
 // js from a single entry point using browserify
 gulp.task("js", ["cleanJS"], function() {
@@ -56,6 +56,11 @@ gulp.task("css", ["cleanCSS"], function() {
     .pipe(gulp.dest("./css"))
 });
 
+gulp.task("octicons", ["css"], function() {
+  return gulp.src("./_vendor/github-octicons/octicons.+(ttf|eot|svg|woff)")
+    .pipe(gulp.dest("./css"))
+});
+
 // build will exit on complete
 gulp.task("build", ["build-all"], function() {
   process.exit(0);
@@ -67,7 +72,7 @@ gulp.task("watch", function() {
     gulp.start("js");
   });
 
-  watch("_scss/**/*", function() {
+  watch("_sass/**/*", function() {
     gulp.start("css");
   });
 

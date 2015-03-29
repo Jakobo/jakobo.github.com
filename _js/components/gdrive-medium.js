@@ -9,6 +9,9 @@ var IsotopeActions = require("../actions/isotope");
 
 var tileCSS = require("../common/tiles");
 
+var WIDTH_TOKEN = "__WIDTH__";
+var HEIGHT_TOKEN = "__HEIGHT__";
+
 function getState(key) {
   var data = MedStore.get(key);
   var layout = tileStore.get();
@@ -16,6 +19,10 @@ function getState(key) {
     feed: data,
     layout: layout
   };
+}
+
+function depx(val) {
+  return val.replace("px", "");
 }
 
 function parseSnippet(html) {
@@ -35,7 +42,7 @@ function parseSnippet(html) {
   var $node = $("<div>").append(html);
   var $img = $(".medium-feed-image img", $node).eq(0);
   var snippet = $(".medium-feed-snippet", $node).eq(0).html();
-  var imgSrc = $img.attr("src").replace(/\/fit\/c\/600\/200\//, "/fit/c/__WIDTH__/__HEIGHT__/");
+  var imgSrc = $img.attr("src").replace(/\/fit\/c\/600\/200\//, "/fit/c/" + WIDTH_TOKEN + "/" + HEIGHT_TOKEN + "/");
 
   return {
     snip: snippet,
@@ -82,7 +89,7 @@ module.exports = React.createClass({
     tile = (
       <article key={"gdrive-medium-" + row.id} style={styles.tile} className={this.props.className}>
         <div style={styles.inner}>
-          <a href={row.link} className="medium__link"><img src={meta.flexImage.replace("__WIDTH__", "500").replace("__HEIGHT__", "500")} className="medium__image" /></a>
+          <a href={row.link} className="medium__link"><img src={meta.flexImage.replace("__WIDTH__", depx(styles.inner.width)).replace("__HEIGHT__", depx(styles.inner.height))} className="medium__image" /></a>
           <aside className="medium__about">
             <a href={row.link}>{row.title}</a>
             <p>{meta.snip}</p>

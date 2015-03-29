@@ -330,6 +330,27 @@ var IsotopeActions = require("../actions/isotope");
 
 var tileCSS = require("../common/tiles");
 
+var githubClassMatch = {
+  comment: { r: / commented on /, c: "octicon-comment-discussion" },
+  issue: { r: / opened issue /, c: "octicon-bug" },
+  push: { r: / pushed to /, c: "octicon-repo-push" },
+  branch: { r: / created branch /, c: "octicon-git-branch" },
+  pr: { r: / opened pull request /, c: "octicon-git-pull-request" },
+  fork: { r: / forked /, c: "octicon-repo-forked" },
+  create: { r: / created repository /, c: "octicon-repo" },
+  close: { r: / closed /, c: "octicon-x" }
+};
+
+function getClassFromText(text) {
+  var noMatchClass = "mega-octicon octicon-mark-github";
+  for (var type in githubClassMatch) {
+    if (githubClassMatch[type].r.test(text)) {
+      return ["mega-octicon", githubClassMatch[type].c].join(" ");
+    }
+  }
+  return noMatchClass;
+}
+
 function getState(key) {
   var data = GHStore.get(key);
   var layout = tileStore.get();
@@ -349,22 +370,6 @@ function dedupe(list, key) {
     }
   }
   return out;
-}
-
-function getType(text) {
-  var type;
-  var i;
-  var len;
-
-  for (type in ghc.types) {
-    for (i = 0, len = ghc.types[type].length; i < len; i++) {
-      if (ghc.types[type][i].test(text)) {
-        return type;
-      }
-    }
-  }
-
-  return "default";
 }
 
 module.exports = React.createClass({
@@ -408,6 +413,7 @@ module.exports = React.createClass({
       React.createElement(
         "div",
         { style: styles.inner },
+        React.createElement("div", { className: getClassFromText(row.text) }),
         React.createElement(
           "p",
           { className: "github__text" },
@@ -438,6 +444,9 @@ var IsotopeActions = require("../actions/isotope");
 
 var tileCSS = require("../common/tiles");
 
+var WIDTH_TOKEN = "__WIDTH__";
+var HEIGHT_TOKEN = "__HEIGHT__";
+
 function getState(key) {
   var data = MedStore.get(key);
   var layout = tileStore.get();
@@ -445,6 +454,10 @@ function getState(key) {
     feed: data,
     layout: layout
   };
+}
+
+function depx(val) {
+  return val.replace("px", "");
 }
 
 function parseSnippet(html) {
@@ -464,7 +477,7 @@ function parseSnippet(html) {
   var $node = $("<div>").append(html);
   var $img = $(".medium-feed-image img", $node).eq(0);
   var snippet = $(".medium-feed-snippet", $node).eq(0).html();
-  var imgSrc = $img.attr("src").replace(/\/fit\/c\/600\/200\//, "/fit/c/__WIDTH__/__HEIGHT__/");
+  var imgSrc = $img.attr("src").replace(/\/fit\/c\/600\/200\//, "/fit/c/" + WIDTH_TOKEN + "/" + HEIGHT_TOKEN + "/");
 
   return {
     snip: snippet,
@@ -519,7 +532,7 @@ module.exports = React.createClass({
         React.createElement(
           "a",
           { href: row.link, className: "medium__link" },
-          React.createElement("img", { src: meta.flexImage.replace("__WIDTH__", "500").replace("__HEIGHT__", "500"), className: "medium__image" })
+          React.createElement("img", { src: meta.flexImage.replace("__WIDTH__", depx(styles.inner.width)).replace("__HEIGHT__", depx(styles.inner.height)), className: "medium__image" })
         ),
         React.createElement(
           "aside",
