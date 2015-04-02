@@ -57,13 +57,14 @@ module.exports = React.createClass({
     }
   },
 
-  /*
-  <!--FiveHundredPx source="1aETLR_5FGF2yLqxx32Voqz1g5NxA1yMaLiVz98TZyRk"
-    item="1" tile-width="2" tile-height="2" / -->
-  <!-- FiveHundredPx source="1aETLR_5FGF2yLqxx32Voqz1g5NxA1yMaLiVz98TZyRk"
-    item="2" tile-width="1" tile-height="2" / -->
-  <!-- Medium source=""
-    item="2" tile-width="2" tile-height="1" / -->
+  /* TODO
+  Components left to do:
+  Title tile 2w x 1h
+  Vcard tile 1w x 1h
+  LinkedIn Tile x3
+
+  Top level problems:
+  Select better isotope fill for this pattern
   */
 
   render: function() {
@@ -71,14 +72,16 @@ module.exports = React.createClass({
       <section ref="tiles">
         <Github source="10AzPn7DVSM-C-dlvffqD6M2_laj0KCullSExDz6ssoo"
           item="1" tile-width="1" tile-height="1" className="tile" />
-        <Github source="10AzPn7DVSM-C-dlvffqD6M2_laj0KCullSExDz6ssoo"
-          item="2" tile-width="1" tile-height="1" className="tile" />
         <FiveHundredPx source="1aETLR_5FGF2yLqxx32Voqz1g5NxA1yMaLiVz98TZyRk"
           item="1" tile-width="2" tile-height="2" className="tile" />
+        <Github source="10AzPn7DVSM-C-dlvffqD6M2_laj0KCullSExDz6ssoo"
+          item="2" tile-width="1" tile-height="1" className="tile" />
         <Medium source="1RXKjQ57k07-GEhctT4MHWflxK840ENcsM_MXzuKiKLw"
           item="1" tile-width="2" tile-height="1" className="tile" />
         <Github source="10AzPn7DVSM-C-dlvffqD6M2_laj0KCullSExDz6ssoo"
           item="3" tile-width="1" tile-height="1" className="tile" />
+        <Medium source="1RXKjQ57k07-GEhctT4MHWflxK840ENcsM_MXzuKiKLw"
+          item="2" tile-width="1" tile-height="1" className="tile" />
         <Github source="10AzPn7DVSM-C-dlvffqD6M2_laj0KCullSExDz6ssoo"
           item="4" tile-width="1" tile-height="1" className="tile" />
         <Github source="10AzPn7DVSM-C-dlvffqD6M2_laj0KCullSExDz6ssoo"

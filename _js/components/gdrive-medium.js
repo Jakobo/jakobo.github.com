@@ -42,12 +42,11 @@ function parseSnippet(html) {
   var $node = $("<div>").append(html);
   var $img = $(".medium-feed-image img", $node).eq(0);
   var snippet = $(".medium-feed-snippet", $node).eq(0).html();
-  var imgSrc = $img.attr("src").replace(/\/fit\/c\/600\/200\//, "/fit/c/" + WIDTH_TOKEN + "/" + HEIGHT_TOKEN + "/");
 
   return {
     snip: snippet,
-    originalImage: $img.attr("src"),
-    flexImage: imgSrc
+    originalImage: (!$img) ? null : $img.attr("src"),
+    flexImage: (!$img) ? null : $img.attr("src").replace(/\/fit\/c\/600\/200\//, "/fit/c/" + WIDTH_TOKEN + "/" + HEIGHT_TOKEN + "/")
   };
 }
 
@@ -97,6 +96,12 @@ module.exports = React.createClass({
       boxSize: "border-box"
     };
 
+    styles.asideOnly = Object.assign({}, styles.aside, {
+      top: 0,
+      bottom: "auto",
+      height: "100%"
+    });
+
     styles.link = {
       display: "block",
       paddingBottom: "0.5em",
@@ -116,6 +121,11 @@ module.exports = React.createClass({
       color: "#C4C4C4",
       paddingTop: "0.3em"
     });
+
+    if (!meta.flexImage) {
+      // TODO: handle articles without an image
+      return null;
+    }
 
     tile = (
       <article key={"gdrive-medium-" + row.id} style={styles.tile} className={this.props.className}>
