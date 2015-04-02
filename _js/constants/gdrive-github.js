@@ -8,7 +8,8 @@ module.exports = Object.assign({},{
     push: [/pushed to/],
     issue: [/opened issue/],
     close: [/closed pull request/, /closed issue/]
-  }
+  },
+  BASE_COLOR: {r: 242, g: 242, b: 242}
 },
 keyMirror({
   LOAD_GITHUB: null,

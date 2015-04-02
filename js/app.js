@@ -233,11 +233,11 @@ module.exports = React.createClass({
 "use strict";
 
 var React = require("react");
-var m = require("merge");
 
 var PXStore = require("../stores/gdrive-500px");
 var tileStore = require("../stores/tile-layout");
 var IsotopeActions = require("../actions/isotope");
+
 var tileCSS = require("../common/tiles");
 
 function getState(key) {
@@ -284,6 +284,28 @@ module.exports = React.createClass({
 
     var styles = tileCSS.css(this.state.layout.px, this.props["tile-width"], this.props["tile-height"]);
 
+    styles.aside = {
+      backgroundColor: "rgba(0, 0, 0, 0.8)",
+      position: "absolute",
+      width: "100%",
+      display: "block",
+      bottom: 0,
+      left: 0,
+      padding: "0.3em 0.3em 1em 0.3em",
+      boxSize: "border-box"
+    };
+
+    styles.title = {
+      display: "block",
+      paddingBottom: "0.5em",
+      fontSize: "2em"
+    };
+
+    styles.link = {
+      color: "#FAFAFA",
+      textDecoration: "none"
+    };
+
     tile = React.createElement(
       "article",
       { key: "gdrive-500px-" + row.id, style: styles.tile, className: this.props.className },
@@ -297,15 +319,15 @@ module.exports = React.createClass({
         ),
         React.createElement(
           "aside",
-          { className: "n500px__about" },
+          { className: "n500px__about", style: styles.aside },
           React.createElement(
             "a",
-            { href: row.link },
-            row.title
-          ),
-          React.createElement(
-            "p",
-            null,
+            { href: row.link, style: styles.link },
+            React.createElement(
+              "span",
+              { style: styles.title },
+              row.title
+            ),
             row.caption
           )
         )
@@ -316,19 +338,27 @@ module.exports = React.createClass({
   }
 });
 
-},{"../actions/isotope":2,"../common/tiles":5,"../stores/gdrive-500px":17,"../stores/tile-layout":21,"merge":67,"react":213}],8:[function(require,module,exports){
+},{"../actions/isotope":2,"../common/tiles":5,"../stores/gdrive-500px":17,"../stores/tile-layout":21,"react":213}],8:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
-var m = require("merge");
 
+// constants
 var ghc = require("../constants/gdrive-github");
 
+// Data
 var GHStore = require("../stores/gdrive-github");
 var tileStore = require("../stores/tile-layout");
 var IsotopeActions = require("../actions/isotope");
 
+// GH CSS
 var tileCSS = require("../common/tiles");
+var overlay = require("../styles/colors/overlay")(ghc.BASE_COLOR);
+var colors = {
+  bg: overlay.color,
+  text: overlay.alt,
+  icon: overlay.alt
+};
 
 var githubClassMatch = {
   comment: { r: / commented on /, c: "octicon-comment-discussion" },
@@ -407,19 +437,53 @@ module.exports = React.createClass({
 
     var styles = tileCSS.css(this.state.layout.px, this.props["tile-width"], this.props["tile-height"]);
 
+    styles.inner = Object.assign(styles.inner, {
+      backgroundColor: colors.bg
+    });
+
+    styles.icon = {
+      position: "absolute",
+      right: "2%",
+      bottom: "2%",
+      fontSize: Math.floor(this.state.layout.px * this.props["tile-height"] / 32 / 2) * 32 + "px",
+      opacity: 0.1,
+      color: colors.icon
+    };
+
+    styles.textBlob = {
+      position: "absolute",
+      left: 0,
+      top: 0,
+      width: "100%",
+      height: "100%",
+      margin: 0,
+      padding: 0
+    };
+
+    styles.link = {
+      width: "100%",
+      height: "100%",
+      display: "block",
+      boxSizing: "border-box",
+      padding: "0.5em",
+      color: colors.text,
+      textDecoration: "none",
+      fontSize: "1.5em"
+    };
+
     tile = React.createElement(
       "article",
       { key: "gdrive-github-" + row.id, style: styles.tile, className: this.props.className },
       React.createElement(
         "div",
         { style: styles.inner },
-        React.createElement("div", { className: getClassFromText(row.text) }),
+        React.createElement("div", { className: getClassFromText(row.text), style: styles.icon }),
         React.createElement(
           "p",
-          { className: "github__text" },
+          { style: styles.textBlob },
           React.createElement(
             "a",
-            { className: "github__link", href: row.link },
+            { href: row.link, style: styles.link },
             row.text
           )
         )
@@ -430,7 +494,7 @@ module.exports = React.createClass({
   }
 });
 
-},{"../actions/isotope":2,"../common/tiles":5,"../constants/gdrive-github":12,"../stores/gdrive-github":18,"../stores/tile-layout":21,"merge":67,"react":213}],9:[function(require,module,exports){
+},{"../actions/isotope":2,"../common/tiles":5,"../constants/gdrive-github":12,"../stores/gdrive-github":18,"../stores/tile-layout":21,"../styles/colors/overlay":22,"react":213}],9:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -523,6 +587,37 @@ module.exports = React.createClass({
 
     var styles = tileCSS.css(this.state.layout.px, this.props["tile-width"], this.props["tile-height"]);
 
+    styles.aside = {
+      backgroundColor: "rgba(0, 0, 0, 0.8)",
+      position: "absolute",
+      width: "100%",
+      display: "block",
+      bottom: 0,
+      left: 0,
+      padding: "0.3em 0.3em 1em 0.3em",
+      boxSize: "border-box"
+    };
+
+    styles.link = {
+      display: "block",
+      paddingBottom: "0.5em",
+      fontSize: "2em",
+      color: "#FAFAFA",
+      textDecoration: "none"
+    };
+
+    styles.text = {
+      color: "#FAFAFA",
+      padding: 0,
+      margin: 0,
+      textDecoration: "none"
+    };
+
+    styles.source = Object.assign({}, styles.text, {
+      color: "#C4C4C4",
+      paddingTop: "0.3em"
+    });
+
     tile = React.createElement(
       "article",
       { key: "gdrive-medium-" + row.id, style: styles.tile, className: this.props.className },
@@ -536,16 +631,27 @@ module.exports = React.createClass({
         ),
         React.createElement(
           "aside",
-          { className: "medium__about" },
+          { className: "medium__about", style: styles.aside },
           React.createElement(
-            "a",
-            { href: row.link },
-            row.title
+            "p",
+            { style: styles.text },
+            React.createElement(
+              "a",
+              { href: row.link, style: styles.text },
+              "\"",
+              meta.snip,
+              "\""
+            )
           ),
           React.createElement(
             "p",
-            null,
-            meta.snip
+            { style: styles.source },
+            React.createElement(
+              "a",
+              { href: row.link, style: styles.source },
+              "— ",
+              row.title
+            )
           )
         )
       )
@@ -570,7 +676,9 @@ module.exports = {
 
 var keyMirror = require("react/lib/keyMirror");
 
-module.exports = Object.assign({}, keyMirror({
+module.exports = Object.assign({}, {
+  LOGO_COLOR: { r: 19, g: 158, b: 235 }
+}, keyMirror({
   LOAD_500PX: null,
   CHANGE_500PX: null
 }));
@@ -588,7 +696,8 @@ module.exports = Object.assign({}, {
     push: [/pushed to/],
     issue: [/opened issue/],
     close: [/closed pull request/, /closed issue/]
-  }
+  },
+  BASE_COLOR: { r: 242, g: 242, b: 242 }
 }, keyMirror({
   LOAD_GITHUB: null,
   CHANGE_GITHUB: null
@@ -1056,29 +1165,102 @@ module.exports = tileLayoutStore;
 },{"../constants/tiles":15,"../dispatchers/browser":16,"events":32,"jquery":60,"lodash.debounce":65}],22:[function(require,module,exports){
 "use strict";
 
-var rgb = require("../util/now").rgb;
-var chromath = require("chromath");
+// given a color, find the overlay
 
-module.exports = {
-  backgroundColor: chromath.darken(rgb, 0.5).toRGBString()
+var Chromath = require("chromath");
+var BLACK = 0.87;
+var CONTRAST_RATIO = 4.5;
+var MIDPOINT_GREY = 127;
+
+module.exports = function (x) {
+  var color = new Chromath(x);
+
+  var grey = Chromath.desaturate(color).toRGBObject().r;
+  var adjust = grey > MIDPOINT_GREY ? Chromath.darken : Chromath.lighten;
+
+  var altColor = adjust(color, BLACK);
+  var altGrey = Chromath.desaturate(altColor).toRGBObject().r;
+  var ratio = altGrey > grey ? altGrey / grey : grey / altGrey;
+
+  var percent = 0.01;
+  var shiftBy = 0.01;
+
+  if (ratio < CONTRAST_RATIO) {
+    // begin shifting the original color away from the grey midpoint
+    adjust = grey > MIDPOINT_GREY ? Chromath.lighten : Chromath.darken;
+    do {
+      color = adjust(color, shiftBy);
+      grey = Chromath.desaturate(color).toRGBObject().r;
+      ratio = altGrey > grey ? altGrey / grey : grey / altGrey;
+      shiftBy += percent;
+    } while (shiftBy <= 1 && ratio <= CONTRAST_RATIO);
+  }
+
+  if (ratio < 4.5) {
+    // never got a contrast ratio. Default to Black and white.
+    color = "#000000";
+    altColor = "#FFFFFF";
+  }
+
+  return {
+    color: new Chromath(color).toHexString(),
+    alt: new Chromath(altColor).toHexString()
+  };
 };
 
-},{"../util/now":26,"chromath":34}],23:[function(require,module,exports){
+},{"chromath":34}],23:[function(require,module,exports){
 "use strict";
 
 var rgb = require("../util/now").rgb;
-var chromath = require("chromath");
+var Chromath = require("chromath");
+var overlay = require("./overlay");
 
-module.exports = {
-  backgroundColor: chromath.lighten(rgb, 0.8).toRGBString()
+var analogous = Chromath.analogous(rgb);
+var complement = Chromath.complement(rgb);
+
+var basePalette = {
+  base: {
+    plain: new Chromath(rgb).toHexString(),
+    light: Chromath.lighten(rgb, 0.8).toHexString(),
+    dark: Chromath.darken(rgb, 0.6).toHexString()
+  },
+  minus: {
+    plain: analogous[1].toHexString(),
+    light: Chromath.lighten(analogous[1], 0.8).toHexString(),
+    dark: Chromath.darken(analogous[1], 0.6).toHexString()
+  },
+  plus: {
+    plain: analogous[2].toHexString(),
+    light: Chromath.lighten(analogous[2], 0.8).toHexString(),
+    dark: Chromath.darken(analogous[2], 0.6).toHexString()
+  },
+  complement: {
+    plain: complement.toHexString(),
+    light: Chromath.lighten(complement, 0.8).toHexString(),
+    dark: Chromath.darken(complement, 0.6).toHexString()
+  }
 };
 
-},{"../util/now":26,"chromath":34}],24:[function(require,module,exports){
+var palette = {};
+
+Object.keys(basePalette).forEach(function (colorName) {
+  palette[colorName] = {};
+  Object.keys(basePalette[colorName]).forEach(function (style) {
+    var c = overlay(basePalette[colorName][style]);
+
+    palette[colorName][style] = c.color;
+    palette[colorName]["x" + style] = c.alt;
+  });
+});
+
+module.exports = palette;
+
+},{"../util/now":26,"./overlay":22,"chromath":34}],24:[function(require,module,exports){
 "use strict";
 
-var bg = require("../colors/background-light");
+var palette = require("../colors/palette");
 
-module.exports = Object.assign({}, bg, {
+module.exports = Object.assign({}, {
   width: "100%",
   height: "100%",
   display: "block",
@@ -1086,19 +1268,18 @@ module.exports = Object.assign({}, bg, {
   overflow: "hidden"
 });
 
-},{"../colors/background-light":23}],25:[function(require,module,exports){
+},{"../colors/palette":23}],25:[function(require,module,exports){
 "use strict";
 
-var bg = require("../colors/background-dark");
-
-module.exports = Object.assign({}, bg, {
+module.exports = Object.assign({}, {
   width: "100%",
   height: "100%",
   display: "block",
-  overflow: "hidden"
+  overflow: "hidden",
+  backgroundColor: "#FFFFFF"
 });
 
-},{"../colors/background-dark":22}],26:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 "use strict";
 
 // determines a "now" color based on moving through the year

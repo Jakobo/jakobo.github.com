@@ -86,13 +86,44 @@ module.exports = React.createClass({
 
     var styles = tileCSS.css(this.state.layout.px, this.props["tile-width"], this.props["tile-height"]);
 
+    styles.aside = {
+      backgroundColor: "rgba(0, 0, 0, 0.8)",
+      position: "absolute",
+      width: "100%",
+      display: "block",
+      bottom: 0,
+      left: 0,
+      padding: "0.3em 0.3em 1em 0.3em",
+      boxSize: "border-box"
+    };
+
+    styles.link = {
+      display: "block",
+      paddingBottom: "0.5em",
+      fontSize: "2em",
+      color: "#FAFAFA",
+      textDecoration: "none"
+    };
+
+    styles.text = {
+      color: "#FAFAFA",
+      padding: 0,
+      margin: 0,
+      textDecoration: "none"
+    };
+
+    styles.source = Object.assign({}, styles.text, {
+      color: "#C4C4C4",
+      paddingTop: "0.3em"
+    });
+
     tile = (
       <article key={"gdrive-medium-" + row.id} style={styles.tile} className={this.props.className}>
         <div style={styles.inner}>
           <a href={row.link} className="medium__link"><img src={meta.flexImage.replace("__WIDTH__", depx(styles.inner.width)).replace("__HEIGHT__", depx(styles.inner.height))} className="medium__image" /></a>
-          <aside className="medium__about">
-            <a href={row.link}>{row.title}</a>
-            <p>{meta.snip}</p>
+          <aside className="medium__about" style={styles.aside}>
+            <p style={styles.text}><a href={row.link} style={styles.text}>&quot;{meta.snip}&quot;</a></p>
+            <p style={styles.source}><a href={row.link} style={styles.source}>&mdash; {row.title}</a></p>
           </aside>
         </div>
       </article>

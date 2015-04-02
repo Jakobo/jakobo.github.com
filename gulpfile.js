@@ -54,6 +54,7 @@ gulp.task("css", ["cleanCSS"], function() {
     .pipe(sass())
     .pipe(minifyCSS())
     .pipe(gulp.dest("./css"))
+    .pipe(reload({ stream: true }));
 });
 
 gulp.task("octicons", ["css"], function() {
