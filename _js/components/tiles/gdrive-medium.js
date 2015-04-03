@@ -2,12 +2,12 @@ var React = require("react");
 var $ = require("jquery");
 var m = require("merge");
 
-var MedStore = require("../stores/gdrive-medium");
-var tileStore = require("../stores/tile-layout");
+var MedStore = require("../../stores/gdrive-medium");
+var tileStore = require("../../stores/tile-layout");
 
-var IsotopeActions = require("../actions/isotope");
+var IsotopeActions = require("../../actions/isotope");
 
-var tileCSS = require("../common/tiles");
+var tileCSS = require("../../common/tiles");
 
 var WIDTH_TOKEN = "__WIDTH__";
 var HEIGHT_TOKEN = "__HEIGHT__";

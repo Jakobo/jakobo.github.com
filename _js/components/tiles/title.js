@@ -1,7 +1,7 @@
 var React = require("react");
-var tileStore = require("../stores/tile-layout");
-var tileCSS = require("../common/tiles");
-var palette = require("../styles/colors/palette");
+var tileStore = require("../../stores/tile-layout");
+var tileCSS = require("../../common/tiles");
+var palette = require("../../styles/colors/palette");
 
 function getState(key) {
   var layout = tileStore.get();
@@ -64,10 +64,11 @@ module.exports = React.createClass({
           </p>
           <ul style={styles.list}>
             <li style={styles.firstListItem}><a href="http://www.linkedin.com/in/jakobheuser" title="Resume on LinkedIn" style={styles.iconLink}><span className="x-fa x-fa-linkedin"></span></a></li>
-            <li style={styles.listItem}><a href="https://github.com/Jakobo" title="Code on GitHub" style={styles.iconLink}><span className="x-fa x-fa-github"></span></a></li>
-            <li style={styles.listItem}><a href="https://medium.com/@jakob" title="Writing on Medium" style={styles.iconLink}><span className="x-fa x-fa-medium"></span></a></li>
-            <li style={styles.listItem}><a href="https://500px.com/jakobo" title="Photos on 500px" style={styles.iconLink}><span className="x-fa x-fa-camera"></span></a></li>
-            <li style={styles.listItem}><a href="https://presentate.com/~3zqP2X" title="Talks on Presentate" style={styles.iconLink}><span className="x-fa x-fa-desktop"></span></a></li>
+            <li style={styles.listItem}><a href="https://www.github.com/Jakobo" title="Code on GitHub" style={styles.iconLink}><span className="x-fa x-fa-github"></span></a></li>
+            <li style={styles.listItem}><a href="https://www.medium.com/@jakob" title="Writing on Medium" style={styles.iconLink}><span className="x-fa x-fa-medium"></span></a></li>
+            <li style={styles.listItem}><a href="https://www.twitter.com/@jakobo" title="Quips on Twitter" style={styles.iconLink}><span className="x-fa x-fa-twitter"></span></a></li>
+            <li style={styles.listItem}><a href="https://www.500px.com/jakobo" title="Photos on 500px" style={styles.iconLink}><span className="x-fa x-fa-camera"></span></a></li>
+            <li style={styles.listItem}><a href="https://www.presentate.com/~3zqP2X" title="Talks on Presentate" style={styles.iconLink}><span className="x-fa x-fa-desktop"></span></a></li>
           </ul>
         </div>
       </article>

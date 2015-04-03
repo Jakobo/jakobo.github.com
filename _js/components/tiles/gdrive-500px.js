@@ -1,10 +1,10 @@
 var React = require("react");
 
-var PXStore = require("../stores/gdrive-500px");
-var tileStore = require("../stores/tile-layout");
-var IsotopeActions = require("../actions/isotope");
+var PXStore = require("../../stores/gdrive-500px");
+var tileStore = require("../../stores/tile-layout");
+var IsotopeActions = require("../../actions/isotope");
 
-var tileCSS = require("../common/tiles");
+var tileCSS = require("../../common/tiles");
 
 function getState(key) {
   var data = PXStore.get(key);

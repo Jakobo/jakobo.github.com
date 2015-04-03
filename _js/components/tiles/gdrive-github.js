@@ -1,17 +1,17 @@
 var React = require("react");
 
 // constants
-var ghc = require("../constants/gdrive-github");
+var ghc = require("../../constants/gdrive-github");
 var WBR_TOKEN = "__SPLIT__";
 
 // Data
-var GHStore = require("../stores/gdrive-github");
-var tileStore = require("../stores/tile-layout");
-var IsotopeActions = require("../actions/isotope");
+var GHStore = require("../../stores/gdrive-github");
+var tileStore = require("../../stores/tile-layout");
+var IsotopeActions = require("../../actions/isotope");
 
 // GH CSS
-var tileCSS = require("../common/tiles");
-var overlay = require("../styles/colors/overlay")(ghc.BASE_COLOR);
+var tileCSS = require("../../common/tiles");
+var overlay = require("../../styles/colors/overlay")(ghc.BASE_COLOR);
 var colors = {
   bg: overlay.color,
   text: overlay.alt,

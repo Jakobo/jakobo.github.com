@@ -87,4 +87,8 @@ var tileLayoutStore = Object.assign({}, EventEmitter.prototype, {
 $(window).on("resize", debouncedRecalculate);
 $(window).on("orientationchange", debouncedRecalculate);
 
+// tileStore is heavily subscribed to and requires an increase in the number of
+// listeners it supports
+tileLayoutStore.setMaxListeners(100);
+
 module.exports = tileLayoutStore;

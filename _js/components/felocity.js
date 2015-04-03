@@ -19,15 +19,24 @@ var React = require("react");
 var Isotope = require("isotope-layout");
 require("isotope-packery");
 
-var Github = require("./gdrive-github");
-var FiveHundredPx = require("./gdrive-500px");
-var Medium = require("./gdrive-medium");
-var Title = require("./title");
+var Github = require("./tiles/gdrive-github");
+var FiveHundredPx = require("./tiles/gdrive-500px");
+var Medium = require("./tiles/gdrive-medium");
+var LinkedIn = require("./tiles/gdrive-linkedin");
+var Title = require("./tiles/title");
+var Vcard = require("./tiles/vcard");
 
 var tileStore = require("../stores/tile-layout");
 var TileActions = require("../actions/tile");
 
 var isotopeStore = require("../stores/isotope");
+
+var source = {
+  github: "10AzPn7DVSM-C-dlvffqD6M2_laj0KCullSExDz6ssoo",
+  fpx: "1aETLR_5FGF2yLqxx32Voqz1g5NxA1yMaLiVz98TZyRk",
+  medium: "1RXKjQ57k07-GEhctT4MHWflxK840ENcsM_MXzuKiKLw",
+  linkedin: "1liN0-GVlAuRW1CFvkDSnti7gvZrqIquLh1woNvLL_cU"
+};
 
 module.exports = React.createClass({
   isotope: null,
@@ -59,33 +68,21 @@ module.exports = React.createClass({
     }
   },
 
-  /* TODO
-  Components left to do:
-  Title tile 2w x 1h
-  Vcard tile 1w x 1h
-  LinkedIn Tile x3
-  */
-
   render: function() {
     return (
       <section ref="tiles">
         <Title tile-width="2" tile-height="1" className="tile" />
-        <Github source="10AzPn7DVSM-C-dlvffqD6M2_laj0KCullSExDz6ssoo"
-          item="1" tile-width="1" tile-height="1" className="tile" />
-        <FiveHundredPx source="1aETLR_5FGF2yLqxx32Voqz1g5NxA1yMaLiVz98TZyRk"
-          item="1" tile-width="2" tile-height="2" className="tile" />
-        <Github source="10AzPn7DVSM-C-dlvffqD6M2_laj0KCullSExDz6ssoo"
-          item="2" tile-width="1" tile-height="1" className="tile" />
-        <Medium source="1RXKjQ57k07-GEhctT4MHWflxK840ENcsM_MXzuKiKLw"
-          item="1" tile-width="2" tile-height="1" className="tile" />
-        <Github source="10AzPn7DVSM-C-dlvffqD6M2_laj0KCullSExDz6ssoo"
-          item="3" tile-width="1" tile-height="1" className="tile" />
-        <Medium source="1RXKjQ57k07-GEhctT4MHWflxK840ENcsM_MXzuKiKLw"
-          item="2" tile-width="1" tile-height="1" className="tile" />
-        <Github source="10AzPn7DVSM-C-dlvffqD6M2_laj0KCullSExDz6ssoo"
-          item="4" tile-width="1" tile-height="1" className="tile" />
-        <Github source="10AzPn7DVSM-C-dlvffqD6M2_laj0KCullSExDz6ssoo"
-          item="5" tile-width="1" tile-height="1" className="tile" />
+        <Github source={source.github} item="1" tile-width="1" tile-height="1" className="tile" />
+        <FiveHundredPx source={source.fpx} item="1" tile-width="2" tile-height="2" className="tile" />
+        <Github source={source.github} item="2" tile-width="1" tile-height="1" className="tile" />
+        <Medium source={source.medium} item="1" tile-width="2" tile-height="1" className="tile" />
+        <LinkedIn source={source.linkedin} item="1" tile-width="1" tile-height="1" className="tile" />
+        <Github source={source.github} item="3" tile-width="1" tile-height="1" className="tile" />
+        <Medium source={source.medium} item="2" tile-width="1" tile-height="1" className="tile" />
+        <Github source={source.github} item="4" tile-width="1" tile-height="1" className="tile" />
+        <LinkedIn source={source.linkedin} item="2" tile-width="1" tile-height="1" className="tile" />
+        <Github source={source.github} item="5" tile-width="1" tile-height="1" className="tile" />
+        <Vcard tile-width="1" tile-height="1" className="tile" />
       </section>
     );
   }
