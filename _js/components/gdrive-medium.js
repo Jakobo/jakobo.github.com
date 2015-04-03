@@ -11,6 +11,7 @@ var tileCSS = require("../common/tiles");
 
 var WIDTH_TOKEN = "__WIDTH__";
 var HEIGHT_TOKEN = "__HEIGHT__";
+var NO_IMAGE_SRC = "https://d262ilb51hltx0.cloudfront.net/fit/c/600/200/1*5kLUGuMkF6oR_5bI2qS-aQ.jpeg";
 
 function getState(key) {
   var data = MedStore.get(key);
@@ -43,10 +44,14 @@ function parseSnippet(html) {
   var $img = $(".medium-feed-image img", $node).eq(0);
   var snippet = $(".medium-feed-snippet", $node).eq(0).html();
 
+  if (!$img.length) {
+    $img = $('<img src="' + NO_IMAGE_SRC + '" />');
+  }
+
   return {
     snip: snippet,
-    originalImage: (!$img) ? null : $img.attr("src"),
-    flexImage: (!$img) ? null : $img.attr("src").replace(/\/fit\/c\/600\/200\//, "/fit/c/" + WIDTH_TOKEN + "/" + HEIGHT_TOKEN + "/")
+    originalImage: $img.attr("src"),
+    flexImage: $img.attr("src").replace(/\/fit\/c\/[\d]+\/[\d]+\//, "/fit/c/" + WIDTH_TOKEN + "/" + HEIGHT_TOKEN + "/")
   };
 }
 
@@ -76,6 +81,7 @@ module.exports = React.createClass({
     var tile = null;
     var entries = this.state.feed;
     var row = entries[parseInt(this.props.item, 10) - 1] || null;
+    var image;
 
     if (!row) {
       return null;
@@ -112,7 +118,7 @@ module.exports = React.createClass({
 
     styles.text = {
       color: "#FAFAFA",
-      padding: 0,
+      padding: "0 0.3em 0 0.3em",
       margin: 0,
       textDecoration: "none"
     };
@@ -122,15 +128,18 @@ module.exports = React.createClass({
       paddingTop: "0.3em"
     });
 
-    if (!meta.flexImage) {
-      // TODO: handle articles without an image
-      return null;
+    if (meta.flexImage) {
+      image = (<a href={row.link} className="medium__link"><img src={meta.flexImage.replace("__WIDTH__", depx(styles.inner.width)).replace("__HEIGHT__", depx(styles.inner.height))} className="medium__image" /></a>);
+    } else {
+
+      image = "";
+      // TODO: add styles to the aside to make the box more... medium-ish?
     }
 
     tile = (
       <article key={"gdrive-medium-" + row.id} style={styles.tile} className={this.props.className}>
         <div style={styles.inner}>
-          <a href={row.link} className="medium__link"><img src={meta.flexImage.replace("__WIDTH__", depx(styles.inner.width)).replace("__HEIGHT__", depx(styles.inner.height))} className="medium__image" /></a>
+          {image}
           <aside className="medium__about" style={styles.aside}>
             <p style={styles.text}><a href={row.link} style={styles.text}>&quot;{meta.snip}&quot;</a></p>
             <p style={styles.source}><a href={row.link} style={styles.source}>&mdash; {row.title}</a></p>

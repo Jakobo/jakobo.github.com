@@ -2,6 +2,7 @@ var React = require("react");
 
 // constants
 var ghc = require("../constants/gdrive-github");
+var WBR_TOKEN = "__SPLIT__";
 
 // Data
 var GHStore = require("../stores/gdrive-github");
@@ -90,6 +91,8 @@ module.exports = React.createClass({
       return null;
     }
 
+    var text = row.text.replace(/([\W])/g, "$1" + WBR_TOKEN);
+
     var styles = tileCSS.css(this.state.layout.px, this.props["tile-width"], this.props["tile-height"]);
 
     styles.inner = Object.assign(styles.inner, {
@@ -131,7 +134,11 @@ module.exports = React.createClass({
         <div style={styles.inner}>
           <div className={getClassFromText(row.text)} style={styles.icon}></div>
           <p style={styles.textBlob}>
-            <a href={row.link} style={styles.link}>{row.text}</a>
+            <a href={row.link} style={styles.link}>
+              {text.split(WBR_TOKEN).map(function(str, i) {
+                return <span key={i}>{str}<wbr/></span>;
+              })}
+            </a>
           </p>
         </div>
       </article>

@@ -19,6 +19,8 @@ var watch = require("gulp-watch");
 var plumber = require("gulp-plumber");
 var streamProxy = require("gulp-streamify");
 var iff = require("gulp-if");
+var add = require("gulp-add-src");
+var concat = require("gulp-concat");
 
 // Server
 var browserSync = require("browser-sync");
@@ -34,7 +36,9 @@ gulp.task("cleanCSS", function(cb) {
 });
 
 // the meta-build task
-gulp.task("build-all", ["js", "css", "octicons"]);
+gulp.task("build-all", ["js", "css"]);
+
+gulp.task("css", ["sass", "octicons", "font-awesome"]);
 
 // js from a single entry point using browserify
 gulp.task("js", ["cleanJS"], function() {
@@ -48,19 +52,27 @@ gulp.task("js", ["cleanJS"], function() {
     .pipe(reload({ stream: true }));
 });
 
-gulp.task("css", ["cleanCSS"], function() {
+gulp.task("sass", ["cleanCSS"], function() {
   return gulp.src("./_sass/app.scss")
     .pipe(plumber())
     .pipe(sass())
-    .pipe(minifyCSS())
+    .pipe(add("./_vendor/github-octicons/octicons.css"))
+    .pipe(concat("app.css"))
+    .pipe(iff(IS_PRODUCTION, minifyCSS()))
     .pipe(gulp.dest("./css"))
     .pipe(reload({ stream: true }));
 });
 
-gulp.task("octicons", ["css"], function() {
-  return gulp.src("./_vendor/github-octicons/octicons.+(ttf|eot|svg|woff)")
-    .pipe(gulp.dest("./css"))
+gulp.task("octicons", ["sass"], function() {
+  return gulp.src("./_vendor/github-octicons/octicons.+(ttf|eot|svg|woff|woff2|otf)")
+    .pipe(gulp.dest("./css"));
 });
+
+gulp.task("font-awesome", ["sass"], function() {
+  // the destination needs to be reflected in $fa-font-path of app.scss
+  return gulp.src("./_vendor/font-awesome/fonts/*+(ttf|eot|svg|woff|woff2|otf)")
+    .pipe(gulp.dest("./css/fa"));
+})
 
 // build will exit on complete
 gulp.task("build", ["build-all"], function() {

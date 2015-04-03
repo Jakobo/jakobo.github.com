@@ -1,6 +1,9 @@
 @import "normalize";
 @import "browsers";
-@import "../_vendor/github-octicons/octicons.css";
+
+$fa-css-prefix: "x-fa";
+$fa-font-path: "fa";
+@import "../_vendor/font-awesome/scss/font-awesome";
 
 body {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;

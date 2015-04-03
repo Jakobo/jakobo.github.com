@@ -17,10 +17,12 @@ relationship made sense here.
 
 var React = require("react");
 var Isotope = require("isotope-layout");
+require("isotope-packery");
 
 var Github = require("./gdrive-github");
 var FiveHundredPx = require("./gdrive-500px");
 var Medium = require("./gdrive-medium");
+var Title = require("./title");
 
 var tileStore = require("../stores/tile-layout");
 var TileActions = require("../actions/tile");
@@ -33,7 +35,7 @@ module.exports = React.createClass({
     if (!this.isotope) {
       this.isotope = new Isotope(this.refs.tiles.getDOMNode(), {
        item_selector: ".tile",
-       layoutMode: "masonry"
+       layoutMode: "packery"
      });
     }
 
@@ -62,14 +64,12 @@ module.exports = React.createClass({
   Title tile 2w x 1h
   Vcard tile 1w x 1h
   LinkedIn Tile x3
-
-  Top level problems:
-  Select better isotope fill for this pattern
   */
 
   render: function() {
     return (
       <section ref="tiles">
+        <Title tile-width="2" tile-height="1" className="tile" />
         <Github source="10AzPn7DVSM-C-dlvffqD6M2_laj0KCullSExDz6ssoo"
           item="1" tile-width="1" tile-height="1" className="tile" />
         <FiveHundredPx source="1aETLR_5FGF2yLqxx32Voqz1g5NxA1yMaLiVz98TZyRk"
