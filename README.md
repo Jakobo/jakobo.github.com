@@ -5,6 +5,13 @@ Documentation for something like this is more notes to myself than anything else
 
 Philosophically, the personal web page is changing. Felocity.com started out as a weblog, but as a technically oriented one, things got very stale very fast. So I took my Movable Type to Wordpress to a home grown PHP system to node.js on Amazon Web Services to a jekyll site on GitHub pages. With the reinvention of blogging platforms, I felt I could finally toss aside many of my legacy technical articles and drop the "blog" part of the site all together. This gave me an idea: I'd like to take this back to the "portal" days, where I can encapsulate, link to, and boost the google-bility of my online identity.
 
+```bash
+npm install -g gulp # uses gulp
+npm install         # all the things
+gulp watch          # develop (uses BrowserSync with live reloading)
+gulp build          # production (makes minify!)
+```
+
 ## React
 The site is built on React. It's the closest thing we have to web components that works in a large number of browsers. I know, Polymer is going to change the world. It probably will. I wanted to learn React. There's a good number of companies looking at it, and being familiar with the virtual DOM, the glorified global EventEmitter, and the general workflow will help in the future.
 
@@ -28,6 +35,7 @@ There is a `_vendor` directory. These are things that are not loadable through `
 
 ## Other Important Directories / files
 
+* `CNAME`: Makes the .com world go round
 * `/t`: This is for short links to presentations and talks. By creating github pages here, it's possible to have a link such as "www.felocity.com/t/foo" and control the redirect experience to wherever the best spot is (Presentate, Speaker Deck, etc).
 * `/vcard`: My old business cards still point to a vcard URL. 404s are best avoided if we can help it.
 * `404.html`: Speaking of 404s...
