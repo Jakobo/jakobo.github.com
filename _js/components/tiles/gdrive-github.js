@@ -10,6 +10,7 @@ var tileStore = require("../../stores/tile-layout");
 var IsotopeActions = require("../../actions/isotope");
 
 // GH CSS
+var sizer = require("../../styles/fonts/size");
 var tileCSS = require("../../common/tiles");
 var overlay = require("../../styles/colors/overlay")(ghc.BASE_COLOR);
 var colors = {
@@ -92,6 +93,7 @@ module.exports = React.createClass({
     }
 
     var styles = tileCSS.css(this.state.layout.px, this.props["tile-width"], this.props["tile-height"]);
+    var size = sizer(this.state.layout.px, this.props["tile-width"]);
 
     styles.inner = Object.assign(styles.inner, {
       backgroundColor: colors.bg
@@ -121,10 +123,10 @@ module.exports = React.createClass({
       height: "100%",
       display: "block",
       boxSizing: "border-box",
-      padding: "0.5em",
+      padding: size(1),
       color: colors.text,
       textDecoration: "none",
-      fontSize: "1.5em"
+      fontSize: size(1.5)
     };
 
     tile = (

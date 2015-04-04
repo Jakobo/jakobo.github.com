@@ -7,6 +7,7 @@ var tileStore = require("../../stores/tile-layout");
 
 var IsotopeActions = require("../../actions/isotope");
 
+var sizer = require("../../styles/fonts/size");
 var tileCSS = require("../../common/tiles");
 
 var WIDTH_TOKEN = "__WIDTH__";
@@ -90,6 +91,7 @@ module.exports = React.createClass({
     var meta = parseSnippet(row.snippet);
 
     var styles = tileCSS.css(this.state.layout.px, this.props["tile-width"], this.props["tile-height"]);
+    var size = sizer(this.state.layout.px, this.props["tile-width"]);
 
     styles.aside = {
       backgroundColor: "rgba(0, 0, 0, 0.8)",
@@ -98,7 +100,7 @@ module.exports = React.createClass({
       display: "block",
       bottom: 0,
       left: 0,
-      padding: "0.3em 0.3em 1em 0.3em",
+      padding: size.many(0.3, 0.3, 0.3, 0.3),
       boxSize: "border-box"
     };
 
@@ -110,22 +112,25 @@ module.exports = React.createClass({
 
     styles.link = {
       display: "block",
-      paddingBottom: "0.5em",
-      fontSize: "2em",
+      fontSize: size(1),
       color: "#FAFAFA",
       textDecoration: "none"
     };
 
     styles.text = {
       color: "#FAFAFA",
-      padding: "0 0.3em 0 0.3em",
+      padding: size.many(0, 0.3, 0, 0.3),
       margin: 0,
       textDecoration: "none"
     };
 
+    styles.link = Object.assign({}, styles.text, {
+      padding: 0
+    });
+
     styles.source = Object.assign({}, styles.text, {
       color: "#C4C4C4",
-      paddingTop: "0.3em"
+      paddingTop: size(0.3)
     });
 
     if (meta.flexImage) {
@@ -141,7 +146,7 @@ module.exports = React.createClass({
         <div style={styles.inner}>
           {image}
           <aside className="medium__about" style={styles.aside}>
-            <p style={styles.text}><a href={row.link} style={styles.text}>&quot;{meta.snip}&quot;</a></p>
+            <p style={styles.text}><a href={row.link} style={styles.link}>&quot;{meta.snip}&quot;</a></p>
             <p style={styles.source}><a href={row.link} style={styles.source}>&mdash; {row.title}</a></p>
           </aside>
         </div>

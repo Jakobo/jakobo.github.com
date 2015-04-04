@@ -9,6 +9,7 @@ var tileStore = require("../../stores/tile-layout");
 var IsotopeActions = require("../../actions/isotope");
 
 // LI CSS
+var sizer = require("../../styles/fonts/size");
 var tileCSS = require("../../common/tiles");
 
 var overlay = require("../../styles/colors/overlay")(LIConstants.BRAND_COLOR);
@@ -59,6 +60,7 @@ module.exports = React.createClass({
     }
 
     var styles = tileCSS.css(this.state.layout.px, this.props["tile-width"], this.props["tile-height"]);
+    var size = sizer(this.state.layout.px, this.props["tile-width"]);
 
     styles.inner = Object.assign({}, styles.inner, {
       backgroundColor: colors.bg,
@@ -92,7 +94,7 @@ module.exports = React.createClass({
       padding: "0.5em",
       color: colors.text,
       textDecoration: "none",
-      fontSize: "1.5em"
+      fontSize: size(1.5)
     };
 
     tile = (

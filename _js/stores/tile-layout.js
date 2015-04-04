@@ -27,9 +27,11 @@ function recalculate() {
   _data.viewportHeight = height;
   _data.orientation = (width > height) ? tileConstants.TILE_LANDSCAPE : tileConstants.TILE_PORTRAIT;
 
+  var constants = (width > height) ? tileConstants.landscape : tileConstants.portrait;
+
   // now, starting at 100 (percent) of width, begin figuring out what percent
   // of the width will fit that is also an easily divisible percentage
-  while ((width * (percentage / 100) > tileConstants.maxTileWidth) || (100 % percentage !== 0)) {
+  while ((width * (percentage / 100) > constants.maxTileWidth) || (100 % percentage !== 0)) {
     percentage -= 0.25;
   }
 
@@ -37,8 +39,14 @@ function recalculate() {
     percentage = 1; // If nothing works, settle on 1%. That means you have an unfairly large screen
   }
 
-  _data.px = Math.floor(width * (percentage / 100));
-  _data.percent = percentage;
+  // handle the min-scenario
+  if (width * (percentage / 100) > constants.minTileWidth) {
+    _data.px = Math.floor(width * (percentage / 100));
+    _data.percent = percentage;
+  } else {
+    _data.px = constants.minTileWidth;
+    _data.percent = Math.floor(_data.px / width);
+  }
 
   tileLayoutStore.emitChange();
 }

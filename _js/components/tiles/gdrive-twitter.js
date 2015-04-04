@@ -9,6 +9,7 @@ var tileStore = require("../../stores/tile-layout");
 var IsotopeActions = require("../../actions/isotope");
 
 // TW CSS
+var sizer = require("../../styles/fonts/size");
 var tileCSS = require("../../common/tiles");
 
 function getState(key) {
@@ -52,6 +53,7 @@ module.exports = React.createClass({
     }
 
     var styles = tileCSS.css(this.state.layout.px, this.props["tile-width"], this.props["tile-height"]);
+    var size = sizer(this.state.layout.px, this.props["tile-width"]);
 
     styles.inner = Object.assign({}, styles.inner, {
       backgroundColor: TWConstants.GREY_COLOR,
@@ -85,7 +87,7 @@ module.exports = React.createClass({
       padding: "0.5em",
       color: TWConstants.WHITE_COLOR,
       textDecoration: "none",
-      fontSize: "1.5em"
+      fontSize: size(1.5)
     };
 
     tile = (

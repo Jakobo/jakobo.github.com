@@ -2,6 +2,7 @@ var React = require("react");
 var tileStore = require("../../stores/tile-layout");
 var tileCSS = require("../../common/tiles");
 var palette = require("../../styles/colors/palette");
+var sizer = require("../../styles/fonts/size");
 
 function getState(key) {
   var layout = tileStore.get();
@@ -25,26 +26,35 @@ module.exports = React.createClass({
   },
   render: function() {
     var styles = tileCSS.css(this.state.layout.px, this.props["tile-width"], this.props["tile-height"]);
+    var size = sizer(this.state.layout.px, this.props["tile-width"]);
     var tile = null;
 
     styles.inner = Object.assign({}, styles.inner, {
       backgroundColor: palette.base.light,
       color: palette.base.xlight,
-      paddingLeft: "0.5em",
-      paddingRight: "0.5em"
+      paddingLeft: size(0.5),
+      paddingRight: size(0.5)
     });
+
+    styles.head = {
+      fontSize: size(1)
+    };
+
+    styles.subhead = {
+      fontSize: size(0.5)
+    };
 
     styles.list = {
       listStyleType: "none",
       textIndent: 0,
       margin: 0,
       padding: 0,
-      fontSize: "2em"
+      fontSize: size(1)
     };
 
     styles.listItem = {
       display: "inline",
-      padding: "0 0 0 1em"
+      padding: size.many(0, 0, 0, 0.5)
     };
 
     styles.firstListItem = Object.assign({}, styles.listItem, {
@@ -58,8 +68,8 @@ module.exports = React.createClass({
     tile = (
       <article style={styles.tile} className={this.props.className}>
         <div style={styles.inner}>
-          <h1 title="Manager &mdash; Developer &mdash; Loves a Good Pen">Rudolph Jakob Heuser</h1>
-          <p>
+          <h1 style={styles.head} title="Manager &mdash; Developer &mdash; Loves a Good Pen">Rudolph Jakob Heuser</h1>
+          <p style={styles.subhead}>
             A playground of ideas, experiences, and technologies.
           </p>
           <ul style={styles.list}>
