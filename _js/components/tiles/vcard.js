@@ -39,11 +39,19 @@ module.exports = React.createClass({
       textDecoration: "none"
     };
 
+    // anti-spam from http://superuser.com/questions/235937/does-e-mail-address-obfuscation-actually-work
+    styles.antiSpam = {
+      display: "none"
+    };
+
     tile = (
       <article style={styles.tile} className={this.props.className}>
         <div style={styles.inner} className="h-card">
           <p>
             &copy; 2015 <a className="p-name u-url" href="http://www.felocity.com" style={styles.link}>Rudolph Jakob Heuser</a> (<span className="p-nickname p-additional-name">Jakob</span>)
+          </p>
+          <p>
+            Want to get in touch? jakob<span style={styles.antiSpam}>fizzbuzz</span>@felocity.com
           </p>
         </div>
       </article>

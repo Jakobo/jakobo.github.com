@@ -23,6 +23,7 @@ var Github = require("./tiles/gdrive-github");
 var FiveHundredPx = require("./tiles/gdrive-500px");
 var Medium = require("./tiles/gdrive-medium");
 var LinkedIn = require("./tiles/gdrive-linkedin");
+var Twitter = require("./tiles/gdrive-twitter");
 var Title = require("./tiles/title");
 var Vcard = require("./tiles/vcard");
 
@@ -35,7 +36,8 @@ var source = {
   github: "10AzPn7DVSM-C-dlvffqD6M2_laj0KCullSExDz6ssoo",
   fpx: "1aETLR_5FGF2yLqxx32Voqz1g5NxA1yMaLiVz98TZyRk",
   medium: "1RXKjQ57k07-GEhctT4MHWflxK840ENcsM_MXzuKiKLw",
-  linkedin: "1liN0-GVlAuRW1CFvkDSnti7gvZrqIquLh1woNvLL_cU"
+  linkedin: "1liN0-GVlAuRW1CFvkDSnti7gvZrqIquLh1woNvLL_cU",
+  twitter: "1QZRRIzZOKobCUqYfMF8c0o8xj13RC2TkyGlT1FX6lnw"
 };
 
 module.exports = React.createClass({
@@ -79,6 +81,7 @@ module.exports = React.createClass({
         <LinkedIn source={source.linkedin} item="1" tile-width="1" tile-height="1" className="tile" />
         <Github source={source.github} item="3" tile-width="1" tile-height="1" className="tile" />
         <Medium source={source.medium} item="2" tile-width="1" tile-height="1" className="tile" />
+        <Twitter source={source.twitter} item="1" tile-width="1" tile-height="1" className="tile" />
         <Github source={source.github} item="4" tile-width="1" tile-height="1" className="tile" />
         <LinkedIn source={source.linkedin} item="2" tile-width="1" tile-height="1" className="tile" />
         <Github source={source.github} item="5" tile-width="1" tile-height="1" className="tile" />

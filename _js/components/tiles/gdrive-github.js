@@ -91,8 +91,6 @@ module.exports = React.createClass({
       return null;
     }
 
-    var text = row.text.replace(/([\W])/g, "$1" + WBR_TOKEN);
-
     var styles = tileCSS.css(this.state.layout.px, this.props["tile-width"], this.props["tile-height"]);
 
     styles.inner = Object.assign(styles.inner, {
@@ -135,7 +133,7 @@ module.exports = React.createClass({
           <div className={getClassFromText(row.text)} style={styles.icon}></div>
           <p style={styles.textBlob}>
             <a href={row.link} style={styles.link}>
-              {text.split(WBR_TOKEN).map(function(str, i) {
+              {row.text.replace(/([\W])/g, "$1" + "__SPLIT__").split("__SPLIT__").map(function(str, i) {
                 return <span key={i}>{str}<wbr/></span>;
               })}
             </a>
