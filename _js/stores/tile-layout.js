@@ -1,3 +1,5 @@
+"use strict";
+
 var EventEmitter = require("events").EventEmitter;
 var Browser = require("../dispatchers/browser");
 var tileConstants = require("../constants/tiles");
@@ -12,13 +14,15 @@ var _data = {
   px: 0
 };
 
+var tileLayoutStore;
+
 function recalculate() {
   var height = window.innerHeight;
   var width = window.innerWidth;
   var percentage = 100;
 
   // no change
-  if (_data.viewportHeight == height && _data.viewportWidth == width) {
+  if (_data.viewportHeight === height && _data.viewportWidth === width) {
     return;
   }
 
@@ -57,7 +61,7 @@ var debouncedRecalculate = debounce(function() {
   maxWait: 1000
 });
 
-var tileLayoutStore = Object.assign({}, EventEmitter.prototype, {
+tileLayoutStore = Object.assign({}, EventEmitter.prototype, {
   emitChange: function() {
     this.emit(tileConstants.CHANGE_TILE_LAYOUT);
   },
@@ -65,7 +69,7 @@ var tileLayoutStore = Object.assign({}, EventEmitter.prototype, {
     this.on(tileConstants.CHANGE_TILE_LAYOUT, callback);
   },
   removeChangeListener: function(callback) {
-    this.tileConstants(x500pxConstants.CHANGE_TILE_LAYOUT, callback);
+    this.tileConstants(tileConstants.CHANGE_TILE_LAYOUT, callback);
   },
   get: function() {
     window.setTimeout(function() {
@@ -78,7 +82,7 @@ var tileLayoutStore = Object.assign({}, EventEmitter.prototype, {
     // do what you need to do with payload and payload.action
     // update your data
     // call the emitChange() function when done
-    switch(payload.action.actionType) {
+    switch (payload.action.actionType) {
       case tileConstants.RECALCULATE_TILES:
         recalculate();
         break;

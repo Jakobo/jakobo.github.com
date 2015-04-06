@@ -1,7 +1,4 @@
-/*
-TODO someday
-- use a setInterval to query for new information on a semi-regular basis
-*/
+"use strict";
 
 var EventEmitter = require("events").EventEmitter;
 var Browser = require("../dispatchers/browser");
@@ -9,6 +6,7 @@ var gdrive = require("../common/gdrive");
 var TWConstants = require("../constants/gdrive-twitter");
 
 var _activity = {};
+var TWStore;
 
 // used to create a short numeric ID for a row based on its permalink
 var _lookup = {};
@@ -26,8 +24,7 @@ function loadData(key) {
       if (!row.id) {
         if (_lookup[row.link]) {
           row.id = _lookup[row.link];
-        }
-        else {
+        } else {
           row.id = ++rowId;
           _lookup[row.link] = row.id;
         }
@@ -41,7 +38,7 @@ function loadData(key) {
   });
 }
 
-var TWStore = Object.assign({}, EventEmitter.prototype, {
+TWStore = Object.assign({}, EventEmitter.prototype, {
   emitChange: function() {
     this.emit(TWConstants.CHANGE_TWITTER);
   },
@@ -74,7 +71,7 @@ var TWStore = Object.assign({}, EventEmitter.prototype, {
     // do what you need to do with payload and payload.action
     // update your data
     // call the emitChange() function when done
-    switch(payload.action.actionType) {
+    switch (payload.action.actionType) {
       case TWConstants.LOAD_TWITTER:
         loadData(payload.action.data);
         break;

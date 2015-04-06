@@ -1,3 +1,5 @@
+"use strict";
+
 var React = require("react");
 
 var PXStore = require("../../stores/gdrive-500px");
@@ -82,7 +84,10 @@ module.exports = React.createClass({
         <div style={styles.inner}>
           <a href={row.link} className="n500px__link"><img src={row.image} className="n500px__image" /></a>
           <aside className="n500px__about" style={styles.aside}>
-            <a href={row.link} style={styles.link}><span style={styles.title}>{row.title}</span><span style={styles.caption}>{row.caption}</span></a>
+            <a href={row.link} style={styles.link}>
+              <span style={styles.title}>{row.title}</span>
+              <span style={styles.caption}>{row.caption}</span>
+            </a>
           </aside>
         </div>
       </article>

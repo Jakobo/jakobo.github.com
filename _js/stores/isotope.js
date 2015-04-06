@@ -1,3 +1,5 @@
+"use strict";
+
 // Isotope Store is a pass-through store with no data
 
 var EventEmitter = require("events").EventEmitter;
@@ -19,7 +21,7 @@ var IsotopeStore = Object.assign({}, EventEmitter.prototype, {
     // do what you need to do with payload and payload.action
     // update your data
     // call the emitChange() function when done
-    switch(payload.action.actionType) {
+    switch (payload.action.actionType) {
       case IsotopeConstants.ISOTOPE_REDRAW:
         IsotopeStore.emitChange();
         break;

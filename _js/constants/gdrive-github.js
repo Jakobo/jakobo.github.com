@@ -1,6 +1,6 @@
 var keyMirror = require("react/lib/keyMirror");
 
-module.exports = Object.assign({},{
+module.exports = Object.assign({}, {
   types: {
     new: [/created repository/, /created branch/],
     comment: [/commented on/],

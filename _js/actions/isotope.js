@@ -1,5 +1,7 @@
-var Browser = require('../dispatchers/browser');
-var IsotopeConstants = require('../constants/isotope');
+"use strict";
+
+var Browser = require("../dispatchers/browser");
+var IsotopeConstants = require("../constants/isotope");
 
 var Actions = {
   rearrange: function(data) {

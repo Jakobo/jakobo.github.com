@@ -1,5 +1,7 @@
-var Browser = require('../dispatchers/browser');
-var TileConstants = require('../constants/tiles');
+"use strict";
+
+var Browser = require("../dispatchers/browser");
+var TileConstants = require("../constants/tiles");
 
 var Actions = {
   recalculate: function(data) {

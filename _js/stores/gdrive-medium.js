@@ -1,7 +1,4 @@
-/*
-TODO someday
-- use a setInterval to query for new information on a semi-regular basis
-*/
+"use strict";
 
 var EventEmitter = require("events").EventEmitter;
 var Browser = require("../dispatchers/browser");
@@ -9,6 +6,7 @@ var gdrive = require("../common/gdrive");
 var MedConstants = require("../constants/gdrive-medium");
 
 var _activity = {};
+var MedStore;
 
 // used to create a short numeric ID for a row based on its permalink
 var _lookup = {};
@@ -26,8 +24,7 @@ function loadData(key) {
       if (!row.id) {
         if (_lookup[row.link]) {
           row.id = _lookup[row.link];
-        }
-        else {
+        } else {
           row.id = ++rowId;
           _lookup[row.link] = row.id;
         }
@@ -41,7 +38,7 @@ function loadData(key) {
   });
 }
 
-var MedStore = Object.assign({}, EventEmitter.prototype, {
+MedStore = Object.assign({}, EventEmitter.prototype, {
   emitChange: function() {
     this.emit(MedConstants.CHANGE_MEDIUM);
   },
@@ -74,7 +71,7 @@ var MedStore = Object.assign({}, EventEmitter.prototype, {
     // do what you need to do with payload and payload.action
     // update your data
     // call the emitChange() function when done
-    switch(payload.action.actionType) {
+    switch (payload.action.actionType) {
       case MedConstants.LOAD_MEDIUM:
         loadData(payload.action.data);
         break;

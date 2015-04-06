@@ -1,3 +1,5 @@
+"use strict";
+
 // given a color, find the overlay
 
 var Chromath = require("chromath");
@@ -26,7 +28,7 @@ module.exports = function(x) {
       grey = Chromath.desaturate(color).toRGBObject().r;
       ratio = (altGrey > grey) ? altGrey / grey : grey / altGrey;
       shiftBy += percent;
-    } while(shiftBy <= 1 && ratio <= CONTRAST_RATIO);
+    } while (shiftBy <= 1 && ratio <= CONTRAST_RATIO);
   }
 
   if (ratio < 4.5) {

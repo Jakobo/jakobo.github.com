@@ -1,3 +1,5 @@
+"use strict";
+
 // determines a "now" color based on moving through the year
 var constants = require("../../constants/colors");
 var now = new Date();

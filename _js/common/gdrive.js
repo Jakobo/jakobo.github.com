@@ -1,11 +1,23 @@
-// https://spreadsheets.google.com/feeds/list/{KEY}/1/public/values?alt=json-in-script&callback=XNXX
-// helper module for retrieving data from a feed generated google spreadsheet
-// (sometimes, this is the only way to get RSS to JSON...)
-// ( ( I'm looking @ you, medium ) )
+"use strict";
 
-// examples
-// https://spreadsheets.google.com/feeds/list/10AzPn7DVSM-C-dlvffqD6M2_laj0KCullSExDz6ssoo/1/public/values?alt=json-in-script&callback=XNXX
-// https://spreadsheets.google.com/feeds/list/1aETLR_5FGF2yLqxx32Voqz1g5NxA1yMaLiVz98TZyRk/1/public/values?alt=json-in-script&callback=XNXX
+/*
+Source URL:
+https://spreadsheets.google.com/feeds/list/{KEY}/1/public/values
+  ?alt=json-in-script&callback=XNXX
+
+helper module for retrieving data from a feed generated google spreadsheet
+(sometimes, this is the only way to get RSS to JSON...)
+( ( I'm looking @ you, medium ) )
+
+Some sample results:
+https://spreadsheets.google.com/feeds/list/
+  10AzPn7DVSM-C-dlvffqD6M2_laj0KCullSExDz6ssoo/1/public/values
+  ?alt=json-in-script&callback=XNXX
+
+https://spreadsheets.google.com/feeds/list/
+  1aETLR_5FGF2yLqxx32Voqz1g5NxA1yMaLiVz98TZyRk/1/public/values
+  ?alt=json-in-script&callback=XNXX
+*/
 
 var jsonp = require("jsonp");
 
@@ -35,14 +47,18 @@ module.exports = function(key, cb) {
   return jsonp(url, {
     param: "callback"
   }, function(err, data) {
-    if (err) return cb(err);
+    if (err) {
+      return cb(err);
+    }
 
     var results = [];
 
     data.feed.entry.forEach(function(row) {
       var resultRow = {};
       for (var column in row) {
-        if (!isGsx(column)) continue;
+        if (!isGsx(column)) {
+          continue;
+        }
         resultRow[toHeading(column)] = toText(row[column]);
       }
       results.push(resultRow);
@@ -53,4 +69,4 @@ module.exports = function(key, cb) {
 
     return cb(null, results);
   });
-}
+};

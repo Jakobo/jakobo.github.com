@@ -1,3 +1,5 @@
+"use strict";
+
 var React = require("react");
 
 var ghc = require("../../constants/gdrive-github");
@@ -17,15 +19,39 @@ var colors = {
 };
 
 var githubClassMatch = {
-  comment: { r: / commented on /, c: "octicon-comment-discussion" },
-  issue: { r: / opened issue /, c: "octicon-bug" },
-  push: { r: / pushed to /, c: "octicon-repo-push" },
-  branch: { r: / created branch /, c: "octicon-git-branch" },
-  pr: { r: / opened pull request /, c: "octicon-git-pull-request" },
-  fork: { r: / forked /, c: "octicon-repo-forked" },
-  create: { r: / created repository /, c: "octicon-repo" },
-  close: { r: / closed /, c: "octicon-x" }
-}
+  comment: {
+    r: / commented on /,
+    c: "octicon-comment-discussion"
+  },
+  issue: {
+    r: / opened issue /,
+    c: "octicon-bug"
+  },
+  push: {
+    r: / pushed to /,
+    c: "octicon-repo-push"
+  },
+  branch: {
+    r: / created branch /,
+    c: "octicon-git-branch"
+  },
+  pr: {
+    r: / opened pull request /,
+    c: "octicon-git-pull-request"
+  },
+  fork: {
+    r: / forked /,
+    c: "octicon-repo-forked"
+  },
+  create: {
+    r: / created repository /,
+    c: "octicon-repo"
+  },
+  close: {
+    r: / closed /,
+    c: "octicon-x"
+  }
+};
 
 function getClassFromText(text) {
   var noMatchClass = "mega-octicon octicon-mark-github";
@@ -82,7 +108,7 @@ module.exports = React.createClass({
     }
 
     var tile = null;
-    var entries = dedupe(this.state.feed, 'text');
+    var entries = dedupe(this.state.feed, "text");
     var row = entries[parseInt(this.props.item, 10) - 1] || null;
 
     if (!row) {

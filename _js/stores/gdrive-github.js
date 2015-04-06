@@ -1,7 +1,4 @@
-/*
-TODO someday
-- use a setInterval to query for new information on a semi-regular basis
-*/
+"use strict";
 
 var EventEmitter = require("events").EventEmitter;
 
@@ -10,6 +7,7 @@ var gdrive = require("../common/gdrive");
 var GithubConstants = require("../constants/gdrive-github");
 
 var _activity = {};
+var GitHubStore;
 
 // used to create a short numeric ID for a row based on its permalink
 var _lookup = {};
@@ -27,8 +25,7 @@ function loadData(key) {
       if (!row.id) {
         if (_lookup[row.link]) {
           row.id = _lookup[row.link];
-        }
-        else {
+        } else {
           row.id = ++rowId;
           _lookup[row.link] = row.id;
         }
@@ -42,7 +39,7 @@ function loadData(key) {
   });
 }
 
-var GitHubStore = Object.assign({}, EventEmitter.prototype, {
+GitHubStore = Object.assign({}, EventEmitter.prototype, {
   emitChange: function() {
     this.emit(GithubConstants.CHANGE_GITHUB);
   },
@@ -75,7 +72,7 @@ var GitHubStore = Object.assign({}, EventEmitter.prototype, {
     // do what you need to do with payload and payload.action
     // update your data
     // call the emitChange() function when done
-    switch(payload.action.actionType) {
+    switch (payload.action.actionType) {
       case GithubConstants.LOAD_GITHUB:
         loadData(payload.action.data);
         break;

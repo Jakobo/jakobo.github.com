@@ -1,3 +1,5 @@
+"use strict";
+
 var React = require("react");
 
 var TWConstants = require("../../constants/gdrive-twitter");

@@ -1,3 +1,5 @@
+"use strict";
+
 var outerStyles = require("../styles/tiles/outer");
 var innerStyles = require("../styles/tiles/inner");
 var border = require("../constants/tiles").tileBorder;
@@ -25,7 +27,7 @@ function css(size, width, height) {
       height: (actualHeight - border) + "px",
       margin: trbl(border, "px")
     })
-  }
+  };
   return styles;
 }
 

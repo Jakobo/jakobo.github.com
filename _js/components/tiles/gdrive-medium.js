@@ -1,3 +1,5 @@
+"use strict";
+
 var React = require("react");
 var $ = require("jquery");
 
@@ -25,22 +27,11 @@ function depx(val) {
 }
 
 function parseSnippet(html) {
-  /*
-  <div class="medium-feed-item">
-    <p class="medium-feed-image">
-      <a href="https://medium.com/@jakob/i-m-sorry-i-won-t-do-your-take-home-coding-exercise-3b74ba34928a">
-        <img src="https://d262ilb51hltx0.cloudfront.net/fit/c/600/200/1*crPfo4yZHGJO7UGbMhT68g.jpeg" width="600" height="200">
-      </a>
-    </p>
-    <p class="medium-feed-snippet">There are some great techniques to improve the quality of candidates in your interview pipeline. Giving them a take home project isn&#8217;t one&#8230;</p>
-    <p class="medium-feed-link">
-      <a href="https://medium.com/@jakob/i-m-sorry-i-won-t-do-your-take-home-coding-exercise-3b74ba34928a">Continue reading on Medium »</a>
-    </p>
-  </div>
-  */
   var $node = $("<div>").append(html);
   var $img = $(".medium-feed-image img", $node).eq(0);
   var snippet = $(".medium-feed-snippet", $node).eq(0).html();
+  var find = mConstants.DYNAMIC_IMAGE.find;
+  var replaceWith = mConstants.DYNAMIC_IMAGE.replaceWith;
 
   if (!$img.length) {
     $img = $('<img src="' + mConstants.GENERIC_IMAGE + '" />');
@@ -49,7 +40,7 @@ function parseSnippet(html) {
   return {
     snip: snippet,
     originalImage: $img.attr("src"),
-    flexImage: $img.attr("src").replace(mConstants.DYNAMIC_IMAGE.find, mConstants.DYNAMIC_IMAGE.replaceWith)
+    flexImage: $img.attr("src").replace(find, replaceWith)
   };
 }
 
@@ -131,11 +122,13 @@ module.exports = React.createClass({
     });
 
     if (meta.flexImage) {
-      image = (<a href={row.link} className="medium__link"><img src={meta.flexImage.replace(mConstants.WIDTH_TOKEN, depx(styles.inner.width)).replace(mConstants.HEIGHT_TOKEN, depx(styles.inner.height))} className="medium__image" /></a>);
+      image = (<a href={row.link} className="medium__link"><img src={
+        meta.flexImage
+          .replace(mConstants.WIDTH_TOKEN, depx(styles.inner.width))
+          .replace(mConstants.HEIGHT_TOKEN, depx(styles.inner.height))
+        } className="medium__image" /></a>);
     } else {
-
       image = "";
-      // TODO: add styles to the aside to make the box more... medium-ish?
     }
 
     tile = (

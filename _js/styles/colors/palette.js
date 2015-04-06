@@ -1,3 +1,5 @@
+"use strict";
+
 var rgb = require("../util/now").rgb;
 var Chromath = require("chromath");
 var overlay = require("./overlay");

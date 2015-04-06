@@ -1,3 +1,5 @@
+"use strict";
+
 /*
 The main felocity app is where the layout is driven from. The idea is to
 generate data as a series of tiles, letting Isotope do all the heavy lifting
@@ -45,7 +47,7 @@ module.exports = React.createClass({
   componentDidMount: function() {
     if (!this.isotope) {
       this.isotope = new Isotope(this.refs.tiles.getDOMNode(), {
-       item_selector: ".tile",
+       item_selector: ".tile", // eslint-disable-line camelcase
        layoutMode: "packery"
      });
     }

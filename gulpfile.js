@@ -42,7 +42,7 @@ gulp.task("css", ["sass", "octicons", "font-awesome"]);
 gulp.task("lint", ["eslint"]);
 
 // js from a single entry point using browserify
-gulp.task("js", ["cleanJS"], function() {
+gulp.task("js", ["cleanJS", "eslint"], function() {
   return browserify("./_js/app.js")
     .transform(babelify)
     .bundle()
@@ -75,12 +75,11 @@ gulp.task("font-awesome", ["sass"], function() {
     .pipe(gulp.dest("./css/fa"));
 });
 
-// TODO: Once eslint & gulp-eslint support JSX
 gulp.task("eslint", function() {
   return gulp.src(["_js/**/*.js"])
         .pipe(eslint())
         .pipe(eslint.formatEach("stylish", process.stderr))
-        .pipe(eslint.failOnError());
+        .pipe(iff(IS_PRODUCTION, eslint.failOnError()));
 });
 
 // build will exit on complete

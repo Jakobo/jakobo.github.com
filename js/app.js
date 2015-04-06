@@ -50,14 +50,24 @@ module.exports = Actions;
 },{"../constants/tiles":22,"../dispatchers/browser":23}],4:[function(require,module,exports){
 "use strict";
 
-// https://spreadsheets.google.com/feeds/list/{KEY}/1/public/values?alt=json-in-script&callback=XNXX
-// helper module for retrieving data from a feed generated google spreadsheet
-// (sometimes, this is the only way to get RSS to JSON...)
-// ( ( I'm looking @ you, medium ) )
+/*
+Source URL:
+https://spreadsheets.google.com/feeds/list/{KEY}/1/public/values
+  ?alt=json-in-script&callback=XNXX
 
-// examples
-// https://spreadsheets.google.com/feeds/list/10AzPn7DVSM-C-dlvffqD6M2_laj0KCullSExDz6ssoo/1/public/values?alt=json-in-script&callback=XNXX
-// https://spreadsheets.google.com/feeds/list/1aETLR_5FGF2yLqxx32Voqz1g5NxA1yMaLiVz98TZyRk/1/public/values?alt=json-in-script&callback=XNXX
+helper module for retrieving data from a feed generated google spreadsheet
+(sometimes, this is the only way to get RSS to JSON...)
+( ( I'm looking @ you, medium ) )
+
+Some sample results:
+https://spreadsheets.google.com/feeds/list/
+  10AzPn7DVSM-C-dlvffqD6M2_laj0KCullSExDz6ssoo/1/public/values
+  ?alt=json-in-script&callback=XNXX
+
+https://spreadsheets.google.com/feeds/list/
+  1aETLR_5FGF2yLqxx32Voqz1g5NxA1yMaLiVz98TZyRk/1/public/values
+  ?alt=json-in-script&callback=XNXX
+*/
 
 var jsonp = require("jsonp");
 
@@ -83,14 +93,18 @@ module.exports = function (key, cb) {
   return jsonp(url, {
     param: "callback"
   }, function (err, data) {
-    if (err) return cb(err);
+    if (err) {
+      return cb(err);
+    }
 
     var results = [];
 
     data.feed.entry.forEach(function (row) {
       var resultRow = {};
       for (var column in row) {
-        if (!isGsx(column)) continue;
+        if (!isGsx(column)) {
+          continue;
+        }
         resultRow[toHeading(column)] = toText(row[column]);
       }
       results.push(resultRow);
@@ -186,7 +200,7 @@ module.exports = React.createClass({
   componentDidMount: function componentDidMount() {
     if (!this.isotope) {
       this.isotope = new Isotope(this.refs.tiles.getDOMNode(), {
-        item_selector: ".tile",
+        item_selector: ".tile", // eslint-disable-line camelcase
         layoutMode: "packery"
       });
     }
@@ -374,14 +388,38 @@ var colors = {
 };
 
 var githubClassMatch = {
-  comment: { r: / commented on /, c: "octicon-comment-discussion" },
-  issue: { r: / opened issue /, c: "octicon-bug" },
-  push: { r: / pushed to /, c: "octicon-repo-push" },
-  branch: { r: / created branch /, c: "octicon-git-branch" },
-  pr: { r: / opened pull request /, c: "octicon-git-pull-request" },
-  fork: { r: / forked /, c: "octicon-repo-forked" },
-  create: { r: / created repository /, c: "octicon-repo" },
-  close: { r: / closed /, c: "octicon-x" }
+  comment: {
+    r: / commented on /,
+    c: "octicon-comment-discussion"
+  },
+  issue: {
+    r: / opened issue /,
+    c: "octicon-bug"
+  },
+  push: {
+    r: / pushed to /,
+    c: "octicon-repo-push"
+  },
+  branch: {
+    r: / created branch /,
+    c: "octicon-git-branch"
+  },
+  pr: {
+    r: / opened pull request /,
+    c: "octicon-git-pull-request"
+  },
+  fork: {
+    r: / forked /,
+    c: "octicon-repo-forked"
+  },
+  create: {
+    r: / created repository /,
+    c: "octicon-repo"
+  },
+  close: {
+    r: / closed /,
+    c: "octicon-x"
+  }
 };
 
 function getClassFromText(text) {
@@ -669,22 +707,11 @@ function depx(val) {
 }
 
 function parseSnippet(html) {
-  /*
-  <div class="medium-feed-item">
-    <p class="medium-feed-image">
-      <a href="https://medium.com/@jakob/i-m-sorry-i-won-t-do-your-take-home-coding-exercise-3b74ba34928a">
-        <img src="https://d262ilb51hltx0.cloudfront.net/fit/c/600/200/1*crPfo4yZHGJO7UGbMhT68g.jpeg" width="600" height="200">
-      </a>
-    </p>
-    <p class="medium-feed-snippet">There are some great techniques to improve the quality of candidates in your interview pipeline. Giving them a take home project isn&#8217;t one&#8230;</p>
-    <p class="medium-feed-link">
-      <a href="https://medium.com/@jakob/i-m-sorry-i-won-t-do-your-take-home-coding-exercise-3b74ba34928a">Continue reading on Medium »</a>
-    </p>
-  </div>
-  */
   var $node = $("<div>").append(html);
   var $img = $(".medium-feed-image img", $node).eq(0);
   var snippet = $(".medium-feed-snippet", $node).eq(0).html();
+  var find = mConstants.DYNAMIC_IMAGE.find;
+  var replaceWith = mConstants.DYNAMIC_IMAGE.replaceWith;
 
   if (!$img.length) {
     $img = $("<img src=\"" + mConstants.GENERIC_IMAGE + "\" />");
@@ -693,7 +720,7 @@ function parseSnippet(html) {
   return {
     snip: snippet,
     originalImage: $img.attr("src"),
-    flexImage: $img.attr("src").replace(mConstants.DYNAMIC_IMAGE.find, mConstants.DYNAMIC_IMAGE.replaceWith)
+    flexImage: $img.attr("src").replace(find, replaceWith)
   };
 }
 
@@ -783,9 +810,7 @@ module.exports = React.createClass({
         React.createElement("img", { src: meta.flexImage.replace(mConstants.WIDTH_TOKEN, depx(styles.inner.width)).replace(mConstants.HEIGHT_TOKEN, depx(styles.inner.height)), className: "medium__image" })
       );
     } else {
-
       image = "";
-      // TODO: add styles to the aside to make the box more... medium-ish?
     }
 
     tile = React.createElement(
@@ -1173,7 +1198,7 @@ module.exports = React.createClass({
         React.createElement(
           "p",
           null,
-          "© 2015 ",
+          "© 2015",
           React.createElement(
             "a",
             { className: "p-name u-url", href: "http://www.felocity.com", style: styles.link },
@@ -1360,11 +1385,6 @@ module.exports = BrowserDispatcher;
 },{"flux":51}],24:[function(require,module,exports){
 "use strict";
 
-/*
-TODO someday
-- use a setInterval to query for new information on a semi-regular basis
-*/
-
 var EventEmitter = require("events").EventEmitter;
 
 var Browser = require("../dispatchers/browser");
@@ -1372,6 +1392,7 @@ var gdrive = require("../common/gdrive");
 var x500pxConstants = require("../constants/gdrive-500px");
 
 var _activity = {};
+var x500pxStore;
 
 // used to create a short numeric ID for a row based on its permalink
 var _lookup = {};
@@ -1403,7 +1424,7 @@ function loadData(key) {
   });
 }
 
-var x500pxStore = Object.assign({}, EventEmitter.prototype, {
+x500pxStore = Object.assign({}, EventEmitter.prototype, {
   emitChange: function emitChange() {
     this.emit(x500pxConstants.CHANGE_500PX);
   },
@@ -1452,11 +1473,6 @@ module.exports = x500pxStore;
 },{"../common/gdrive":4,"../constants/gdrive-500px":16,"../dispatchers/browser":23,"events":42}],25:[function(require,module,exports){
 "use strict";
 
-/*
-TODO someday
-- use a setInterval to query for new information on a semi-regular basis
-*/
-
 var EventEmitter = require("events").EventEmitter;
 
 var Browser = require("../dispatchers/browser");
@@ -1464,6 +1480,7 @@ var gdrive = require("../common/gdrive");
 var GithubConstants = require("../constants/gdrive-github");
 
 var _activity = {};
+var GitHubStore;
 
 // used to create a short numeric ID for a row based on its permalink
 var _lookup = {};
@@ -1495,7 +1512,7 @@ function loadData(key) {
   });
 }
 
-var GitHubStore = Object.assign({}, EventEmitter.prototype, {
+GitHubStore = Object.assign({}, EventEmitter.prototype, {
   emitChange: function emitChange() {
     this.emit(GithubConstants.CHANGE_GITHUB);
   },
@@ -1544,17 +1561,13 @@ module.exports = GitHubStore;
 },{"../common/gdrive":4,"../constants/gdrive-github":17,"../dispatchers/browser":23,"events":42}],26:[function(require,module,exports){
 "use strict";
 
-/*
-TODO someday
-- use a setInterval to query for new information on a semi-regular basis
-*/
-
 var EventEmitter = require("events").EventEmitter;
 var Browser = require("../dispatchers/browser");
 var gdrive = require("../common/gdrive");
 var LIConstants = require("../constants/gdrive-linkedin");
 
 var _activity = {};
+var LIStore;
 
 // used to create a short numeric ID for a row based on its permalink
 var _lookup = {};
@@ -1586,7 +1599,7 @@ function loadData(key) {
   });
 }
 
-var LIStore = Object.assign({}, EventEmitter.prototype, {
+LIStore = Object.assign({}, EventEmitter.prototype, {
   emitChange: function emitChange() {
     this.emit(LIConstants.CHANGE_LINKEDIN);
   },
@@ -1635,17 +1648,13 @@ module.exports = LIStore;
 },{"../common/gdrive":4,"../constants/gdrive-linkedin":18,"../dispatchers/browser":23,"events":42}],27:[function(require,module,exports){
 "use strict";
 
-/*
-TODO someday
-- use a setInterval to query for new information on a semi-regular basis
-*/
-
 var EventEmitter = require("events").EventEmitter;
 var Browser = require("../dispatchers/browser");
 var gdrive = require("../common/gdrive");
 var MedConstants = require("../constants/gdrive-medium");
 
 var _activity = {};
+var MedStore;
 
 // used to create a short numeric ID for a row based on its permalink
 var _lookup = {};
@@ -1677,7 +1686,7 @@ function loadData(key) {
   });
 }
 
-var MedStore = Object.assign({}, EventEmitter.prototype, {
+MedStore = Object.assign({}, EventEmitter.prototype, {
   emitChange: function emitChange() {
     this.emit(MedConstants.CHANGE_MEDIUM);
   },
@@ -1726,17 +1735,13 @@ module.exports = MedStore;
 },{"../common/gdrive":4,"../constants/gdrive-medium":19,"../dispatchers/browser":23,"events":42}],28:[function(require,module,exports){
 "use strict";
 
-/*
-TODO someday
-- use a setInterval to query for new information on a semi-regular basis
-*/
-
 var EventEmitter = require("events").EventEmitter;
 var Browser = require("../dispatchers/browser");
 var gdrive = require("../common/gdrive");
 var TWConstants = require("../constants/gdrive-twitter");
 
 var _activity = {};
+var TWStore;
 
 // used to create a short numeric ID for a row based on its permalink
 var _lookup = {};
@@ -1768,7 +1773,7 @@ function loadData(key) {
   });
 }
 
-var TWStore = Object.assign({}, EventEmitter.prototype, {
+TWStore = Object.assign({}, EventEmitter.prototype, {
   emitChange: function emitChange() {
     this.emit(TWConstants.CHANGE_TWITTER);
   },
@@ -1868,13 +1873,15 @@ var _data = {
   px: 0
 };
 
+var tileLayoutStore;
+
 function recalculate() {
   var height = window.innerHeight;
   var width = window.innerWidth;
   var percentage = 100;
 
   // no change
-  if (_data.viewportHeight == height && _data.viewportWidth == width) {
+  if (_data.viewportHeight === height && _data.viewportWidth === width) {
     return;
   }
 
@@ -1913,7 +1920,7 @@ var debouncedRecalculate = debounce(function () {
   maxWait: 1000
 });
 
-var tileLayoutStore = Object.assign({}, EventEmitter.prototype, {
+tileLayoutStore = Object.assign({}, EventEmitter.prototype, {
   emitChange: function emitChange() {
     this.emit(tileConstants.CHANGE_TILE_LAYOUT);
   },
@@ -1921,7 +1928,7 @@ var tileLayoutStore = Object.assign({}, EventEmitter.prototype, {
     this.on(tileConstants.CHANGE_TILE_LAYOUT, callback);
   },
   removeChangeListener: function removeChangeListener(callback) {
-    this.tileConstants(x500pxConstants.CHANGE_TILE_LAYOUT, callback);
+    this.tileConstants(tileConstants.CHANGE_TILE_LAYOUT, callback);
   },
   get: function get() {
     window.setTimeout(function () {
