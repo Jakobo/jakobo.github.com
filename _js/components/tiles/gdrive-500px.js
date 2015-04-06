@@ -2,6 +2,7 @@ var React = require("react");
 
 var PXStore = require("../../stores/gdrive-500px");
 var tileStore = require("../../stores/tile-layout");
+
 var IsotopeActions = require("../../actions/isotope");
 
 var sizer = require("../../styles/fonts/size");

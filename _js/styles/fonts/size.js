@@ -1,11 +1,10 @@
-var EMISH = 0.06;
-var MIN_SIZE = 16; // look, anything smaller than 16px for copy is mean
+var constants = require("../../constants/fonts");
 
 module.exports = function(px, width) {
   var sizer = function(ems, pad) {
-    var size = Math.floor(((px * width) * EMISH) * ems);
-    if (!pad && size < MIN_SIZE) {
-      size = MIN_SIZE;
+    var size = Math.floor(((px * width) * constants.EMISH) * ems);
+    if (!pad && size < constants.MIN_SIZE) {
+      size = constants.MIN_SIZE;
     }
     return size + "px";
   };

@@ -1,5 +1,7 @@
 var React = require("react");
+
 var tileStore = require("../../stores/tile-layout");
+
 var tileCSS = require("../../common/tiles");
 var palette = require("../../styles/colors/palette");
 var sizer = require("../../styles/fonts/size");

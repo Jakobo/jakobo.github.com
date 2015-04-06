@@ -1,17 +1,14 @@
 var React = require("react");
 
-// constants
 var LIConstants = require("../../constants/gdrive-linkedin");
 
-// Data
 var LIStore = require("../../stores/gdrive-linkedin");
 var tileStore = require("../../stores/tile-layout");
+
 var IsotopeActions = require("../../actions/isotope");
 
-// LI CSS
 var sizer = require("../../styles/fonts/size");
 var tileCSS = require("../../common/tiles");
-
 var overlay = require("../../styles/colors/overlay")(LIConstants.BRAND_COLOR);
 var colors = {
   bg: overlay.color,

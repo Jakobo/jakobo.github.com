@@ -8,6 +8,7 @@ var rimraf = require("rimraf");
 var browserify = require("browserify");
 var babelify = require("babelify");
 var uglify = require("gulp-uglify");
+var eslint = require("gulp-eslint");
 
 // CSS
 var sass = require("gulp-sass");
@@ -35,10 +36,10 @@ gulp.task("cleanCSS", function(cb) {
   rimraf("./css", cb);
 });
 
-// the meta-build task
+// the meta-build tasks
 gulp.task("build-all", ["js", "css"]);
-
 gulp.task("css", ["sass", "octicons", "font-awesome"]);
+gulp.task("lint", ["eslint"]);
 
 // js from a single entry point using browserify
 gulp.task("js", ["cleanJS"], function() {
@@ -72,7 +73,15 @@ gulp.task("font-awesome", ["sass"], function() {
   // the destination needs to be reflected in $fa-font-path of app.scss
   return gulp.src("./_vendor/font-awesome/fonts/*+(ttf|eot|svg|woff|woff2|otf)")
     .pipe(gulp.dest("./css/fa"));
-})
+});
+
+// TODO: Once eslint & gulp-eslint support JSX
+gulp.task("eslint", function() {
+  return gulp.src(["_js/**/*.js"])
+        .pipe(eslint())
+        .pipe(eslint.formatEach("stylish", process.stderr))
+        .pipe(eslint.failOnError());
+});
 
 // build will exit on complete
 gulp.task("build", ["build-all"], function() {

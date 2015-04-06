@@ -1,6 +1,7 @@
 var React = require("react");
 var $ = require("jquery");
-var m = require("merge");
+
+var mConstants = require("../../constants/gdrive-medium");
 
 var MedStore = require("../../stores/gdrive-medium");
 var tileStore = require("../../stores/tile-layout");
@@ -9,10 +10,6 @@ var IsotopeActions = require("../../actions/isotope");
 
 var sizer = require("../../styles/fonts/size");
 var tileCSS = require("../../common/tiles");
-
-var WIDTH_TOKEN = "__WIDTH__";
-var HEIGHT_TOKEN = "__HEIGHT__";
-var NO_IMAGE_SRC = "https://d262ilb51hltx0.cloudfront.net/fit/c/600/200/1*5kLUGuMkF6oR_5bI2qS-aQ.jpeg";
 
 function getState(key) {
   var data = MedStore.get(key);
@@ -46,13 +43,13 @@ function parseSnippet(html) {
   var snippet = $(".medium-feed-snippet", $node).eq(0).html();
 
   if (!$img.length) {
-    $img = $('<img src="' + NO_IMAGE_SRC + '" />');
+    $img = $('<img src="' + mConstants.GENERIC_IMAGE + '" />');
   }
 
   return {
     snip: snippet,
     originalImage: $img.attr("src"),
-    flexImage: $img.attr("src").replace(/\/fit\/c\/[\d]+\/[\d]+\//, "/fit/c/" + WIDTH_TOKEN + "/" + HEIGHT_TOKEN + "/")
+    flexImage: $img.attr("src").replace(mConstants.DYNAMIC_IMAGE.find, mConstants.DYNAMIC_IMAGE.replaceWith)
   };
 }
 
@@ -94,7 +91,7 @@ module.exports = React.createClass({
     var size = sizer(this.state.layout.px, this.props["tile-width"]);
 
     styles.aside = {
-      backgroundColor: "rgba(0, 0, 0, 0.8)",
+      backgroundColor: mConstants.OVERLAY_COLOR,
       position: "absolute",
       width: "100%",
       display: "block",
@@ -113,12 +110,12 @@ module.exports = React.createClass({
     styles.link = {
       display: "block",
       fontSize: size(1),
-      color: "#FAFAFA",
+      color: mConstants.TEXT_COLOR,
       textDecoration: "none"
     };
 
     styles.text = {
-      color: "#FAFAFA",
+      color: mConstants.TEXT_COLOR,
       padding: size.many(0, 0.3, 0, 0.3),
       margin: 0,
       textDecoration: "none"
@@ -129,12 +126,12 @@ module.exports = React.createClass({
     });
 
     styles.source = Object.assign({}, styles.text, {
-      color: "#C4C4C4",
+      color: mConstants.CITE_COLOR,
       paddingTop: size(0.3)
     });
 
     if (meta.flexImage) {
-      image = (<a href={row.link} className="medium__link"><img src={meta.flexImage.replace("__WIDTH__", depx(styles.inner.width)).replace("__HEIGHT__", depx(styles.inner.height))} className="medium__image" /></a>);
+      image = (<a href={row.link} className="medium__link"><img src={meta.flexImage.replace(mConstants.WIDTH_TOKEN, depx(styles.inner.width)).replace(mConstants.HEIGHT_TOKEN, depx(styles.inner.height))} className="medium__image" /></a>);
     } else {
 
       image = "";

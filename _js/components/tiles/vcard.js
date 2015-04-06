@@ -1,7 +1,10 @@
 var React = require("react");
+
 var tileStore = require("../../stores/tile-layout");
+
 var tileCSS = require("../../common/tiles");
 var palette = require("../../styles/colors/palette");
+var sizer = require("../../styles/fonts/size");
 
 function getState(key) {
   var layout = tileStore.get();
@@ -25,13 +28,14 @@ module.exports = React.createClass({
   },
   render: function() {
     var styles = tileCSS.css(this.state.layout.px, this.props["tile-width"], this.props["tile-height"]);
+    var size = sizer(this.state.layout.px, this.props["tile-width"]);
     var tile = null;
 
     styles.inner = Object.assign({}, styles.inner, {
       backgroundColor: palette.base.light,
       color: palette.base.xlight,
-      paddingLeft: "0.5em",
-      paddingRight: "0.5em"
+      paddingLeft: size(0.5),
+      paddingRight: size(0.5)
     });
 
     styles.link = {
@@ -40,8 +44,10 @@ module.exports = React.createClass({
     };
 
     // anti-spam from http://superuser.com/questions/235937/does-e-mail-address-obfuscation-actually-work
+    // fuzzing from http://www.paulirish.com/2009/random-hex-color-code-snippets/
     styles.antiSpam = {
-      display: "none"
+      display: "none",
+      color: '#' + Math.floor(Math.random() * 16777215).toString(16)
     };
 
     tile = (
@@ -51,7 +57,7 @@ module.exports = React.createClass({
             &copy; 2015 <a className="p-name u-url" href="http://www.felocity.com" style={styles.link}>Rudolph Jakob Heuser</a> (<span className="p-nickname p-additional-name">Jakob</span>)
           </p>
           <p>
-            Want to get in touch? jakob<span style={styles.antiSpam}>fizzbuzz</span>@felocity.com
+            Want to get in touch? jakob<span style={styles.antiSpam}>notbot</span>@felocity.com
           </p>
         </div>
       </article>

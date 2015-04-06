@@ -9,7 +9,7 @@ module.exports = Object.assign({},{
     issue: [/opened issue/],
     close: [/closed pull request/, /closed issue/]
   },
-  BASE_COLOR: {r: 242, g: 242, b: 242}
+  BASE_COLOR: "#F2F2F2"
 },
 keyMirror({
   LOAD_GITHUB: null,

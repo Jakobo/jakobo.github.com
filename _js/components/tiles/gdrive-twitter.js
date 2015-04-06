@@ -1,14 +1,12 @@
 var React = require("react");
 
-// constants
 var TWConstants = require("../../constants/gdrive-twitter");
 
-// Data
 var TWStore = require("../../stores/gdrive-twitter");
 var tileStore = require("../../stores/tile-layout");
+
 var IsotopeActions = require("../../actions/isotope");
 
-// TW CSS
 var sizer = require("../../styles/fonts/size");
 var tileCSS = require("../../common/tiles");
 

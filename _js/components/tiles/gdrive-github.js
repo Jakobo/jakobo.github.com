@@ -1,15 +1,12 @@
 var React = require("react");
 
-// constants
 var ghc = require("../../constants/gdrive-github");
-var WBR_TOKEN = "__SPLIT__";
 
-// Data
 var GHStore = require("../../stores/gdrive-github");
 var tileStore = require("../../stores/tile-layout");
+
 var IsotopeActions = require("../../actions/isotope");
 
-// GH CSS
 var sizer = require("../../styles/fonts/size");
 var tileCSS = require("../../common/tiles");
 var overlay = require("../../styles/colors/overlay")(ghc.BASE_COLOR);
