@@ -87,6 +87,15 @@ gulp.task("build", ["build-all"], function() {
   process.exit(0);
 });
 
+// run a standalone server (useful for a final verification of a build)
+gulp.task("server", function() {
+  browserSync({
+    server: {
+      baseDir: './'
+    }
+  });
+});
+
 // watch starts a browser sync and retriggers builds
 gulp.task("watch", function() {
   watch("_js/**/*", function() {
