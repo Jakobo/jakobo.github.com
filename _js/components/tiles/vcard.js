@@ -56,8 +56,7 @@ module.exports = React.createClass({
       <article style={styles.tile} className={this.props.className}>
         <div style={styles.inner} className="h-card">
           <p>
-            &copy; 2015
-            <a className="p-name u-url" href="http://www.felocity.com" style={styles.link}>
+            &copy; 2015 <a className="p-name u-url" href="http://www.felocity.com" style={styles.link}>
               Rudolph Jakob Heuser
             </a> (<span className="p-nickname p-additional-name">Jakob</span>)
           </p>
