@@ -1,58 +1,118 @@
-var gulp = require('gulp');
+var IS_PRODUCTION = true;
 
-// util
-var filter = require('gulp-filter');
-var order = require('gulp-order');
-var tap = require('gulp-tap');
-var toBuffer = require('gulp-buffer');
+var gulp = require("gulp");
+var fs = require("fs");
+var rimraf = require("rimraf");
 
-// all types
-var concat = require('gulp-concat');
-var rename = require('gulp-rename');
+// JS
+var browserify = require("browserify");
+var babelify = require("babelify");
+var uglify = require("gulp-uglify");
+var eslint = require("gulp-eslint");
 
-// css
-var less = require('gulp-less');
-var cssMin = require('gulp-minify-css');
+// CSS
+var sass = require("gulp-sass");
+var minifyCSS = require('gulp-minify-css')
 
-// js
-var browserify = require('browserify');
-var uglify = require('gulp-uglify');
+// Source Streams, File Transforms, etc
+var source = require("vinyl-source-stream");
+var watch = require("gulp-watch");
+var plumber = require("gulp-plumber");
+var streamProxy = require("gulp-streamify");
+var iff = require("gulp-if");
+var add = require("gulp-add-src");
+var concat = require("gulp-concat");
 
-// TASKS ==================================================
-gulp.task('default', ['css', 'js']);
+// Server
+var browserSync = require("browser-sync");
+var reload = browserSync.reload;
 
-gulp.task('css', function() {
-  var lessFiles = filter('*.less');
-  return gulp.src([
-    './_css/*',
-    './_less/*'
-    ])
-    .pipe(order([
-      'reset*',
-      '*'
-    ]))
-    .pipe(lessFiles)
-    .pipe(less())
-    .pipe(lessFiles.restore())
-    .pipe(concat('all.css'))
-    .pipe(cssMin({
-      keepBreaks: true
-    }))
-    .pipe(gulp.dest('./css'))
+// clean the output directory
+gulp.task("cleanJS", function(cb){
+  rimraf("./js", cb);
 });
 
-gulp.task('js', function() {
-  return gulp.src([
-    './_js/index.js'
-    ])
-    .pipe(tap(function(file) {
-      var bundler = browserify({
-        entries: [file.path]
-      });
-      file.contents = bundler.bundle();
-    }))
-    .pipe(toBuffer())
-    .pipe(uglify())
-    .pipe(concat('bundle.js'))
-    .pipe(gulp.dest('./js'));
+gulp.task("cleanCSS", function(cb) {
+  rimraf("./css", cb);
+});
+
+// the meta-build tasks
+gulp.task("build-all", ["js", "css"]);
+gulp.task("css", ["sass", "octicons", "font-awesome"]);
+gulp.task("lint", ["eslint"]);
+
+// js from a single entry point using browserify
+gulp.task("js", ["cleanJS", "eslint"], function() {
+  return browserify("./_js/app.js")
+    .transform(babelify)
+    .bundle()
+    .pipe(plumber())
+    .pipe(source("app.js"))
+    .pipe(iff(IS_PRODUCTION, streamProxy(uglify())))
+    .pipe(gulp.dest("./js"))
+    .pipe(reload({ stream: true }));
+});
+
+gulp.task("sass", ["cleanCSS"], function() {
+  return gulp.src("./_sass/app.scss")
+    .pipe(plumber())
+    .pipe(sass())
+    .pipe(add("./_vendor/github-octicons/octicons.css"))
+    .pipe(concat("app.css"))
+    .pipe(iff(IS_PRODUCTION, minifyCSS()))
+    .pipe(gulp.dest("./css"))
+    .pipe(reload({ stream: true }));
+});
+
+gulp.task("octicons", ["sass"], function() {
+  return gulp.src("./_vendor/github-octicons/octicons.+(ttf|eot|svg|woff|woff2|otf)")
+    .pipe(gulp.dest("./css"));
+});
+
+gulp.task("font-awesome", ["sass"], function() {
+  // the destination needs to be reflected in $fa-font-path of app.scss
+  return gulp.src("./_vendor/font-awesome/fonts/*+(ttf|eot|svg|woff|woff2|otf)")
+    .pipe(gulp.dest("./css/fa"));
+});
+
+gulp.task("eslint", function() {
+  return gulp.src(["_js/**/*.js"])
+        .pipe(eslint())
+        .pipe(eslint.formatEach("stylish", process.stderr))
+        .pipe(iff(IS_PRODUCTION, eslint.failOnError()));
+});
+
+// build will exit on complete
+gulp.task("build", ["build-all"], function() {
+  process.exit(0);
+});
+
+// run a standalone server (useful for a final verification of a build)
+gulp.task("server", function() {
+  browserSync({
+    server: {
+      baseDir: './'
+    }
+  });
+});
+
+// watch starts a browser sync and retriggers builds
+gulp.task("watch", function() {
+  watch("_js/**/*", function() {
+    gulp.start("js");
+  });
+
+  watch("_sass/**/*", function() {
+    gulp.start("css");
+  });
+
+  // TODO: this goes away once gulp4 is out and will require a rethink
+  IS_PRODUCTION = false;
+  gulp.start("build-all");
+
+  browserSync({
+    server: {
+      baseDir: './'
+    }
+  });
 });

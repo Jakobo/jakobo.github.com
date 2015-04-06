@@ -1,36 +1,47 @@
----
-layout: frontdoor
-show_about: true
----
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title></title>
+  <meta name="description" content="The personal website of Jakob Heuser">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- link rel="apple-touch-icon" href="apple-touch-icon.png" -->
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <!--[if lt IE 8]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser.
+    Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
 
-<section class="dominant blog more">
-  {% for post in site.posts limit:1 offset:0 %}
-  <h2 class="title">{{ post.title }}</h2>
-  <a href="{{post.url}}" class="touchable">Read The Full Post</a>
-  {{post.content}}
-  {% endfor %}
-</section>
-<section class="supporting github more">
-  <h2 class="title">Over on GitHub</h2>
-  <a href="https://github.com/jakobo" class="touchable">See All My Projects</a>
-</section>
-<section class="supporting blog more">
-  {% for post in site.posts limit:1 offset:1 %}
-  <h2 class="title">{{ post.title }}</h2>
-  <a href="{{post.url}}" class="touchable">Read The Full Post</a>
-  {{post.content}}
-  {% endfor %}
-</section>
-<section class="supporting photo more">
-  <h2 class="title">Photography</h2>
-  <a href="{{site.photo.url}}" title="{{site.photo.title}}"><img src="{{site.photo.image}}" title="{{site.photo.title}}" alt="Photo: {{site.photo.title}}"></a>
-</section>
-<section class="supporting contact">
-  <h2 class="title">Contact Jakob</h2>
-  <ul>
-    <li><a href="http://www.twitter.com/jakobo" class="twitter" title="Twitter">Twitter</a></li>
-    <li><a href="http://profiles.google.com/jakobheuser" class="email" title="Email">Email</a></li>
-    <li><a href="http://www.linkedin.com/in/jakobheuser" class="linkedin" title="LinkedIn">LinkedIn</a></li>
-    <li><a href="https://plus.google.com/115806050983038854461/about" class="more" title="More Options">More</a></li>
-  </ul>
-</section>
+  <noscript>
+    <p id="code">
+      View all of the code I write on my github profile:
+      <a href="https://github.com/jakobo">@jakobo</a>
+    </p>
+    <p id="write">
+      I also write non-code things on Medium under the username
+      <a href="https://medium.com/@jakob">@jakob</a>
+    </p>
+    <p id="photo">
+      You can find my photos on 500px under
+      <a href="https://500px.com/jakobo">jakobo</a>
+    </p>
+    <p id="other">There's also <a href="https://www.twitter.com/jakobo">twitter</a>,
+      <a href="https://www.linkedin.com/in/jakobheuser">LinkedIn</a>,
+      <a href="https://presentate.com/~3zqP2X">Presentate</a>,
+      and various other corners of the Internet.
+    </p>
+  </noscript>
+
+  <!-- react zone -->
+  <div id="app"></div>
+  <!-- end react -->
+
+  <script async src="js/app.js"></script>
+</body>
+</html>
