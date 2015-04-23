@@ -3,7 +3,6 @@
 var EventEmitter = require("events").EventEmitter;
 var Browser = require("../dispatchers/browser");
 var tileConstants = require("../constants/tiles");
-var $ = require("jquery");
 var debounce = require("lodash.debounce");
 
 var _data = {
@@ -96,8 +95,8 @@ tileLayoutStore = Object.assign({}, EventEmitter.prototype, {
 // recalculate on resize of the window or orientation change
 // however, we don't want to gum up the event system by constantly
 // measuring this.
-$(window).on("resize", debouncedRecalculate);
-$(window).on("orientationchange", debouncedRecalculate);
+window.addEventListener("resize", debouncedRecalculate, false);
+window.addEventListener("orientationchange", debouncedRecalculate, false);
 
 // tileStore is heavily subscribed to and requires an increase in the number of
 // listeners it supports

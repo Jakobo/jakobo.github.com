@@ -30,7 +30,7 @@ module.exports = React.createClass({
   },
   render: function() {
     var styles = tileCSS.css(this.state.layout.px, this.props["tile-width"], this.props["tile-height"]);
-    var size = sizer(this.state.layout.px, this.props["tile-width"]);
+    var size = sizer(this.state.layout.px, this.props["tile-height"]);
     var tile = null;
 
     styles.inner = Object.assign({}, styles.inner, {

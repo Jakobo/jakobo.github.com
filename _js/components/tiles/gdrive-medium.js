@@ -1,7 +1,6 @@
 "use strict";
 
 var React = require("react");
-var $ = require("jquery");
 
 var mConstants = require("../../constants/gdrive-medium");
 
@@ -22,25 +21,34 @@ function getState(key) {
   };
 }
 
+// removes the "px" from values
 function depx(val) {
   return val.replace("px", "");
 }
 
+function qsa(sel, inside) {
+  inside = inside || document;
+  var result = inside.querySelectorAll(sel);
+  if (!result || !result[0]) {
+    return {};
+  }
+  return result[0];
+}
+
 function parseSnippet(html) {
-  var $node = $("<div>").append(html);
-  var $img = $(".medium-feed-image img", $node).eq(0);
-  var snippet = $(".medium-feed-snippet", $node).eq(0).html();
+  var node = document.createElement("div");
+  node.innerHTML = html;
+
+  var img = qsa(".medium-feed-image img", node);
+  var snippet = qsa(".medium-feed-snippet", node).innerHTML;
+  var imgSrc = img.src || mConstants.GENERIC_IMAGE;
   var find = mConstants.DYNAMIC_IMAGE.find;
   var replaceWith = mConstants.DYNAMIC_IMAGE.replaceWith;
 
-  if (!$img.length) {
-    $img = $('<img src="' + mConstants.GENERIC_IMAGE + '" />');
-  }
-
   return {
     snip: snippet,
-    originalImage: $img.attr("src"),
-    flexImage: $img.attr("src").replace(find, replaceWith)
+    originalImage: img.src,
+    flexImage: imgSrc.replace(find, replaceWith)
   };
 }
 

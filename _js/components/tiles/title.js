@@ -2,6 +2,8 @@
 
 var React = require("react");
 
+var Logo = require("../logo");
+
 var tileStore = require("../../stores/tile-layout");
 
 var tileCSS = require("../../common/tiles");
@@ -41,11 +43,15 @@ module.exports = React.createClass({
     });
 
     styles.head = {
-      fontSize: size(1)
+      fontSize: size(1),
+      fontWeight: "normal",
+      paddingBottom: 0,
+      marginBottom: 0
     };
 
     styles.subhead = {
-      fontSize: size(0.5)
+      fontSize: size(0.5),
+      marginTop: 0
     };
 
     styles.list = {
@@ -53,7 +59,8 @@ module.exports = React.createClass({
       textIndent: 0,
       margin: 0,
       padding: 0,
-      fontSize: size(1)
+      fontSize: size(1),
+      clear: "left"
     };
 
     styles.listItem = {
@@ -72,7 +79,10 @@ module.exports = React.createClass({
     tile = (
       <article style={styles.tile} className={this.props.className}>
         <div style={styles.inner}>
-          <h1 style={styles.head} title="Manager &mdash; Developer &mdash; Loves a Good Pen">Rudolph Jakob Heuser</h1>
+          <h1 style={styles.head} title="Manager &mdash; Developer &mdash; Loves a Good Pen">
+            <Logo height={size(2)}/>
+            Rudolph Jakob Heuser
+          </h1>
           <p style={styles.subhead}>
             A playground of ideas, experiences, and technologies.
           </p>

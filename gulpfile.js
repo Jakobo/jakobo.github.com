@@ -7,6 +7,7 @@ var rimraf = require("rimraf");
 // JS
 var browserify = require("browserify");
 var babelify = require("babelify");
+var brfs = require("brfs");
 var uglify = require("gulp-uglify");
 var eslint = require("gulp-eslint");
 
@@ -45,6 +46,7 @@ gulp.task("lint", ["eslint"]);
 gulp.task("js", ["cleanJS", "eslint"], function() {
   return browserify("./_js/app.js")
     .transform(babelify)
+    .transform(brfs)
     .bundle()
     .pipe(plumber())
     .pipe(source("app.js"))
