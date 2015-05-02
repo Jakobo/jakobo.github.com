@@ -22,15 +22,18 @@ Like you, I started here. Well, not in this room, but here at CSUMB. The program
 
 ---
 
-background-image: url(https://dl.dropboxusercontent.com/u/493580/Presentations/makingit/employer_hsdl.png)
+background-image: url(https://dl.dropboxusercontent.com/u/493580/Presentations/makingit/nps_class.jpg)
+
+.abs-right.abs-bottom.width-33.height-33[![The Department of Homeland Security Logo](https://dl.dropboxusercontent.com/u/493580/Presentations/makingit/dhs_logo.png)]
 
 ???
 
 First, an abbreviated version of my own story. After graduating CSUMB, I took a job at the Naval Postgraduate School as a PHP programmer. It was an entry level technical job, but it allowed me to continue to learn new things. While this was technically my first job, it wasn't until my next employer that I really got started.
 
 ---
+background-image: url(https://dl.dropboxusercontent.com/u/493580/Presentations/makingit/gaia_convention.jpg)
 
-background-image: url(https://dl.dropboxusercontent.com/u/493580/Presentations/makingit/employer_gaia.jpg)
+.abs-left.abs-bottom.width-33.height-33[![The Gaia Online Logo](https://dl.dropboxusercontent.com/u/493580/Presentations/makingit/gaia_logo.svg)]
 
 ???
 
@@ -38,7 +41,9 @@ Gaia Online had a mission of being a social destination for teenagers. With a co
 
 ---
 
-background-image: url(https://dl.dropboxusercontent.com/u/493580/Presentations/makingit/employer_linkedin.png)
+background-image: url(https://dl.dropboxusercontent.com/u/493580/Presentations/makingit/person_blogging.jpg)
+
+.abs-left.abs-top.width-33.height-25[![The LinkedIn Logo](https://dl.dropboxusercontent.com/u/493580/Presentations/makingit/linkedin_white_128.png)]
 
 ???
 
@@ -271,21 +276,59 @@ class: blackout
 
 ---
 
-please press "p" to bring up presentation notes containing all image attributions and credits
+# Attributions and Credits
+
+Please press "p" to bring up presentation notes containing all image attributions and credits. You may also find them at the end of the [raw text used to generate this presentation](slides.md).
+
+[![Creative Commons License](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/)
+
+This work is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/)
 
 ???
 
 # Images and Attribution
 ## Creative Commons
-* San Jose Skyline: http://commons.wikimedia.org/wiki/File:San_Jose_Skyline_Silicon_Valley.jpg
 * CSUMB Capstone: https://www.youtube.com/watch?v=U0p1Q0oXe4U
+* Gaia Online Convention (James Chan): https://www.flickr.com/photos/data1ore/3053118952
 * LinkedIn Chocolates: http://commons.wikimedia.org/wiki/File:Linkedin_Chocolates.jpg
-* Orlovsky and the Occulus Rift: http://commons.wikimedia.org/wiki/File:Orlovsky_and_Oculus_Rift.jpg (no alterations were made to the original image)
+* Orlovsky and the Occulus Rift: http://commons.wikimedia.org/wiki/File:Orlovsky_and_Oculus_Rift.jpg
+* San Jose Skyline: http://commons.wikimedia.org/wiki/File:San_Jose_Skyline_Silicon_Valley.jpg
 * SXSW Crowds (Gage Skidmore): https://www.flickr.com/photos/gageskidmore/16829045001/
 
 ## Fair Use Images (17 U.S.C. § 107)
 * LinkedIn 2m: from ourstory.linkedin.com, credit LinkedIn Corporation
 * LinkedIn 300m: from http://www.businessinsider.com/linkedin-grows-to-300-million-members-2014-4, credit Tyler x Christina http://www.tylerandchristina.com
-* Gaia Online zOMG Wallpaper: from https://www.gaiaonline.com/games/zomg/downloads/, credit Gaia Interactive
 
-All other images are used with permission and are copyright their respective owners. [Pixabay](http://pixabay.com) deserves many cups of coffee for their work.
+## Other Photography
+All other photographic images are used with permission and are copyright their respective owners. [Pixabay](http://pixabay.com) deserves many cups of coffee for their work.
+
+# Logos
+## Public Domain
+* Department of Homeland Security: http://commons.wikimedia.org/wiki/File:Seal_of_the_United_States_Department_of_Homeland_Security.svg
+
+## Creative Commons
+* CrunchBase Recreation: http://commons.wikimedia.org/wiki/File:CrunchBase.svg
+
+## Used under Fair Use (17 U.S.C. § 107)
+* Gaia Online: http://commons.wikimedia.org/wiki/File:Gaia_Online_logo.svg
+* LinkedIn: https://brand.linkedin.com
+
+# Usage Statements
+Where possible, a suitable public domain version of an image was used. Public domain items include company logos consisting of shapes and letters that by themselves are not a copyrightable work. These items still preserve their original trademarks. Their origins have been included above.
+
+Where a public domain version was not available or not suitable, a Creative Commons licensed asset was used in its place. Attribution as of the time of this document are listed above with references to their original source. Images were compressed with no loss in quality in order to preserve their original form. These works were not modified or transformed upon in order to create a new derivative work.
+
+Where a public domain version was not available or not suitable and a Creative Commons licensed asset was not available or not suitable, an image has been used that the author believes to be a valid usage under US Copyright (17 U.S.C. § 107).
+
+* The work is for teaching and education purposes
+* The work has been included in order to receive comment and/or criticism
+* The work is being used in a new utility
+* The work has been published prior
+* The content is factual or non-fiction based
+* The asset used is not central to the entire work
+* The asset is being used for informational purposes
+* No additional copies of this work are being made nor distributed
+* The inclusion of this asset does not reasonably affect the potential market for the copyrighted work
+* No licensing methods were made available for the asset
+
+Additional inquiries can be directed to jakob .empty[nospam] + images @ felocity.com

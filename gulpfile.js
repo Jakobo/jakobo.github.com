@@ -39,7 +39,9 @@ gulp.task("cleanCSS", function(cb) {
 
 // the meta-build tasks
 gulp.task("build-all", ["js", "css"]);
-gulp.task("css", ["sass", "octicons", "font-awesome"]);
+gulp.task("css", ["sass", "fonts"]);
+gulp.task("sass", ["main-sass", "slides-sass"])
+gulp.task("fonts", ["octicons", "font-awesome"])
 gulp.task("lint", ["eslint"]);
 
 // js from a single entry point using browserify
@@ -55,7 +57,17 @@ gulp.task("js", ["cleanJS", "eslint"], function() {
     .pipe(reload({ stream: true }));
 });
 
-gulp.task("sass", ["cleanCSS"], function() {
+gulp.task("main-sass", ["cleanCSS"], function() {
+  return gulp.src("./_sass/slides.scss")
+    .pipe(plumber())
+    .pipe(sass())
+    .pipe(concat("slides.css"))
+    .pipe(iff(IS_PRODUCTION, minifyCSS()))
+    .pipe(gulp.dest("./css"))
+    .pipe(reload({ stream: true }));
+});
+
+gulp.task("slides-sass", ["cleanCSS"], function() {
   return gulp.src("./_sass/app.scss")
     .pipe(plumber())
     .pipe(sass())
