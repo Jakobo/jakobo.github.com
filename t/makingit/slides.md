@@ -280,9 +280,9 @@ class: blackout
 
 Please press "p" to bring up presentation notes containing all image attributions and credits. You may also find them at the end of the [raw text used to generate this presentation](slides.md).
 
-[![Creative Commons License](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/)
+[![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)
 
-This work is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/)
+This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/)
 
 ???
 
@@ -297,19 +297,14 @@ This work is licensed under a [Creative Commons Attribution 4.0 International Li
 
 ## Fair Use Images (17 U.S.C. § 107)
 * LinkedIn 2m: from ourstory.linkedin.com, credit LinkedIn Corporation
-* LinkedIn 300m: from http://www.businessinsider.com/linkedin-grows-to-300-million-members-2014-4, credit Tyler x Christina http://www.tylerandchristina.com
+* LinkedIn 300m: from http://www.businessinsider.com/linkedin-grows-to-300-million-members-2014-4, credit Tyler &amp; Christina http://www.tylerandchristina.com
 
 ## Other Photography
-All other photographic images are used with permission and are copyright their respective owners. [Pixabay](http://pixabay.com) deserves many cups of coffee for their work.
+All other photographic images are used with permission. Many of these come from [Pixabay](http://pixabay.com), deserves many cups of coffee for their work.
 
 # Logos
-## Public Domain
 * Department of Homeland Security: http://commons.wikimedia.org/wiki/File:Seal_of_the_United_States_Department_of_Homeland_Security.svg
-
-## Creative Commons
 * CrunchBase Recreation: http://commons.wikimedia.org/wiki/File:CrunchBase.svg
-
-## Used under Fair Use (17 U.S.C. § 107)
 * Gaia Online: http://commons.wikimedia.org/wiki/File:Gaia_Online_logo.svg
 * LinkedIn: https://brand.linkedin.com
 
@@ -330,5 +325,7 @@ Where a public domain version was not available or not suitable and a Creative C
 * No additional copies of this work are being made nor distributed
 * The inclusion of this asset does not reasonably affect the potential market for the copyrighted work
 * No licensing methods were made available for the asset
+
+Logos in this presentation are used for the purpose of commentary and criticism. Their inclusion does not imply the endorsement of these companies.
 
 Additional inquiries can be directed to jakob .empty[nospam] + images @ felocity.com
