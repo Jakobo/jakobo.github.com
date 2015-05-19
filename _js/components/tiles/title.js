@@ -113,8 +113,8 @@ module.exports = React.createClass({
               </a>
             </li>
             <li style={styles.listItem}>
-              <a href="https://www.presentate.com/~3zqP2X" title="Talks on Presentate" style={styles.iconLink}>
-                <span className="x-fa x-fa-desktop"></span>
+              <a href="https://www.pinterest.com/jakobo/" title="Neat Things on Pinterest" style={styles.iconLink}>
+                <span className="x-fa x-fa-pinterest"></span>
               </a>
             </li>
           </ul>
