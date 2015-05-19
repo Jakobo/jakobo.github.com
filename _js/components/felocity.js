@@ -39,7 +39,8 @@ var source = {
   fpx: "1aETLR_5FGF2yLqxx32Voqz1g5NxA1yMaLiVz98TZyRk",
   medium: "1RXKjQ57k07-GEhctT4MHWflxK840ENcsM_MXzuKiKLw",
   linkedin: "1liN0-GVlAuRW1CFvkDSnti7gvZrqIquLh1woNvLL_cU",
-  twitter: "1QZRRIzZOKobCUqYfMF8c0o8xj13RC2TkyGlT1FX6lnw"
+  twitter: "1QZRRIzZOKobCUqYfMF8c0o8xj13RC2TkyGlT1FX6lnw",
+  permanent: "PERMANENT"
 };
 
 module.exports = React.createClass({
@@ -86,6 +87,7 @@ module.exports = React.createClass({
         <Twitter source={source.twitter} item="1" tile-width="1" tile-height="1" className="tile" />
         <Github source={source.github} item="4" tile-width="1" tile-height="1" className="tile" />
         <LinkedIn source={source.linkedin} item="2" tile-width="1" tile-height="1" className="tile" />
+        <Medium source={source.permanent} name="manifesto" tile-width="1" tile-height="1" className="tile" />
         <Github source={source.github} item="5" tile-width="1" tile-height="1" className="tile" />
         <Vcard tile-width="1" tile-height="1" className="tile" />
       </section>

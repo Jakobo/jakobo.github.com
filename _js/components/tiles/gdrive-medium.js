@@ -77,8 +77,20 @@ module.exports = React.createClass({
 
     var tile = null;
     var entries = this.state.feed;
-    var row = entries[parseInt(this.props.item, 10) - 1] || null;
+    var row;
     var image;
+
+    // figure out the row
+    if (this.props.item) {
+      row = entries[parseInt(this.props.item, 10) - 1] || null;
+    }
+    if (this.props.name) {
+      entries.forEach(function(aRow) {
+        if (this.props.name === aRow.commonName) {
+          row = aRow;
+        }
+      }.bind(this));
+    }
 
     if (!row) {
       return null;

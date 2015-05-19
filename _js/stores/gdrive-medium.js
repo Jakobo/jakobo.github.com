@@ -12,7 +12,34 @@ var MedStore;
 var _lookup = {};
 var rowId = 0;
 
+// permament data items for medium under the "PERMANENT" feed collection
+_activity.PERMANENT = {
+  pending: false,
+  loaded: true,
+  data: [
+    {
+      id: ++rowId,
+      commonName: "manifesto",
+      date: "April 13, 2015 at 09:43PM",
+      title: "A Manifesto",
+      link: "https://medium.com/@jakob/a-manifesto-feee4fd6b689",
+      snippet: ["\u003cdiv class\u003d\"medium-feed-item\"\u003e\u003cp class\u003d\"",
+                "medium-feed-snippet\"\u003eEveryone loves a good manifesto.\u003c/p",
+                "\u003e\u003cp class\u003d\"medium-feed-link\"\u003e\u003ca href\u003d\"",
+                "https://medium.com/@jakob/a-manifesto-feee4fd6b689\"\u003eContinue ",
+                "reading on Medium »\u003c/a\u003e\u003c/p\u003e\u003c/div\u003e"].join(""),
+      publication: "Jakob Heuser on Medium",
+      user: "https://medium.com/@jakob"
+    }
+  ]
+};
+
 function loadData(key) {
+  console.log(key);
+  if (_activity[key] && _activity[key].loaded) {
+    return;
+  }
+
   gdrive(key, function(err, results) {
     if (err) {
       console.warn(err);
@@ -65,6 +92,15 @@ MedStore = Object.assign({}, EventEmitter.prototype, {
     _activity[key].pending = true;
     loadData(key);
     return _activity[key].data;
+  },
+  getAt: function(feedKey, dataKey) {
+    var data = this.get(feedKey);
+    for (var i = 0, len = data.length; i < len; i++) {
+      if (data[i].commonName === dataKey) {
+        return data[i];
+      }
+    }
+    return {};
   },
 
   dispatcherIndex: Browser.register(function(payload) {
