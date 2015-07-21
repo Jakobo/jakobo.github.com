@@ -35,7 +35,6 @@ _activity.PERMANENT = {
 };
 
 function loadData(key) {
-  console.log(key);
   if (_activity[key] && _activity[key].loaded) {
     return;
   }

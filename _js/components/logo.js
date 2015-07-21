@@ -28,7 +28,6 @@ function setSvgSize(svg, height) {
   var oHeight = parseInt(svg.getAttribute("data-original-height"));
   var ratio = oHeight / oWidth;
   var width = Math.ceil(height * ratio);
-  console.log(height, width);
   svg.setAttribute("width", width);
   svg.setAttribute("height", height);
 }

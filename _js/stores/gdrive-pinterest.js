@@ -1,12 +1,13 @@
 "use strict";
 
 var EventEmitter = require("events").EventEmitter;
+
 var Browser = require("../dispatchers/browser");
 var gdrive = require("../common/gdrive");
-var LIConstants = require("../constants/gdrive-linkedin");
+var PinterestConstants = require("../constants/gdrive-pinterest");
 
 var _activity = {};
-var LIStore;
+var pinterestStore;
 
 // used to create a short numeric ID for a row based on its permalink
 var _lookup = {};
@@ -34,19 +35,19 @@ function loadData(key) {
     _activity[key].pending = false;
     _activity[key].loaded = true;
 
-    LIStore.emitChange();
+    pinterestStore.emitChange();
   });
 }
 
-LIStore = Object.assign({}, EventEmitter.prototype, {
+pinterestStore = Object.assign({}, EventEmitter.prototype, {
   emitChange: function() {
-    this.emit(LIConstants.CHANGE_LINKEDIN);
+    this.emit(PinterestConstants.CHANGE_PINTEREST);
   },
   addChangeListener: function(callback) {
-    this.on(LIConstants.CHANGE_LINKEDIN, callback);
+    this.on(PinterestConstants.CHANGE_PINTEREST, callback);
   },
   removeChangeListener: function(callback) {
-    this.removeListener(LIConstants.CHANGE_LINKEDIN, callback);
+    this.removeListener(PinterestConstants.CHANGE_PINTEREST, callback);
   },
   get: function(key) {
     if (!_activity[key]) {
@@ -72,7 +73,7 @@ LIStore = Object.assign({}, EventEmitter.prototype, {
     // update your data
     // call the emitChange() function when done
     switch (payload.action.actionType) {
-      case LIConstants.LOAD_LINKEDIN:
+      case PinterestConstants.LOAD_PINTEREST:
         loadData(payload.action.data);
         break;
       default:
@@ -82,4 +83,4 @@ LIStore = Object.assign({}, EventEmitter.prototype, {
   })
 });
 
-module.exports = LIStore;
+module.exports = pinterestStore;
