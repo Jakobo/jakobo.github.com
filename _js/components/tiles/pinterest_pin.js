@@ -1,25 +1,36 @@
 import React, { PropTypes } from "react";
+import Tile from "styleguide/tile"
+import { propTypes, defaultProps } from "./tiles_common.js"
 
-const PinterestPin = ({source, description, image, loadData, ready}) => {
+const PinterestPin = (props) => {
+  const { source, description, image, color, variant, loadData, ready } = props
+  const canRender = (source && description && image)
+
   // component wants to be fetched from an external data source
-  if (loadData && !ready) {
+  if (loadData && !canRender) {
     loadData();
-    return null;
   }
-  
-  return <article>
-    <img src={image} />
-    <a href={source}>{description}</a>
-  </article>
+
+  if (!canRender) {
+    return <Tile size={"s"} loading={true}></Tile>
+  }
+
+  return <Tile size={"s"}>
+    <article>
+      <img src={image} />
+      <a href={source}>{description}</a>
+    </article>
+  </Tile>
 };
 
-
-PinterestPin.propTypes = {
+PinterestPin.propTypes = Object.assign({}, propTypes, {
   source: PropTypes.string,
-  description: PropTypes.string,
-  image: PropTypes.string,
-  loadData: PropTypes.func,
-  ready: PropTypes.bool
-};
+  description: PropTypes.string
+})
+
+PinterestPin.defaultProps = Object.assign({}, defaultProps, {
+  source: "",
+  description: ""
+})
 
 export default PinterestPin;

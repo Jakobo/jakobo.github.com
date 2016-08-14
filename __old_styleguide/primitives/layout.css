@@ -1,0 +1,100 @@
+/* floats */
+
+.pull-left { float: left; }
+.pull-right { float: right; }
+
+.clearfix::before,
+.clearfix::after {
+  content: " ";
+  display: table;
+}
+
+.clearfix::after {
+  clear: both;
+}
+
+/* display */
+
+.block { display: block; }
+.inline { display: inline; }
+.inline-block { display: inline-block; }
+.table { display: table; }
+.table-cell { display: table-cell; }
+
+/* overflow */
+
+.overflow-hidden { overflow: hidden; }
+.overflow-scroll { overflow: scroll; }
+.overflow-auto { overflow: auto; }
+.fit { max-width: 100%; }
+
+.force-max-width { width: 100%; }
+.force-max-height { height: 100%; }
+
+/* position */
+
+.relative { position: relative; }
+.fixed { position: fixed; }
+.absolute { position: absolute; }
+
+.top-0 { top: 0; }
+.right-0 { right: 0; }
+.bottom-0 { bottom: 0; }
+.left-0 { left: 0; }
+
+/* box model */
+
+.border-box { box-sizing: border-box; }
+
+.flex { display: flex; }
+
+@media (--sm) {
+  .sm-flex { display: flex; }
+}
+
+@media (--md) {
+  .md-flex { display: flex; }
+}
+
+@media (--lg) {
+  .lg-flex { display: flex; }
+}
+
+.flex-column { flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
+
+.items-start { align-items: flex-start; }
+.items-end { align-items: flex-end; }
+.items-center { align-items: center; }
+.items-baseline { align-items: baseline; }
+.items-stretch { align-items: stretch; }
+
+.self-start { align-self: flex-start; }
+.self-end { align-self: flex-end; }
+.self-center { align-self: center; }
+.self-baseline { align-self: baseline; }
+.self-stretch { align-self: stretch; }
+
+.justify-start { justify-content: flex-start; }
+.justify-end { justify-content: flex-end; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.justify-around { justify-content: space-around; }
+
+.content-start { align-content: flex-start; }
+.content-end { align-content: flex-end; }
+.content-center { align-content: center; }
+.content-between { align-content: space-between; }
+.content-around { align-content: space-around; }
+.content-stretch { align-content: stretch; }
+
+/* 1. Fix for Chrome 44 bug. https://code.google.com/p/chromium/issues/detail?id=506893 */
+.flex-auto {
+  flex: 1 1 auto;
+  min-height: 0; /* 1 */
+  min-width: 0; /* 1 */
+}
+.flex-none { flex: none; }
+
+.order-first { order: -1; }
+.order-last { order: 99999; }

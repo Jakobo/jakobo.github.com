@@ -11,6 +11,11 @@ npm run dev # Start a webpack dev server
             # or do "npm run build" to minify and create /assets items
 ```
 
+## TODOs
+* https://xudafeng.github.io/autoresponsive-react/ for grid
+* Determine system for defining tile sizes
+* Apply localized styling
+
 ## React
 The site is built on React. It's the closest thing we have to web components that works in a large number of browsers. I know, Polymer is going to change the world. It probably will. I wanted to learn React. There's a good number of companies looking at it, and being familiar with the virtual DOM, the glorified global EventEmitter, and the general workflow will help in the future.
 

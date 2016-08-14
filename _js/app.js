@@ -12,6 +12,8 @@ import rootReducer from "./reducers"
 import Felocity from "./components/felocity"
 import GoogleAnalytics from "./vendor/ga"
 
+// import Normalize from "normalize/normalize.css"
+
 const loggerMiddleware = createLogger();
 
 const store = createStore(

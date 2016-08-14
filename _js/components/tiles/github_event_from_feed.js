@@ -10,7 +10,6 @@ const mapStateToProps = (state, ownProps) => {
   const atIndex = state.githubEvents.items[ownProps.index] || {};
 
   return {
-    ready: true,
     source: atIndex.link || null,
     description: atIndex.text || null
   };

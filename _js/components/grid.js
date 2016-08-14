@@ -1,9 +1,14 @@
-import React, { PropTypes } from "react";
+import React, { PropTypes } from "react"
+import Masonry from "react-masonry-component"
+
+const masonryOptions = {
+  columnWidth: ".tile-s",
+  gutter: 0
+}
 
 const Grid = (props) => {
-  return <div>
-    {props.children}
-  </div>
+  const { children } = props;
+  return <Masonry>{children}</Masonry>
 };
 
 export default Grid;
