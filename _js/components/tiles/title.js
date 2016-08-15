@@ -1,4 +1,6 @@
 import React, { PropTypes } from "react"
+import Radium from "radium"
+
 import Tile from "styleguide/tile"
 import Logo from "../../../_img/logo.svg"
 
@@ -46,4 +48,4 @@ const Title = () => {
   </Tile>
 };
 
-export default Title;
+export default Radium(Title);

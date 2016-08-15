@@ -1,4 +1,6 @@
-import React, { PropTypes } from "react";
+import React, { PropTypes } from "react"
+import Radium from "radium"
+
 import Tile from "styleguide/tile"
 import { propTypes, defaultProps } from "./tiles_common.js"
 
@@ -33,4 +35,4 @@ PinterestPin.defaultProps = Object.assign({}, defaultProps, {
   description: ""
 })
 
-export default PinterestPin;
+export default Radium(PinterestPin);

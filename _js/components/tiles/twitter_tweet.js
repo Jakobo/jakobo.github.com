@@ -1,4 +1,6 @@
-import React, { PropTypes } from "react";
+import React, { PropTypes } from "react"
+import Radium from "radium"
+
 import Tile from "styleguide/tile"
 import { propTypes, defaultProps } from "./tiles_common.js"
 
@@ -20,16 +22,16 @@ const TwitterTweet = (props) => {
       <a href={source}>{content}</a>
     </article>
   </Tile>
-};
+}
 
 TwitterTweet.propTypes = Object.assign({}, propTypes, {
   source: PropTypes.string,
   content: PropTypes.string
-});
+})
 
 TwitterTweet.defaultProps = Object.assign({}, defaultProps, {
   source: "",
   content: ""
-});
+})
 
-export default TwitterTweet;
+export default Radium(TwitterTweet);

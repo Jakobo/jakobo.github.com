@@ -1,5 +1,6 @@
 import React, { PropTypes } from "react"
-// import Text from "styleguide/text"
+import Radium from "radium"
+
 import Headline from "styleguide/headline"
 import Tile from "styleguide/tile"
 
@@ -40,14 +41,14 @@ const GithubEvent = (props) => {
   );
 
   const githubClassMatch = {
-    comment: { r: / commented on /, c: <GoCommentDiscussion style={iconStyles} /> },
-    issue: { r: / opened issue /, c: <GoBug style={iconStyles} /> },
-    push: { r: / pushed to /, c: <GoPush style={iconStyles} /> },
-    branch: { r: / created branch /, c: <GoBranch style={iconStyles} /> },
-    pr: { r: / opened pull request /, c: <GoPullRequest style={iconStyles} /> },
-    fork: { r: / forked /, c: <GoForked style={iconStyles} /> },
-    create: { r: / created repository /, c: <GoRepo style={iconStyles} /> },
-    close: { r: / closed /, c: <GoIssueClosed style={iconStyles} /> }
+    comment: { r: / commented on /, c: <GoCommentDiscussion key="icon" style={iconStyles} /> },
+    issue: { r: / opened issue /, c: <GoBug key="icon" style={iconStyles} /> },
+    push: { r: / pushed to /, c: <GoPush key="icon" style={iconStyles} /> },
+    branch: { r: / created branch /, c: <GoBranch key="icon" style={iconStyles} /> },
+    pr: { r: / opened pull request /, c: <GoPullRequest key="icon" style={iconStyles} /> },
+    fork: { r: / forked /, c: <GoForked key="icon" style={iconStyles} /> },
+    create: { r: / created repository /, c: <GoRepo key="icon" style={iconStyles} /> },
+    close: { r: / closed /, c: <GoIssueClosed key="icon" style={iconStyles} /> }
   };
 
   const getIcon = (description) => {
@@ -78,7 +79,7 @@ const GithubEvent = (props) => {
   return <Tile size={"s"} color={color} variant={variant}>
     <article>
       { getIcon(description) }
-      <a href={source} style={linkStyles}>
+      <a key="link" href={source} style={linkStyles}>
         <Headline size={"s"} color={color} variant={variant} overlay={true}>{description}</Headline>
       </a>
     </article>
@@ -95,4 +96,4 @@ GithubEvent.defaultProps = Object.assign({}, defaultProps, {
   description: ""
 });
 
-export default GithubEvent;
+export default Radium(GithubEvent);

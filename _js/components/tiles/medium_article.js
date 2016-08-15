@@ -1,4 +1,6 @@
 import React, { PropTypes } from "react";
+import Radium from "radium"
+
 import Tile from "styleguide/tile"
 import { propTypes, defaultProps } from "./tiles_common.js"
 
@@ -35,4 +37,4 @@ MediumArticle.defaultProps = Object.assign({}, defaultProps, {
   image: ""
 })
 
-export default MediumArticle;
+export default Radium(MediumArticle);

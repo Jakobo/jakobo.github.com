@@ -1,7 +1,8 @@
 import React, { PropTypes } from "react"
-import Radium, { Style } from "radium"
+import Radium from "radium"
 
 import Spinner from "./spinner"
+import FadeIn from "./animations/fade_in"
 
 import { canvas, reset, tile, edges } from "./primitives/tiles"
 import { swatches } from "./primitives/colors"
@@ -22,14 +23,14 @@ const Tile = (props) => {
     backgroundColor: swatches[color][variant].color
   })
 
-  return <div key="tile" style={outerStyle} className={`tile-${size}`}>
-    <div key="edges" style={edgesStyle}>
-      <div key="inner" style={innerStyle}>
+  return <div key={"outer"} style={outerStyle}>
+    <div key={"edges"} style={edgesStyle}>
+      <div key={"inner"} style={innerStyle}>
         {(() => {
-          if (loading || true) {
-            return <Spinner key="spin" size={size} color={color} variant={variant} absolute={true}></Spinner>
+          if (loading) {
+            return <Spinner size={size} color={color} variant={variant} absolute={true}></Spinner>
           }
-          return {children}
+          return <FadeIn>{children}</FadeIn>
         })()}
       </div>
     </div>

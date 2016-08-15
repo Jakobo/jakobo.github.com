@@ -13,6 +13,7 @@ const mapStateToProps = (state, ownProps) => {
     ready: true,
     link: atIndex.link || null,
     src: atIndex.img || null,
+    variations: atIndex.variations || null,
     description: atIndex.description || null
   };
 }
