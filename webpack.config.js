@@ -15,13 +15,6 @@ const BABEL_DIRS = [
   path.dirname(path.dirname(require.resolve("react-icons/fa/camera")))
 ];
 
-// places we know we are explicitly managing CSS. Avoid scanning node_modules
-const CSS_DIRS = [
-  APP_DIR,
-  STYLEGUIDE_DIR,
-  path.dirname(require.resolve("normalize.css"))
-];
-
 // webpack config proper
 const config = {
   entry: {
@@ -34,6 +27,7 @@ const config = {
   },
   resolve: {
     alias: {
+      // this shortcut makes it possible to ask for "styleguide/*" anywhere in the app
       styleguide: path.resolve("./styleguide")
     }
   },
@@ -42,6 +36,8 @@ const config = {
       { test: /\.jsx?/, include: BABEL_DIRS, loader: 'babel' },
       { test: /\.svg$/, loader: 'babel?presets[]=es2015,presets[]=react!svg-react' },
       {
+        // the react-masonry plugin explicitly says we need the import loader in webpack here
+        // otherwise, the AMD-isms will not get stripped off
         test: /masonry|imagesloaded|fizzy\-ui\-utils|desandro\-|outlayer|get\-size|doc\-ready|eventie|eventemitter/,
         loader: 'imports?define=>false&this=>window'
       }
