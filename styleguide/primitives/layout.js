@@ -47,6 +47,9 @@ export const relative = { position: "relative" }
 export const fixed = { position: "fixed" }
 export const absolute = { position: "absolute" }
 
+export const noMargin = { margin: "0" }
+export const noPadding = { padding: "0" }
+
 export const pinTop = { top: "0" }
 export const pinTopish = { top: "2%" }
 export const pinRight = { right: "0" }

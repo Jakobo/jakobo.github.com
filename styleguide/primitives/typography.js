@@ -90,6 +90,7 @@ export const noUnderline = { textDecoration: "none" };
 
 /* lists */
 export const listStyleNone = { listStyle: "none" };
+export const noIndent = { textIndent: "0" };
 
 /* text overflow */
 export const noWrap = { whiteSpace: "nowrap" };

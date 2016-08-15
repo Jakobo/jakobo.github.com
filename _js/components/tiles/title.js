@@ -4,6 +4,12 @@ import Radium from "radium"
 import Tile from "styleguide/tile"
 import Logo from "../../../_img/logo.svg"
 
+import { oneThirdWidth, oneThirdHeight, noMargin, noPadding, inlineBlock } from "styleguide/primitives/layout"
+import { center, listStyleNone, noIndent } from "styleguide/primitives/typography"
+
+import Headline from "styleguide/headline"
+import Text from "styleguide/text"
+
 // TODO webpack 2 will clean up dead code for this easier
 import FALinkedIn from "react-icons/fa/linkedin"
 import FAGithub from "react-icons/fa/github"
@@ -14,34 +20,64 @@ import FAPinterest from "react-icons/fa/pinterest"
 
 // const Logo = require('babel!svg-react!../../../img/logo.svg?name=Logo');
 
+const logoStyles = Object.assign({},
+  oneThirdWidth,
+  oneThirdHeight
+)
+
+const h1Styles = Object.assign({},
+  center,
+  {
+    padding: "2%"
+  }
+)
+
+const listStyles = Object.assign({},
+  listStyleNone,
+  noIndent,
+  noMargin,
+  noPadding,
+  center,
+  {
+    padding: "2%"
+  }
+)
+
+const listItemStyles = Object.assign({},
+  inlineBlock,
+  {
+    paddingLeft: "2%",
+    paddingRight: "2%"
+  }
+)
+
+console.log(listStyles)
+
 const Title = () => {
   return <Tile size={"s"}>
     <article>
-      <h1 title="Manager &mdash; Developer &mdash; Loves a Good Pen">
-        <Logo />
-        Rudolph Jakob Heuser
-      </h1>
-      <p>
-        A playground of ideas, experiences, and technologies.
-      </p>
-      <ul>
-        <li>
-          <a href="http://www.linkedin.com/in/jakobheuser" title="Resume on LinkedIn"><FALinkedIn /></a>
+      <div style={h1Styles}>
+        <Logo style={logoStyles} />
+        <Headline size={"xs"}>Rudolph Jakob Heuser</Headline>
+      </div>
+      <ul style={listStyles}>
+        <li style={listItemStyles}>
+          <a href="http://www.linkedin.com/in/jakobheuser" title="Resume on LinkedIn"><Headline size={"s"}><FALinkedIn /></Headline></a>
         </li>
-        <li>
-          <a href="https://www.github.com/Jakobo" title="Code on GitHub"><FAGithub /></a>
+        <li style={listItemStyles}>
+          <a href="https://www.github.com/Jakobo" title="Code on GitHub"><Headline size={"s"}><FAGithub /></Headline></a>
         </li>
-        <li>
-          <a href="https://www.medium.com/@jakob" title="Writing on Medium"><FAMedium /></a>
+        <li style={listItemStyles}>
+          <a href="https://www.medium.com/@jakob" title="Writing on Medium"><Headline size={"s"}><FAMedium /></Headline></a>
         </li>
-        <li>
-          <a href="https://www.twitter.com/@jakobo" title="Quips on Twitter"><FATwitter /></a>
+        <li style={listItemStyles}>
+          <a href="https://www.twitter.com/@jakobo" title="Quips on Twitter"><Headline size={"s"}><FATwitter /></Headline></a>
         </li>
-        <li>
-          <a href="https://goo.gl/photos/AmCAMswjdGxR1eVm7" title="Photos on Google"><FACamera /></a>
+        <li style={listItemStyles}>
+          <a href="https://goo.gl/photos/AmCAMswjdGxR1eVm7" title="Photos on Google"><Headline size={"s"}><FACamera /></Headline></a>
         </li>
-        <li>
-          <a href="https://www.pinterest.com/jakobo/" title="Neat Things on Pinterest"><FAPinterest /></a>
+        <li style={listItemStyles}>
+          <a href="https://www.pinterest.com/jakobo/" title="Neat Things on Pinterest"><Headline size={"s"}><FAPinterest /></Headline></a>
         </li>
       </ul>
     </article>

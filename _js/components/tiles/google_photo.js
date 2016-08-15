@@ -5,6 +5,7 @@ import Headline from "styleguide/headline"
 import Tile from "styleguide/tile"
 import FitImg from "styleguide/fit_image"
 import { propTypes, defaultProps } from "./tiles_common.js"
+import { noUnderline } from "styleguide/primitives/typography"
 import { forceMaxWidth, forceMaxHeight, absolute, borderBox,
          pinTop, pinLeft, pinBottomish, hideTextLeft } from "styleguide/primitives/layout"
 
@@ -24,6 +25,10 @@ const GooglePhoto = (props) => {
     pinTop,
     pinLeft,
     hideTextLeft
+  )
+
+  const headlineStyle = Object.assign({},
+    noUnderline
   )
 
   const headlinePlacement = Object.assign({},
@@ -50,7 +55,9 @@ const GooglePhoto = (props) => {
   return <Tile size={"m"} color={color} variant={variant}>
     <FitImg src={src} alt={description} title={description} getSrc={getSrc} />
     <div style={headlinePlacement}>
-      <Headline size={"m"} overlay={true} stroke={true}>{description}</Headline>
+      <a href={link} title={description} style={headlineStyle}>
+        <Headline size={"m"} overlay={true} stroke={true}>{description}</Headline>
+      </a>
     </div>
     <a href={link} style={clickableStyle} title={description}>{description}</a>
   </Tile>
