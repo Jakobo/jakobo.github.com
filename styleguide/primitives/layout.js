@@ -59,6 +59,9 @@ export const pinBottomish = { bottom: "2%" }
 export const pinLeft = { left: "0" }
 export const pinLeftish = { left: "2%" }
 
+export const padText = { paddingLeft: "2%", paddingRight: "2%" }
+export const padAll = { padding: "2%" }
+
 /* box model */
 export const borderBox = { boxSizing: "border-box" }
 

@@ -5,7 +5,7 @@ import { text, bold as tBold, underline as tUnderline, noUnderline as tNoUnderli
 import { swatches } from "./primitives/colors"
 
 const Text = (props) => {
-  const { color, variant, bold, underline, overlay, children, size } = props;
+  const { color, variant, bold, underline, overlay, children, size, style} = props;
 
   const styles = Object.assign({},
     {
@@ -16,7 +16,8 @@ const Text = (props) => {
     (bold) ? tBold : {},
     antialiased,
     sansSerif,
-    text[size]
+    text[size],
+    style
   );
 
   return <span style={styles}>{children}</span>;
@@ -27,13 +28,15 @@ Text.propTypes = {
   children: PropTypes.node.isRequired,
   color: PropTypes.oneOf(["base", "minus", "plus", "complement"]),
   variant: PropTypes.oneOf(["plain", "light", "dark"]),
-  size: PropTypes.oneOf(["xs", "s", "m", "l", "xl"]).isRequired
+  size: PropTypes.oneOf(["xs", "s", "m", "l", "xl"]).isRequired,
+  style: PropTypes.object
 };
 
 Text.defaultProps = {
   bold: false,
   color: "base",
-  variant: "plain"
+  variant: "plain",
+  style: {}
 };
 
 export default Radium(Text);

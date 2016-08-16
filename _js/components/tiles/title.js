@@ -4,7 +4,8 @@ import Radium from "radium"
 import Tile from "styleguide/tile"
 import Logo from "../../../_img/logo.svg"
 
-import { oneThirdWidth, oneThirdHeight, noMargin, noPadding, inlineBlock } from "styleguide/primitives/layout"
+import { oneThirdWidth, oneThirdHeight, noMargin,
+  noPadding, padAll, padText, inlineBlock} from "styleguide/primitives/layout"
 import { center, listStyleNone, noIndent } from "styleguide/primitives/typography"
 
 import Headline from "styleguide/headline"
@@ -27,31 +28,21 @@ const logoStyles = Object.assign({},
 
 const h1Styles = Object.assign({},
   center,
-  {
-    padding: "2%"
-  }
+  padAll
 )
 
 const listStyles = Object.assign({},
   listStyleNone,
   noIndent,
   noMargin,
-  noPadding,
   center,
-  {
-    padding: "2%"
-  }
+  padAll
 )
 
 const listItemStyles = Object.assign({},
   inlineBlock,
-  {
-    paddingLeft: "2%",
-    paddingRight: "2%"
-  }
+  padText
 )
-
-console.log(listStyles)
 
 const Title = () => {
   return <Tile size={"s"}>

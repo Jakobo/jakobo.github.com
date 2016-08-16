@@ -14,7 +14,7 @@ const imgSplit = /^(.*)\/([^\/]+)$/
 // https://lh3.googleusercontent.com/-RT4qlneQQNg/VpwcA81v4aI/AAAAAAAAW08/7dD-5E_HeI4xMvCDn4QtdNLgVBkzkz2awCHM/20081109-IMG_1369.jpg
 // https://lh3.googleusercontent.com/-RT4qlneQQNg/VpwcA81v4aI/AAAAAAAAW08/7dD-5E_HeI4xMvCDn4QtdNLgVBkzkz2awCHM/w800-h800-p/20081109-IMG_1369.jpg
 // source: https://sites.google.com/site/picasaresources/Home/Picasa-FAQ/picasa-webalbums/how-to-articles/how-to-get-an-image-of-a-specific-size
-const getVariations = (url) => {
+const getAltImages = (url) => {
   const pieces = url.match(imgSplit)
   if (!pieces) {
     return null
@@ -75,13 +75,13 @@ export function toItems(json) {
       }
     });
 
-    const variations = getVariations(entry.content.src)
+    const altImages = getAltImages(entry.content.src)
 
-    if (!variations) return;
+    if (!altImages) return;
 
     let item = {
       img: entry.content.src,
-      variations: variations,
+      altImages: altImages,
       link: link,
       description: entry.summary.$t,
       publishedAt: entry.published.$t

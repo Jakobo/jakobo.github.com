@@ -1,12 +1,13 @@
 import React, { PropTypes } from "react"
 import Radium from "radium"
+import reactStringReplace from "react-string-replace"
 
 import Headline from "styleguide/headline"
-import Tile from "styleguide/tile"
+import Tile, { watermark } from "styleguide/tile"
 
 import { noUnderline } from "styleguide/primitives/typography"
 import { block, forceMaxWidth, forceMaxHeight, absolute, twoThirdsWidth, twoThirdsHeight,
-  pinTop, pinLeft, pinBottomish, pinRightish } from "styleguide/primitives/layout"
+  pinTop, pinLeft, pinBottomish, pinRightish, borderBox, padAll } from "styleguide/primitives/layout"
 
 import { propTypes, defaultProps } from "./tiles_common.js"
 
@@ -20,6 +21,8 @@ import GoRepo from "react-icons/lib/go/repo"
 import GoIssueClosed from "react-icons/lib/go/issue-closed"
 import GoMarkGithub from "react-icons/lib/go/mark-github"
 
+const githubNaturalBreaks = /([\-\/A-Z/])/g
+
 const GithubEvent = (props) => {
   const { size, color, variant, source, description, loadData } = props
   const canRender = (description && source)
@@ -29,26 +32,15 @@ const GithubEvent = (props) => {
     loadData();
   }
 
-  const iconStyles = Object.assign({},
-    pinRightish,
-    pinBottomish,
-    twoThirdsWidth,
-    twoThirdsHeight,
-    absolute,
-    {
-      opacity: "0.05"
-    }
-  );
-
   const githubClassMatch = {
-    comment: { r: / commented on /, c: <GoCommentDiscussion key="icon" style={iconStyles} /> },
-    issue: { r: / opened issue /, c: <GoBug key="icon" style={iconStyles} /> },
-    push: { r: / pushed to /, c: <GoPush key="icon" style={iconStyles} /> },
-    branch: { r: / created branch /, c: <GoBranch key="icon" style={iconStyles} /> },
-    pr: { r: / opened pull request /, c: <GoPullRequest key="icon" style={iconStyles} /> },
-    fork: { r: / forked /, c: <GoForked key="icon" style={iconStyles} /> },
-    create: { r: / created repository /, c: <GoRepo key="icon" style={iconStyles} /> },
-    close: { r: / closed /, c: <GoIssueClosed key="icon" style={iconStyles} /> }
+    comment: { r: / commented on /, c: <GoCommentDiscussion key="icon" style={watermark} /> },
+    issue: { r: / opened issue /, c: <GoBug key="icon" style={watermark} /> },
+    push: { r: / pushed to /, c: <GoPush key="icon" style={watermark} /> },
+    branch: { r: / created branch /, c: <GoBranch key="icon" style={watermark} /> },
+    pr: { r: / opened pull request /, c: <GoPullRequest key="icon" style={watermark} /> },
+    fork: { r: / forked /, c: <GoForked key="icon" style={watermark} /> },
+    create: { r: / created repository /, c: <GoRepo key="icon" style={watermark} /> },
+    close: { r: / closed /, c: <GoIssueClosed key="icon" style={watermark} /> }
   };
 
   const getIcon = (description) => {
@@ -69,7 +61,9 @@ const GithubEvent = (props) => {
     forceMaxHeight,
     absolute,
     pinLeft,
-    pinTop
+    pinTop,
+    borderBox,
+    padAll
   );
 
   if (!canRender) {
@@ -80,7 +74,11 @@ const GithubEvent = (props) => {
     <article>
       { getIcon(description) }
       <a key="link" href={source} style={linkStyles}>
-        <Headline size={"s"} color={color} variant={variant} overlay={true}>{description}</Headline>
+        <Headline size={"s"} color={color} variant={variant} overlay={true}>
+          {reactStringReplace(description, githubNaturalBreaks, (match, i) => {
+            return <span key={i}><wbr/>{match}</span>
+          })}
+        </Headline>
       </a>
     </article>
   </Tile>

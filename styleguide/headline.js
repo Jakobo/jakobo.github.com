@@ -7,7 +7,7 @@ import { absolute, relative, pinLeft, pinTop } from "./primitives/layout"
 import { swatches } from "./primitives/colors"
 
 const Headline = (props) => {
-  const { color, variant, bold, underline, overlay, stroke, doubleStroke, children, size } = props;
+  const { color, variant, bold, underline, overlay, stroke, doubleStroke, children, size, style } = props;
 
   const container = Object.assign({},
     relative
@@ -28,7 +28,8 @@ const Headline = (props) => {
     sansSerif,
     display[size],
     pinTop,
-    pinLeft
+    pinLeft,
+    style
   );
 
   const singleStyles = Object.assign({}, styles, absolute, {
@@ -76,13 +77,15 @@ Headline.propTypes = {
   children: PropTypes.node.isRequired,
   color: PropTypes.oneOf(["base", "minus", "plus", "complement"]),
   variant: PropTypes.oneOf(["plain", "light", "dark"]),
-  size: PropTypes.oneOf(["xs", "s", "m", "l", "xl"]).isRequired
+  size: PropTypes.oneOf(["xs", "s", "m", "l", "xl"]).isRequired,
+  style: PropTypes.object
 };
 
 Headline.defaultProps = {
   bold: false,
   color: "base",
-  variant: "plain"
+  variant: "plain",
+  style: {}
 };
 
 export default Radium(Headline);

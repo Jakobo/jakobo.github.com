@@ -5,6 +5,10 @@ import Spinner from "./spinner"
 import FadeIn from "./animations/fade_in"
 
 import { canvas, reset, tile, edges } from "./primitives/tiles"
+import { forceMaxWidth, forceMaxHeight, absolute, pinTop, pinLeft,
+  hideTextLeft, borderBox, padAll, pinRightish, pinBottomish,
+  twoThirdsWidth, twoThirdsHeight } from "./primitives/layout"
+import { noUnderline } from "./primitives/typography"
 import { swatches } from "./primitives/colors"
 
 const Tile = (props) => {
@@ -23,7 +27,7 @@ const Tile = (props) => {
     backgroundColor: swatches[color][variant].color
   })
 
-  return <div key={"outer"} style={outerStyle}>
+  return <div key={"outer"} style={outerStyle} className={`tile-${size}`}>
     <div key={"edges"} style={edgesStyle}>
       <div key={"inner"} style={innerStyle}>
         {(() => {
@@ -50,3 +54,27 @@ Tile.defaultProps = {
 }
 
 export default Radium(Tile)
+
+export const fullLink = Object.assign({},
+  forceMaxWidth,
+  forceMaxHeight,
+  absolute,
+  pinTop,
+  pinLeft,
+  noUnderline,
+  borderBox,
+  padAll
+)
+
+export const fullLinkNoText = Object.assign({}, fullLink, hideTextLeft)
+
+export const watermark = Object.assign({},
+  pinRightish,
+  pinBottomish,
+  twoThirdsWidth,
+  twoThirdsHeight,
+  absolute,
+  {
+    opacity: "0.05"
+  }
+)

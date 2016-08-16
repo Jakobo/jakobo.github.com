@@ -19,20 +19,20 @@ let indexes = {
 const Homepage = () => {
   return <Grid>
     <Title />
-    <GithubEvent index={indexes.githubEvents++} color="plus" variant="light" />
+    <GithubEvent index={indexes.githubEvents++} color="minus" variant="light" />
     <GooglePhoto index={indexes.googlePhotos++} color="complement" variant="dark" />
-    <GithubEvent index={indexes.githubEvents++} color="plus" variant="light" />
+    <GithubEvent index={indexes.githubEvents++} color="minus" variant="light" />
     <MediumArticle index={indexes.mediumArticles++} color="base" variant="plain" />
     <PinterestPin index={indexes.pinterestPins++} color="base" variant="light" />
     <MediumArticle index={indexes.mediumArticles++} color="base" variant="plain" />
     <GooglePhoto index={indexes.googlePhotos++} color="complement" variant="dark" />
     <TwitterTweet index={indexes.twitterTweets++} color="minus" variant="light" />
-    <GithubEvent index={indexes.githubEvents++} color="plus" variant="light" />
-    <GithubEvent index={indexes.githubEvents++} color="plus" variant="light" />
+    <GithubEvent index={indexes.githubEvents++} color="minus" variant="light" />
+    <GithubEvent index={indexes.githubEvents++} color="minus" variant="light" />
     <PinterestPin index={indexes.pinterestPins++} color="base" variant="light" />
     <MediumArticle index={indexes.mediumArticles++} color="base" variant="plain" />
     <TwitterTweet index={indexes.twitterTweets++} color="minus" variant="light" />
-    <GithubEvent index={indexes.githubEvents++} color="plus" variant="light" />
+    <GithubEvent index={indexes.githubEvents++} color="minus" variant="light" />
     <TwitterTweet index={indexes.twitterTweets++} color="minus" variant="light" />
   </Grid>
 };

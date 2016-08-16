@@ -7,14 +7,14 @@ import FitImg from "styleguide/fit_image"
 import { propTypes, defaultProps } from "./tiles_common.js"
 import { noUnderline } from "styleguide/primitives/typography"
 import { forceMaxWidth, forceMaxHeight, absolute, borderBox,
-         pinTop, pinLeft, pinBottomish, hideTextLeft } from "styleguide/primitives/layout"
+         pinTop, pinLeft, pinBottomish, hideTextLeft, padText } from "styleguide/primitives/layout"
 
 const GooglePhoto = (props) => {
-  const { link, src, variations, description, color, variant, loadData, ready } = props
+  const { link, src, altImages, description, color, variant, loadData, ready } = props
   const canRender = (link && src && description)
 
   const getSrc = (oldSrc, width, height) => {
-    const i = variations.bestCrop
+    const i = altImages.bestCrop
     return i.url.replace(i.width, width).replace(i.height, height)
   }
 
@@ -37,10 +37,7 @@ const GooglePhoto = (props) => {
     absolute,
     pinBottomish,
     pinLeft,
-    {
-      paddingLeft: "2%",
-      paddingRight: "2%"
-    }
+    padText
   )
 
   // component wants to be fetched from an external data source
@@ -68,14 +65,14 @@ GooglePhoto.propTypes = Object.assign({}, propTypes, {
   link: PropTypes.string,
   src: PropTypes.string,
   description: PropTypes.string,
-  variations: PropTypes.object
+  altImages: PropTypes.object
 })
 
 GooglePhoto.defaultProps = Object.assign({}, defaultProps, {
   link: "",
   src: "",
   description: "",
-  variations: {}
+  altImages: {}
 })
 
 export default Radium(GooglePhoto)

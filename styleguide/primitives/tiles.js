@@ -1,5 +1,5 @@
 import { forceMaxWidth, forceMaxHeight, block, overflowHidden, pullLeft,
-  relative } from "./layout"
+  relative, borderBox } from "./layout"
 
 import { bgWhite } from "./colors"
 import { withVariants } from "styleguide/util"
@@ -42,26 +42,14 @@ export const canvas = Object.assign({},
 )
 
 /* how big is the gap between tiles? */
-export const edges = withVariants({
-  padding: "1%",
-  height: "99%",
-  width: "99%"
-},
-[`@media ${breakpoints.sm}`, {
-  padding: "1%",
-  height: "99%",
-  width: "99%"
-}],
-[`@media ${breakpoints.md}`, {
-  padding: "1%",
-  height: "99%",
-  width: "99%"
-}],
-[`@media ${breakpoints.lg}`, {
-  padding: "1%",
-  height: "99%",
-  width: "99%"
-}])
+export const edges = Object.assign({},
+  borderBox,
+  {
+    padding: "2px",
+    height: "100%",
+    width: "100%"
+  }
+)
 
 export const reset = Object.assign({},
   forceMaxWidth,
