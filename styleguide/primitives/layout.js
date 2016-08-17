@@ -33,14 +33,20 @@ export const hideTextLeft = { textIndent: "-99999px" }
 export const forceMaxWidth = { width: "100%" }
 export const forceMaxHeight = { height: "100%" }
 
-export const twoThirdsWidth = { width: "66%" }
-export const twoThirdsHeight = { height: "66%" }
+export const oneQuarterWidth = { width: "25%" }
+export const oneQuarterHeight = { height: "25%" }
+
+export const oneThirdWidth = { width: "33%" }
+export const oneThirdHeight = { height: "33%" }
 
 export const halfWidth = { width: "50%" }
 export const halfHeight = { height: "50%" }
 
-export const oneThirdWidth = { width: "33%" }
-export const oneThirdHeight = { height: "33%" }
+export const twoThirdsWidth = { width: "66%" }
+export const twoThirdsHeight = { height: "66%" }
+
+export const threeQuartersWidth = { width: "75%" }
+export const threeQuartersHeight = { height: "75%" }
 
 /* position */
 export const relative = { position: "relative" }

@@ -4,8 +4,10 @@ import Radium from "radium"
 import Tile from "styleguide/tile"
 import Logo from "../../../_img/logo.svg"
 
-import { oneThirdWidth, oneThirdHeight, noMargin,
-  noPadding, padAll, padText, inlineBlock} from "styleguide/primitives/layout"
+import { forceMaxWidth, oneThirdHeight, oneQuarterWidth,
+  flex, flexItemsCenter, flexJustifyAround, flexJustifyBetween, flexWrap,
+  block, noMargin, noPadding, padAll, padText, borderBox,
+  absolute, pinBottomish } from "styleguide/primitives/layout"
 import { center, listStyleNone, noIndent } from "styleguide/primitives/typography"
 
 import Headline from "styleguide/headline"
@@ -19,59 +21,80 @@ import FATwitter from "react-icons/fa/twitter"
 import FACamera from "react-icons/fa/camera"
 import FAPinterest from "react-icons/fa/pinterest"
 
-// const Logo = require('babel!svg-react!../../../img/logo.svg?name=Logo');
-
-const logoStyles = Object.assign({},
-  oneThirdWidth,
-  oneThirdHeight
+const flexContainerStyles = Object.assign({},
+  oneThirdHeight,
+  forceMaxWidth,
+  padAll,
+  flex,
+  flexItemsCenter,
+  flexJustifyAround
 )
 
-const h1Styles = Object.assign({},
-  center,
+const logoStyles = Object.assign({},
+  oneQuarterWidth
+)
+
+const taglineStyles = Object.assign({},
   padAll
+)
+
+const aboutStyles = Object.assign({},
+  borderBox,
+  padAll,
+  forceMaxWidth,
+  block,
+  center,
+  absolute,
+  pinBottomish,
+  {
+    opacity: "0.6"
+  }
 )
 
 const listStyles = Object.assign({},
   listStyleNone,
   noIndent,
   noMargin,
-  center,
-  padAll
+  noPadding,
+  forceMaxWidth,
+  flex,
+  flexWrap,
+  flexJustifyBetween
 )
 
 const listItemStyles = Object.assign({},
-  inlineBlock,
   padText
 )
 
 const Title = () => {
   return <Tile size={"s"}>
-    <article>
-      <div style={h1Styles}>
-        <Logo style={logoStyles} />
+    <div style={flexContainerStyles}>
+      <Logo style={logoStyles} />
+      <div style={taglineStyles}>
         <Headline size={"xs"}>Rudolph Jakob Heuser</Headline>
       </div>
-      <ul style={listStyles}>
-        <li style={listItemStyles}>
-          <a href="http://www.linkedin.com/in/jakobheuser" title="Resume on LinkedIn"><Headline size={"s"}><FALinkedIn /></Headline></a>
-        </li>
-        <li style={listItemStyles}>
-          <a href="https://www.github.com/Jakobo" title="Code on GitHub"><Headline size={"s"}><FAGithub /></Headline></a>
-        </li>
-        <li style={listItemStyles}>
-          <a href="https://www.medium.com/@jakob" title="Writing on Medium"><Headline size={"s"}><FAMedium /></Headline></a>
-        </li>
-        <li style={listItemStyles}>
-          <a href="https://www.twitter.com/@jakobo" title="Quips on Twitter"><Headline size={"s"}><FATwitter /></Headline></a>
-        </li>
-        <li style={listItemStyles}>
-          <a href="https://goo.gl/photos/AmCAMswjdGxR1eVm7" title="Photos on Google"><Headline size={"s"}><FACamera /></Headline></a>
-        </li>
-        <li style={listItemStyles}>
-          <a href="https://www.pinterest.com/jakobo/" title="Neat Things on Pinterest"><Headline size={"s"}><FAPinterest /></Headline></a>
-        </li>
-      </ul>
-    </article>
+    </div>
+    <ul style={listStyles}>
+      <li style={listItemStyles}>
+        <a href="http://www.linkedin.com/in/jakobheuser" title="Resume on LinkedIn"><Headline size={"s"}><FALinkedIn /></Headline></a>
+      </li>
+      <li style={listItemStyles}>
+        <a href="https://www.github.com/Jakobo" title="Code on GitHub"><Headline size={"s"}><FAGithub /></Headline></a>
+      </li>
+      <li style={listItemStyles}>
+        <a href="https://www.medium.com/@jakob" title="Writing on Medium"><Headline size={"s"}><FAMedium /></Headline></a>
+      </li>
+      <li style={listItemStyles}>
+        <a href="https://www.twitter.com/@jakobo" title="Quips on Twitter"><Headline size={"s"}><FATwitter /></Headline></a>
+      </li>
+      <li style={listItemStyles}>
+        <a href="https://goo.gl/photos/AmCAMswjdGxR1eVm7" title="Photos on Google"><Headline size={"s"}><FACamera /></Headline></a>
+      </li>
+      <li style={listItemStyles}>
+        <a href="https://www.pinterest.com/jakobo/" title="Neat Things on Pinterest"><Headline size={"s"}><FAPinterest /></Headline></a>
+      </li>
+    </ul>
+    <Text size={"m"} style={aboutStyles}>A playground of ideas, experiences, and&nbsp;technologies.</Text>
   </Tile>
 };
 
