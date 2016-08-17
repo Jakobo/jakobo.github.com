@@ -1,7 +1,0 @@
-:root {
-  --white: #fff;
-}
-
-.bg-white {
-  background-color: var(--white);
-}

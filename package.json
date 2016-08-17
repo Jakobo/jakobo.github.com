@@ -2,7 +2,7 @@
   "private": true,
   "name": "jakobo.github.com",
   "version": "0.0.0",
-  "description": "Build Tools For Me!",
+  "description": "Felocity.com",
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
