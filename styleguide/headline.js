@@ -83,6 +83,7 @@ Headline.propTypes = {
 
 Headline.defaultProps = {
   bold: false,
+  underline: false,
   color: "base",
   variant: "plain",
   style: {}

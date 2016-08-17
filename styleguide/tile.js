@@ -7,7 +7,7 @@ import FadeIn from "./animations/fade_in"
 import { canvas, reset, tile, edges } from "./primitives/tiles"
 import { forceMaxWidth, forceMaxHeight, absolute, pinTop, pinLeft,
   hideTextLeft, borderBox, padAll, pinRightish, pinBottomish,
-  twoThirdsWidth, twoThirdsHeight } from "./primitives/layout"
+  twoThirdsWidth, twoThirdsHeight, block } from "./primitives/layout"
 import { noUnderline } from "./primitives/typography"
 import { swatches } from "./primitives/colors"
 
@@ -56,6 +56,7 @@ Tile.defaultProps = {
 export default Radium(Tile)
 
 export const fullLink = Object.assign({},
+  block,
   forceMaxWidth,
   forceMaxHeight,
   absolute,

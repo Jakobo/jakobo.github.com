@@ -5,7 +5,7 @@ const widthToken = /__G_WIDTH_TOKEN__/g
 const widthTokenString = "__G_WIDTH_TOKEN__"
 const heightToken = /__G_HEIGHT_TOKEN__/g
 const heightTokenString = "__G_HEIGHT_TOKEN__"
-const imgSplit = /^(.*)\/fit\/c\/.+\/([^\/]+)$/
+const imgSplit = /^(.*)\/fit\/(?:c|t)\/.+\/([^\/]+)$/
 const snipExtract = /^.*?<p class="medium-feed-snippet">(.+?)<\/p>.*$/
 const entitySearch = /&#[\d]+;/g
 const entityToNumber = /[&#;]/g
@@ -20,7 +20,7 @@ const entityReplace = (m) => {
 // https://cdn-images-1.medium.com/max/1600/1*0p30EPyKuO_kGvsVnf8N-w.png
 // https://cdn-images-1.medium.com/max/800/1*QMoQOcQbwZf62y2rOIuS8A.gif
 // the medium images always come as fit + c
-const getAltImages = (url) => {
+export const getAltImages = (url) => {
   const pieces = url.match(imgSplit)
   if (!pieces) {
     return null

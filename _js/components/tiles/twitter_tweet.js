@@ -1,5 +1,6 @@
 import React, { PropTypes } from "react"
 import Radium from "radium"
+import reactStringReplace from "react-string-replace"
 
 import Text from "styleguide/text"
 import Headline from "styleguide/text"
@@ -21,9 +22,21 @@ const TwitterTweet = (props) => {
     return <Tile size={"s"} color={"plus"} variant={"light"} loading={true}></Tile>
   }
 
+  let replacedText;
+  replacedText = reactStringReplace(content, /(https?:\/\/\S+)/g, (match, i) => {
+    return <a key={`url-${i}`} href={match}>{match}</a>
+  });
+  replacedText = reactStringReplace(replacedText, /@(\w+)/g, (match, i) => {
+    return <a key={`mention-${i}`} href={`https://twitter.com/${match}`}>@{match}</a>
+  });
+  replacedText = reactStringReplace(replacedText, /#(\w+)/g, (match, i) => {
+    return <a key={`hashtag-${i}`} href={`https://twitter.com/hashtag/${match}`}>#{match}</a>
+  });
+
+
   return <Tile size={"s"} color={"plus"} variant={"light"}>
     <FATwitter style={watermark} />
-    <a href={source} style={fullLink}><Text size="l" color={"plus"} variant={"light"} overlay={true}>{content}</Text></a>
+    <Text size="l" color={"plus"} variant={"light"} overlay={true}>{replacedText}</Text>
   </Tile>
 }
 

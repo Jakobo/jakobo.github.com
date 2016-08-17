@@ -3,7 +3,7 @@ import Radium from "radium"
 import reactStringReplace from "react-string-replace"
 
 import Headline from "styleguide/headline"
-import Tile, { watermark } from "styleguide/tile"
+import Tile, { fullLink, watermark } from "styleguide/tile"
 
 import { noUnderline } from "styleguide/primitives/typography"
 import { block, forceMaxWidth, forceMaxHeight, absolute, twoThirdsWidth, twoThirdsHeight,
@@ -54,18 +54,6 @@ const GithubEvent = (props) => {
     return icon;
   }
 
-  const linkStyles = Object.assign({},
-    noUnderline,
-    block,
-    forceMaxWidth,
-    forceMaxHeight,
-    absolute,
-    pinLeft,
-    pinTop,
-    borderBox,
-    padAll
-  );
-
   if (!canRender) {
     return <Tile size={"s"} color={color} variant={variant} loading={true}></Tile>
   }
@@ -73,7 +61,7 @@ const GithubEvent = (props) => {
   return <Tile size={"s"} color={color} variant={variant}>
     <article>
       { getIcon(description) }
-      <a key="link" href={source} style={linkStyles}>
+      <a key="link" href={source} style={fullLink}>
         <Headline size={"s"} color={color} variant={variant} overlay={true}>
           {reactStringReplace(description, githubNaturalBreaks, (match, i) => {
             return <span key={i}><wbr/>{match}</span>
