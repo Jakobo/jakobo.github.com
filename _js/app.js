@@ -1,6 +1,9 @@
 // MUST POLYFILL FOR NON-ES2015 ENVIRONMENTS
 import "babel-polyfill"
 
+// we have loaded. Explicitly display:none the app
+document.getElementById("nojs").style.display = "none"
+
 import React from "react"
 import { render } from "react-dom"
 
