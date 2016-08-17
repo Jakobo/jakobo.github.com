@@ -1,5 +1,5 @@
 import { forceMaxWidth, forceMaxHeight, block, overflowHidden, pullLeft,
-  relative, borderBox } from "./layout"
+  relative, borderBox, padAll } from "./layout"
 
 import { bgWhite } from "./colors"
 import { withVariants } from "styleguide/util"
@@ -37,17 +37,16 @@ const firstTile = { marginLeft: "0" }
 export const canvas = Object.assign({},
   block,
   overflowHidden,
-  // pullLeft,
   bgWhite
 )
 
 /* how big is the gap between tiles? */
 export const edges = Object.assign({},
+  forceMaxWidth,
+  forceMaxHeight,
   borderBox,
   {
-    padding: "2px",
-    height: "100%",
-    width: "100%"
+    padding: "2px"
   }
 )
 
@@ -61,7 +60,10 @@ export const reset = Object.assign({},
 
 export const tile = {
   s: withVariants(Object.assign({},
-    oneColumn.spanOne
+    oneColumn.spanOne,
+    {
+      height: "50vw"
+    }
   ),
   [`@media ${breakpoints.sm}`, Object.assign({},
     twoColumn.spanOne

@@ -3,8 +3,9 @@ import Radium from "radium"
 import reactStringReplace from "react-string-replace"
 
 import Text from "styleguide/text"
+import Link from "styleguide/link"
 import Headline from "styleguide/text"
-import Tile, { fullLink, watermark } from "styleguide/tile"
+import Tile, { fullLinkNoText, watermark, fullText } from "styleguide/tile"
 import { propTypes, defaultProps } from "./tiles_common.js"
 
 import FATwitter from "react-icons/fa/twitter"
@@ -19,24 +20,27 @@ const TwitterTweet = (props) => {
   }
 
   if (!canRender) {
-    return <Tile size={"s"} color={"plus"} variant={"light"} loading={true}></Tile>
+    return <Tile size={"s"} color={color} variant={variant} loading={true}></Tile>
   }
 
   let replacedText;
   replacedText = reactStringReplace(content, /(https?:\/\/\S+)/g, (match, i) => {
-    return <a key={`url-${i}`} href={match}>{match}</a>
+    return <Link key={`url-${i}`} size={"l"} href={match} color={color} variant={variant} overlay={true}>{match}</Link>
   });
   replacedText = reactStringReplace(replacedText, /@(\w+)/g, (match, i) => {
-    return <a key={`mention-${i}`} href={`https://twitter.com/${match}`}>@{match}</a>
+    return <Link key={`mention-${i}`} size={"l"} color={color} variant={variant} overlay={true} href={`https://twitter.com/${match}`}>@{match}</Link>
   });
   replacedText = reactStringReplace(replacedText, /#(\w+)/g, (match, i) => {
-    return <a key={`hashtag-${i}`} href={`https://twitter.com/hashtag/${match}`}>#{match}</a>
+    return <Link key={`hashtag-${i}`} size={"l"} color={color} variant={variant} overlay={true} href={`https://twitter.com/hashtag/${match}`}>#{match}</Link>
   });
 
 
-  return <Tile size={"s"} color={"plus"} variant={"light"}>
+  return <Tile size={"s"} color={color} variant={variant}>
     <FATwitter style={watermark} />
-    <Text size="l" color={"plus"} variant={"light"} overlay={true}>{replacedText}</Text>
+    <article style={fullText}>
+      <Text size="l" color={color} variant={variant} overlay={true}>{replacedText}</Text>
+    </article>
+    <a href={source} style={fullLinkNoText}>On Twitter: {content}</a>
   </Tile>
 }
 

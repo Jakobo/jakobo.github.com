@@ -37,10 +37,10 @@ const PinterestPin = (props) => {
   }
 
   if (!canRender) {
-    return <Tile size={"s"} loading={true}></Tile>
+    return <Tile size={"s"} color={color} variant={variant} loading={true}></Tile>
   }
 
-  return <Tile size={"s"}>
+  return <Tile size={"s"} color={color} variant={variant}>
     <FitImg src={image} getSrc={getSrc} exact={false}
       alt={`${description} - on Pinterest`} title={`${description} - on Pinterest`} />
     <a href={link} style={clickableStyle} title={`${description} - on Pinterest`}>{`${description} - on Pinterest`}</a>

@@ -27,15 +27,13 @@ const Tile = (props) => {
     backgroundColor: swatches[color][variant].color
   })
 
-  return <div key={"outer"} style={outerStyle} className={`tile-${size}`}>
+  const waiting = <Spinner size={size} color={color} variant={variant} absolute={true}></Spinner>
+  const content = <FadeIn>{children}</FadeIn>
+
+  return <div key={"outer"} style={outerStyle} className={`tile tile-${size}`}>
     <div key={"edges"} style={edgesStyle}>
       <div key={"inner"} style={innerStyle}>
-        {(() => {
-          if (loading) {
-            return <Spinner size={size} color={color} variant={variant} absolute={true}></Spinner>
-          }
-          return <FadeIn>{children}</FadeIn>
-        })()}
+        {loading ? waiting : content}
       </div>
     </div>
   </div>
@@ -55,18 +53,18 @@ Tile.defaultProps = {
 
 export default Radium(Tile)
 
-export const fullLink = Object.assign({},
+export const fullText = Object.assign({},
   block,
   forceMaxWidth,
   forceMaxHeight,
   absolute,
   pinTop,
   pinLeft,
-  noUnderline,
   borderBox,
   padAll
 )
 
+export const fullLink = Object.assign({}, fullText, noUnderline)
 export const fullLinkNoText = Object.assign({}, fullLink, hideTextLeft)
 
 export const watermark = Object.assign({},

@@ -34,7 +34,7 @@ const config = {
   module : {
     loaders : [
       { test: /\.jsx?/, include: BABEL_DIRS, loader: 'babel' },
-      { test: /\.svg$/, loader: 'babel?presets[]=es2015,presets[]=react!svg-react' },
+      { test: /\.svg$/, loader: 'babel!svg-react' },
       {
         // the react-masonry plugin explicitly says we need the import loader in webpack here
         // otherwise, the AMD-isms will not get stripped off

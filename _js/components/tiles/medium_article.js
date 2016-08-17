@@ -1,7 +1,7 @@
 import React, { PropTypes } from "react";
 import Radium from "radium"
 
-import Tile from "styleguide/tile"
+import Tile, { fullLinkNoText } from "styleguide/tile"
 import FitImg from "styleguide/fit_image"
 import Text from "styleguide/text"
 import { propTypes, defaultProps } from "./tiles_common.js"
@@ -18,15 +18,6 @@ const MediumArticle = (props) => {
     const i = altImages.bestCrop
     return i.url.replace(i.width, width).replace(i.height, height)
   }
-
-  const linkStyle = Object.assign({},
-    forceMaxWidth,
-    forceMaxHeight,
-    absolute,
-    pinLeft,
-    pinTop,
-    hideTextLeft
-  )
 
   const snipStyle = Object.assign({},
     borderBox,
@@ -51,16 +42,15 @@ const MediumArticle = (props) => {
   }
 
   if (!canRender) {
-    return <Tile size={"s"} loading={true}></Tile>
+    return <Tile size={"s"} color={color} variant={variant} loading={true}></Tile>
   }
 
   return <Tile size={"s"} color={color} variant={variant}>
     <FitImg src={image} getSrc={getSrc} />
-    <a href={source} style={linkStyle}>{title}</a>
     <div style={snipStyle}>
       <Text size={"s"} style={textStyle}>{summary}</Text>
     </div>
-    <a href={source} style={linkStyle} title={`Read: ${title} on Medium`}>{title}</a>
+    <a href={source} style={fullLinkNoText} title={`Read: ${title} on Medium`}>{title}</a>
   </Tile>
 };
 

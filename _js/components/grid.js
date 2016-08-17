@@ -3,13 +3,16 @@ import Masonry from "react-masonry-component"
 
 const masonryOptions = {
   columnWidth: ".tile-s",
-  fitWidth: true,
-  gutter: 0
+  itemSelector: ".tile"
+}
+
+const masonryStyles = {
+  width: "100%"
 }
 
 const Grid = (props) => {
   const { children } = props;
-  return <Masonry options={masonryOptions}>{children}</Masonry>
+  return <Masonry options={masonryOptions} style={masonryStyles}>{children}</Masonry>
 };
 
 export default Grid;
