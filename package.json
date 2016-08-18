@@ -7,7 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "touch ./assets/bundle.x; rm ./assets/bundle.*; ./node_modules/.bin/webpack-dev-server -d --inline",
-    "build": "webpack -p"
+    "build": "webpack --config=webpack.config.prod.js -p",
+    "verify": "./node_modules/.bin/static -p 8080"
   },
   "repository": {
     "type": "git",
@@ -42,6 +43,7 @@
     "babel-preset-react": "^6.11.1",
     "file-loader": "^0.9.0",
     "imports-loader": "^0.6.5",
+    "node-static": "^0.7.8",
     "svg-react-loader": "^0.3.7",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.1",

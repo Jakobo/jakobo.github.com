@@ -9,6 +9,7 @@ Philosophically, the personal web page is changing. Felocity.com started out as 
 npm install # All the things
 npm run dev # Start a webpack dev server for the project
             # or do "npm run build" to minify and create /assets items
+            # and "npm run verify" starts a static server to verify production builds
 ```
 
 ## Deploying
@@ -51,3 +52,4 @@ Google Photos have a direct JSONP endpoint. There used to also be LinkedIn chang
 * `/vcard`: My old business cards still point to a vcard URL. 404s are best avoided if we can help it, so this redirects to `/`
 * `/manifesto`: A link to the manifesto I keep up to date as a manager (on Medium)
 * `webpack.config.js`: The webpack config
+* `webpack.config.prod.js`: The webpack config for production, extends the default config and adds production flags

@@ -1,22 +1,22 @@
-const webpack = require("webpack");
-const path = require("path");
+var webpack = require("webpack");
+var path = require("path");
 
 // directories
-const APP_DIR = path.resolve(__dirname, "_js");
-const BUILD_DIR = path.resolve(__dirname, "assets");
-const STYLEGUIDE_DIR = path.resolve(__dirname, "styleguide");
+var APP_DIR = path.resolve(__dirname, "_js");
+var BUILD_DIR = path.resolve(__dirname, "assets");
+var STYLEGUIDE_DIR = path.resolve(__dirname, "styleguide");
 
 // only apply BABEL to these directories... otherwise the build becomes SUPER
 // slow! We should only be running babel on the app dir and any node modules
 // that were improperly designed and didn't publish built code
-const BABEL_DIRS = [
+var BABEL_DIRS = [
   APP_DIR,
   STYLEGUIDE_DIR,
   path.dirname(path.dirname(require.resolve("react-icons/fa/camera")))
 ];
 
 // webpack config proper
-const config = {
+var config = {
   entry: {
     app: [APP_DIR + "/app.js"]
   },
