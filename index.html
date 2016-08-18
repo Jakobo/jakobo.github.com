@@ -21,7 +21,7 @@
     Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
-  <article id="nojs" style="padding: 1em">
+  <article id="nojs" style="padding: 1em; opacity: 0">
     <h1>Rudolph Jakob Heuser</h1>
     <h2>This site is a playground of his ideas, experiences, and technologies.</h2>
     <p>This site is a clearinghouse for many different places I can be found on the web.
@@ -46,6 +46,8 @@
   <!-- end react -->
 
   <script async src="assets/bundle.js"></script>
+  <!-- now, the nojs should be display: none, so making it opacity: 1 means we goofed -->
+  <style>#nojs { opacity: 1 !important }</style>
 
 </body>
 </html>
