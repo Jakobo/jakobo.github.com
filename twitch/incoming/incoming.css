@@ -1,3 +1,23 @@
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeout {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+@keyframes cubeSpin {
+  from { transform: rotateY(0); }
+  to   { transform: rotateY(360deg); }
+}
+
+@keyframes zoomThrough {
+  from { width: 2px; height: 2px; }
+  to { width: 2880px; height: 2880px; }
+}
+
 #jakobox {
   width: 1920px;
   height: 1080px;
@@ -50,22 +70,12 @@
 
 #omni p.in {
   visibility: visible;
-  animation: inomni 2s ease-out forwards;
+  animation: fadein 2s ease-out forwards;
   animation-delay: 2s;
 }
 
 #omni p.out {
-  animation: outomni 2s ease-in forwards;
-}
-
-@keyframes inomni {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-@keyframes outomni {
-  from { opacity: 1; }
-  to   { opacity: 0; }
+  animation: fadeout 2s ease-in forwards;
 }
 
 #foot {
@@ -81,6 +91,8 @@
   font-weight: bold;
   text-align: center;
   width: 1920px;
+  position: absolute;
+  top: 840px;
 }
 
 #countdown div {
@@ -111,12 +123,7 @@
   position: relative;
   transform-style: preserve-3d;
   transform-origin: 75px 75px 0px;
-  animation: spin 5s infinite linear;
-}
-
-@-webkit-keyframes spin {
-  from { transform: rotateY(0); }
-  to   { transform: rotateY(360deg); }
+  animation: cubeSpin 5s infinite linear;
 }
 
 #box b {
@@ -136,3 +143,29 @@
 #box b.top { transform:rotateX(-90deg) translateY(-75px); transform-origin: top center; }
 #box b.bottom { transform:rotateX(90deg) translateY(75px); transform-origin: bottom center; }
 #box b.front { transform: translateZ(75px); }
+
+#iris {
+  z-index: -1;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: perspective(1px) translateY(-50%) translateX(-50%);
+  width: 2px;
+  height: 2px;
+  background: #000;
+  border-radius: 50% 50%;
+}
+
+.countdown-zero #countdown,
+.countdown-zero #omni,
+.countdown-zero h1,
+.countdown-zero #box-left,
+.countdown-zero #box-right {
+  animation: fadeout 1s ease-in forwards;
+}
+
+.countdown-zero #iris {
+  z-index: 2;
+  animation: zoomThrough 2s ease-in forwards;
+  animation-delay: 0.5s;
+}
