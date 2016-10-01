@@ -18,12 +18,12 @@ var BABEL_DIRS = [
 // webpack config proper
 var config = {
   entry: {
-    app: [APP_DIR + "/app.js"]
+    bundle: [APP_DIR + "/app.js"]
   },
   output: {
     path: BUILD_DIR,
     publicPath: "/assets/",
-    filename: "bundle.js"
+    filename: "[name].js"
   },
   resolve: {
     alias: {

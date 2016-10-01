@@ -15,7 +15,7 @@
 
 @keyframes cubeThrough {
   to {
-    transform: scale(13);
+    transform: scale(13) rotateZ(0);
     left: -15px;
     top: -335px;
   }
@@ -28,16 +28,37 @@
   }
 }
 
+@keyframes cubeBack {
+  to {
+    transform: scale(1) rotateZ(15deg);
+    left: 900px;
+    top: 452px;
+  }
+}
+
+@keyframes cubeDetail {
+  to {
+    border-color: #fff;
+    box-shadow: inset 0 0 30px rgba(255,255,255,0.4);
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
 #jakobox {
   width: 1920px;
   height: 1080px;
   overflow: hidden;
   position: relative;
+  background: transparent;
   font-family: "Helvetica Neue Condensed", "Helvetica Neue", Helvetica, sans-serif;
 }
 
-.test #jakobox {
-  background: #fcc;
+.chroma #jakobox {
+  background: #0f0 !important;
 }
 
 #svgtype {
@@ -153,22 +174,3 @@
 #box b.top { transform:rotateX(-90deg) translateY(-75px); transform-origin: top center; }
 #box b.bottom { transform:rotateX(90deg) translateY(75px); transform-origin: bottom center; }
 #box b.front { transform: translateZ(75px); }
-
-.countdown-zero #countdown,
-.countdown-zero #omni,
-.countdown-zero h1,
-.countdown-zero #box-left,
-.countdown-zero #box-right {
-  animation: fadeout 1s ease-in forwards;
-}
-
-.countdown-zero #box {
-  z-index: 2;
-  animation: cubeThrough 2s ease-in forwards;
-  animation-delay: 0.5s;
-}
-
-.countdown-zero #box b {
-  animation: cubeNoDetail 2s ease-in forwards;
-  animation-delay: 0.5s;
-}

@@ -1,0 +1,106 @@
+@keyframes inOmni {
+  from { left: 1796px; opacity: 0; }
+  to { left: 206px; opacity: 1; }
+}
+
+@keyframes outOmni {
+  from { left: 206px; opacity: 1; }
+  to { left: 1796px; opacity: 0; }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#jakobox {
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  position: relative;
+  background: transparent;
+  font-family: "Helvetica Neue Condensed", "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 26px;
+}
+
+.chroma #jakobox {
+  background: #0f0 !important;
+}
+
+#omni {
+  position: absolute;
+  width: 1920px;
+  height: 48px;
+  left: 0px;
+  top: 1032px;
+  background: url(omnibar.png) top left no-repeat;
+}
+
+#omni .container {
+  position: relative;
+  overflow: hidden;
+  width: 1796px;
+  left: 62px;
+  height: 45px;
+  padding-top: 12px;
+  z-index: 10;
+}
+
+#omni .stick, #omni p {
+  position: relative;
+  float: left;
+  background: transparent;
+  color: #fff;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2)
+}
+
+#omni .spaced {
+  margin-left: 15px;
+}
+
+#omni .stick.first {
+  margin-left: 2px;
+}
+
+#omni .stick:before, #omni p:before {
+  content: attr(title);
+  position: absolute;
+  -webkit-text-stroke: 0.2em #000;
+  left: 0;
+  z-index: -1;
+}
+
+/*#omni .stick {
+  display: inline-block;
+  padding-right: 0.2em;
+}*/
+
+#omni p {
+  display: none;
+  top: 12px;
+  left: 1920px;
+  padding: 0;
+  margin: 0;
+}
+
+#omni p.in, #omni p.out {
+  display: block;
+  position: absolute;
+}
+
+#omni p.in {
+  animation: inOmni 1s ease-out forwards;
+}
+
+#omni p.out {
+  animation: outOmni 1s ease-in forwards;
+}
+
+#cam {
+  position: absolute;
+  top: 420px;
+  left: 3px;
+  width: 458px;
+  height: 304px;
+  background: url(cam.png) top left no-repeat;
+}

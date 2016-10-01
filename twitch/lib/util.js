@@ -10,16 +10,25 @@ window.ENV = (function(){
 
 // test
 (function() {
-  if (ENV.test) {
-    document.getElementsByTagName("body")[0].classList.add("test");
+  if (ENV.chroma) {
+    document.getElementsByTagName("body")[0].classList.add("chroma");
   }
 }());
 
 // omni
 (function() {
-  var delay = ENV.omnidelay || 5000;
-  var nodes = document.querySelectorAll("#omni p");
+  if (!document.getElementById("omni")) {
+    return;
+  }
+
+  var delay = ENV.omnidelay * 1000 || 5000;
+  var nodes = [].slice.call(document.querySelectorAll("#omni p"));
   var current = 0;
+
+  nodes.forEach(function(n) {
+    n.setAttribute("title", n.innerHTML);
+  });
+
   nodes[0].classList.toggle("in");
 
   function tick() {
@@ -40,8 +49,34 @@ window.ENV = (function(){
   window.setTimeout(tick, delay);
 }());
 
+// test follows
+(function() {
+  if (!document.getElementById("jakobox")) {
+    return;
+  }
+  var follows = {
+    destiny: "https://u.muxy.io/dashboard/alerts/demo/g9djjNHgai340bmM76i2Fhfe5nyiMKSX"
+  };
+  var which = ENV.testfollows || null;
+
+  if (!follows[which]) {
+    return;
+  }
+
+  var ifr = document.createElement("iframe");
+  ifr.classList.add("testfollow");
+  ifr.src = follows[which];
+  ifr.setAttribute("border", "0");
+  ifr.setAttribute("seamless", "seamless");
+  document.getElementById("jakobox").appendChild(ifr);
+}());
+
 // Master Countdown
 (function(){
+  if (!document.getElementById("countdown")) {
+    return;
+  }
+
   var minutes = parseFloat(ENV.countdown) || 30;
   var seconds = 60 * minutes;
   var soon = new Date();
