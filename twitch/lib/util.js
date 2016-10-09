@@ -15,6 +15,13 @@ window.ENV = (function(){
   }
 }());
 
+// test
+(function() {
+  if (ENV.screen) {
+    document.getElementsByTagName("body")[0].classList.add("screen");
+  }
+}());
+
 // omni
 (function() {
   if (!document.getElementById("omni")) {

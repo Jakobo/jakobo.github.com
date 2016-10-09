@@ -27,6 +27,10 @@ body {
   background: #0f0 !important;
 }
 
+.screen #jakobox {
+  background: url(https://i.ytimg.com/vi/KiKMW9RrSIY/maxresdefault.jpg) left top no-repeat !important;
+}
+
 iframe.testfollow {
   border: 0;
   width: 682px;
@@ -39,20 +43,25 @@ iframe.testfollow {
 #omni {
   position: absolute;
   width: 1920px;
-  height: 48px;
+  height: 64px;
   left: 0px;
   top: 1032px;
-  background: url(omnibar.png) top left no-repeat;
+  background: #323232;
+  border: 5px solid #ff5327;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+  box-shadow: 0px -1px 0 rgba(0, 0, 0, 0.4);
 }
 
 #omni .container {
   position: relative;
-  overflow: hidden;
-  width: 1796px;
-  left: 62px;
-  height: 45px;
-  padding-top: 12px;
-  z-index: 10;
+  width: 1920px;
+  height: 57px;
+  border: 3px solid rgba(0, 0, 0, 0.4);
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
 }
 
 #omni .stick, #omni p {
@@ -60,11 +69,15 @@ iframe.testfollow {
   float: left;
   background: transparent;
   color: #fff;
-  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2)
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
 }
 
 #omni .spaced {
   margin-left: 15px;
+}
+
+#omni .stick {
+  padding-top: 4px;
 }
 
 #omni .stick.first {
@@ -86,7 +99,7 @@ iframe.testfollow {
 
 #omni p {
   display: none;
-  top: 12px;
+  top: 4px;
   left: 1920px;
   padding: 0;
   margin: 0;
@@ -107,9 +120,63 @@ iframe.testfollow {
 
 #cam {
   position: absolute;
-  top: 420px;
+  top: 400px;
   left: 3px;
-  width: 458px;
-  height: 304px;
-  background: url(cam.png) top left no-repeat;
+  width: 480px;
+  height: 340px;
+}
+
+#cam .container {
+  position: relative;
+}
+
+#cam .holder, #cam .logo, #cam .accent {
+  position: absolute;
+}
+
+#cam .holder {
+  box-sizing: border-box;
+  width: 412px;
+  height: 237px;
+  border: 6px solid #2a3f56;
+  box-shadow: 5px 5px 7px 0px rgba(0,0,0,0.75);
+  left: 0px;
+  top: 50px;
+}
+
+#cam .accent-top, #cam .accent-right, #cam .accent-right-before {
+  position: absolute;
+  box-sizing: border-box;
+}
+
+#cam .accent-top {
+  border-bottom: 8px solid #df8926;
+  border-left: 16px solid transparent;
+  height: 0;
+  width: 130px;
+  left: 290px;
+  top: 42px;
+  z-index: 2;
+}
+
+#cam .accent-right {
+  border-left: 8px solid #df8926;
+  border-bottom: 16px solid transparent;
+  width: 0;
+  height: 150px;
+  left: 412px;
+  top: 42px;
+  -webkit-filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.75));
+  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.75));
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000;
+}
+
+#cam .logo {
+  background: url(../logo-word.svg) left top no-repeat;
+  width: 277px;
+  height: 63px;
+  top: 2px;
+  z-index: 3;
 }
