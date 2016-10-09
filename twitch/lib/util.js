@@ -1,5 +1,6 @@
+// query options can override
 window.ENV = (function(){
-  var query = {};
+  var query = window.ENV || {};
   var a = location.search.substr(1).split('&');
   for (var i = 0; i < a.length; i++) {
       var b = a[i].split('=');
@@ -15,20 +16,21 @@ window.ENV = (function(){
   }
 }());
 
-// test
+// put a screenshot in the background
 (function() {
   if (ENV.screen) {
     document.getElementsByTagName("body")[0].classList.add("screen");
   }
 }());
 
-// omni
+// omnibar functionality
 (function() {
   if (!document.getElementById("omni")) {
     return;
   }
 
   var delay = ENV.omnidelay * 1000 || 5000;
+  var inoutDelay = ENV.omnianimationdelay * 1000 || 0;
   var nodes = [].slice.call(document.querySelectorAll("#omni p"));
   var current = 0;
 
@@ -47,8 +49,10 @@ window.ENV = (function(){
     nodes[last].classList.add("out");
     nodes[last].classList.remove("in");
 
-    nodes[current].classList.add("in");
-    nodes[current].classList.remove("out");
+    window.setTimeout(function() {
+      nodes[current].classList.add("in");
+      nodes[current].classList.remove("out");
+    }, inoutDelay);
 
     window.setTimeout(tick, delay);
   }

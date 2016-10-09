@@ -1,11 +1,11 @@
 @keyframes inOmni {
   from { left: 1796px; opacity: 0; }
-  to { left: 206px; opacity: 1; }
+  to { left: 214px; opacity: 1; }
 }
 
 @keyframes outOmni {
-  from { left: 206px; opacity: 1; }
-  to { left: 1796px; opacity: 0; }
+  from { left: 214px; top: 4px; opacity: 1; }
+  to { left: 214px; top: 4px; opacity: 0; }
 }
 
 body {
@@ -28,7 +28,8 @@ body {
 }
 
 .screen #jakobox {
-  background: url(https://i.ytimg.com/vi/KiKMW9RrSIY/maxresdefault.jpg) left top no-repeat !important;
+  /*background: url(https://i.ytimg.com/vi/KiKMW9RrSIY/maxresdefault.jpg) left top no-repeat !important;*/
+  background: url(test.jpg) left top no-repeat !important;
 }
 
 iframe.testfollow {
@@ -46,19 +47,20 @@ iframe.testfollow {
   height: 64px;
   left: 0px;
   top: 1032px;
-  background: #323232;
-  border: 5px solid #ff5327;
+  background: rgba(30, 30, 30, 0.5);
+  border: 4px solid rgba(255, 83, 39, 0.7);
   border-left: 0;
   border-right: 0;
   border-bottom: 0;
   box-shadow: 0px -1px 0 rgba(0, 0, 0, 0.4);
+  overflow: hidden;
 }
 
 #omni .container {
   position: relative;
   width: 1920px;
   height: 57px;
-  border: 3px solid rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(0, 0, 0, 0.2);
   border-left: 0;
   border-right: 0;
   border-bottom: 0;
@@ -81,7 +83,7 @@ iframe.testfollow {
 }
 
 #omni .stick.first {
-  margin-left: 2px;
+  margin-left: 10px;
 }
 
 #omni .stick:before, #omni p:before {
@@ -115,7 +117,7 @@ iframe.testfollow {
 }
 
 #omni p.out {
-  animation: outOmni 1s ease-in forwards;
+  animation: outOmni 0.5s ease-in forwards;
 }
 
 #cam {
@@ -174,9 +176,44 @@ iframe.testfollow {
 }
 
 #cam .logo {
-  background: url(../logo-word.svg) left top no-repeat;
-  width: 277px;
-  height: 63px;
-  top: 2px;
-  z-index: 3;
+  font-size: 55px;
+  font-family: "HelveticaNeue-CondensedBlack";
+  font-weight:600;
+  font-stretch:condensed;
+  color: #fff;
+}
+
+#cam .logo svg {
+  display: block;
+  overflow: visible;
+}
+
+#cam .logo svg text, #cam .logo svg #Inside, #cam .logo svg #Outside {
+  fill: #fff;
+  stroke: #000;
+  stroke-width: 2;
+}
+
+#jako, #box, #ox {
+  position: absolute;
+}
+
+#jako {
+  top: 8px;
+  left: 6px;
+}
+
+#box {
+  height: 85px;
+  left: 36px;
+  top: -12px;
+}
+
+#cam .logo svg #Inside, #cam .logo svg #Outside {
+  stroke-width: 8;
+}
+
+#ox {
+  top: 8px;
+  left: 198px;
 }
